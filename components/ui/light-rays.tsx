@@ -23,6 +23,7 @@ type LightRay = {
   delay: number
   duration: number
   intensity: number
+  startProgress: number
 }
 
 const createRays = (count: number, cycle: number): LightRay[] => {
@@ -46,6 +47,7 @@ const createRays = (count: number, cycle: number): LightRay[] => {
       delay,
       duration,
       intensity,
+      startProgress: Math.random(), // Calculate random start position when creating ray
     }
   })
 }
@@ -58,17 +60,31 @@ const Ray = ({
   delay,
   duration,
   intensity,
+  startProgress,
 }: LightRay) => {
+  // Calculate starting values based on cycle position
+  // Opacity follows: 0 -> intensity -> 0 (sine wave)
+  const startOpacity = Math.sin(startProgress * Math.PI) * intensity
+  
+  // Rotation follows: rotate - swing -> rotate + swing -> rotate - swing
+  // Use sine to get smooth position in the swing cycle
+  const startRotate = rotate + (swing * Math.sin(startProgress * Math.PI * 2))
+  
+  const initialOpacity = Math.max(startOpacity, intensity * 0.4)
+  
   return (
     <motion.div
-      className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--light-rays-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
+      className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--light-rays-color)_70%,transparent)] to-transparent mix-blend-screen blur-[var(--light-rays-blur)]"
       style={
         {
           "--ray-left": `${left}%`,
           "--ray-width": `${width}px`,
+          opacity: initialOpacity, // Set initial opacity directly in style
         } as CSSProperties
       }
-      initial={{ rotate: rotate }}
+      initial={{ 
+        rotate: startRotate,
+      }}
       animate={{
         opacity: [0, intensity, 0],
         rotate: [rotate - swing, rotate + swing, rotate - swing],
