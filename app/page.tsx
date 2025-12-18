@@ -2,11 +2,31 @@ import { LightRays } from "@/components/ui/light-rays";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PortfolioDock } from "@/components/portfolio-dock";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Briefcase, 
+  Calendar, 
+  MapPin, 
+  BookOpen, 
+  ArrowRight,
+  Code,
+  Coffee,
+  Music,
+  Heart,
+  Github,
+  Linkedin,
+  Instagram,
+  Mail,
+  FileText
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black font-sans">
-      <main className="flex min-h-screen w-full max-w-6xl flex-col items-center justify-center py-32 px-16 bg-black sm:items-start">
+    <div className="flex min-h-screen flex-col bg-black font-sans">
+      {/* Hero Section */}
+      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-black sm:items-start relative">
         <section className="text-center sm:text-left">
           <h1 className="text-4xl md:text-5xl font-medium mb-4">Hello, I&apos;m Edward.<br />A software engineer.</h1>
           <p className="text-md md:text-lg text-gray-400 mb-8">Currently working on lots of things.</p>
@@ -23,14 +43,7 @@ export default function Home() {
                 size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M12 2C6.48 2 2 6.58 2 12.26c0 4.47 2.87 8.27 6.84 9.62.5.09.68-.22.68-.48 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.2-3.37-1.2-.45-1.19-1.1-1.51-1.1-1.51-.9-.63.07-.62.07-.62 1 .07 1.52 1.06 1.52 1.06.89 1.56 2.34 1.11 2.91.84.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.15-4.56-5.13 0-1.14.38-2.08 1.02-2.81-.1-.26-.44-1.31.09-2.72 0 0 .84-.28 2.75 1.07A9.39 9.39 0 0 1 12 7.36a9.34 9.34 0 0 1 2.51.34c1.91-1.35 2.75-1.07 2.75-1.07.54 1.41.2 2.46.1 2.72.63.73 1.01 1.67 1.01 2.81 0 4-2.34 4.87-4.57 5.13.36.32.68.96.68 1.94 0 1.4-.01 2.53-.01 2.87 0 .26.18.58.69.48A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
-                  />
-                </svg>
+                <Github className="h-6 w-6" />
               </Button>
             </a>
             {/* LinkedIn */}
@@ -45,12 +58,7 @@ export default function Home() {
                 size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14Zm-9.38 16v-7H6.08v7h3.54ZM7.81 10.44c1.11 0 1.8-.74 1.8-1.66-.02-.94-.69-1.65-1.78-1.65-1.1 0-1.8.7-1.8 1.65 0 .92.69 1.66 1.77 1.66h.01ZM17.94 19v-3.97c0-2.13-1.13-3.12-2.63-3.12-1.21 0-1.75.67-2.04 1.15V12.1h-3.54V19h3.54v-3.74c0-.2.01-.41.08-.55.17-.41.57-.83 1.24-.83.88 0 1.23.63 1.23 1.56V19h3.53Z"
-                  />
-                </svg>
+                <Linkedin className="h-6 w-6" />
               </Button>
             </a>
             {/* Instagram */}
@@ -65,27 +73,7 @@ export default function Home() {
                 size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <rect
-                    width="20"
-                    height="20"
-                    x="2"
-                    y="2"
-                    rx="5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <circle cx="17" cy="7" r="1.2" fill="currentColor" />
-                </svg>
+                <Instagram className="h-6 w-6" />
               </Button>
             </a>
             {/* CV */}
@@ -100,24 +88,7 @@ export default function Home() {
                 size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <rect
-                    x="6"
-                    y="3"
-                    width="12"
-                    height="18"
-                    rx="2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M9 7h6M9 11h6M9 15h3"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <FileText className="h-6 w-6" />
               </Button>
             </a>
             {/* Contact Me */}
@@ -127,31 +98,286 @@ export default function Home() {
                 size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <rect
-                    x="3"
-                    y="5"
-                    width="18"
-                    height="14"
-                    rx="2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M3 7l9 6 9-6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <Mail className="h-6 w-6" />
               </Button>
             </Link>
           </div>
         </section>
       </main>
+
+      {/* General Information / About Section */}
+      <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4">About Me</h2>
+            <p className="text-lg text-gray-400 max-w-3xl">
+              I&apos;m a software engineer passionate about building meaningful digital experiences. 
+              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open source, 
+              or enjoying a good cup of coffee.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <Code className="h-8 w-8 mb-2 text-gray-400" />
+                <CardTitle className="text-lg">Tech Stack</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-400">
+                  React, Next.js, TypeScript, Node.js, and more
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <Coffee className="h-8 w-8 mb-2 text-gray-400" />
+                <CardTitle className="text-lg">Interests</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-400">
+                  Web development, UI/UX design, and continuous learning
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <Music className="h-8 w-8 mb-2 text-gray-400" />
+                <CardTitle className="text-lg">Hobbies</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-400">
+                  Music, gaming, reading, and exploring new places
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <Heart className="h-8 w-8 mb-2 text-gray-400" />
+                <CardTitle className="text-lg">Values</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-400">
+                  Clean code, user-centric design, and collaboration
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Work Experience Section */}
+      <section id="experience" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+        <div className="space-y-12">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4">Work Experience</h2>
+            <p className="text-lg text-gray-400">
+              A journey through my professional career
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {/* Experience Item 1 */}
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <CardTitle className="text-xl mb-2">Senior Software Engineer</CardTitle>
+                    <CardDescription className="flex items-center gap-2 text-gray-400">
+                      <Briefcase className="h-4 w-4" />
+                      Company Name
+                      <span className="mx-2">•</span>
+                      <MapPin className="h-4 w-4" />
+                      Location
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <Calendar className="h-4 w-4" />
+                    <span>2022 - Present</span>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">
+                  Leading development of scalable web applications using modern technologies. 
+                  Collaborating with cross-functional teams to deliver high-quality products.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="border-white/20">React</Badge>
+                  <Badge variant="outline" className="border-white/20">TypeScript</Badge>
+                  <Badge variant="outline" className="border-white/20">Next.js</Badge>
+                  <Badge variant="outline" className="border-white/20">Node.js</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Experience Item 2 */}
+            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardHeader>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <CardTitle className="text-xl mb-2">Software Engineer</CardTitle>
+                    <CardDescription className="flex items-center gap-2 text-gray-400">
+                      <Briefcase className="h-4 w-4" />
+                      Previous Company
+                      <span className="mx-2">•</span>
+                      <MapPin className="h-4 w-4" />
+                      Location
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <Calendar className="h-4 w-4" />
+                    <span>2020 - 2022</span>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">
+                  Developed and maintained web applications, worked on improving performance 
+                  and user experience, and mentored junior developers.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="border-white/20">JavaScript</Badge>
+                  <Badge variant="outline" className="border-white/20">Vue.js</Badge>
+                  <Badge variant="outline" className="border-white/20">Python</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Intro Section */}
+      <section id="blog" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4">Blog</h2>
+            <p className="text-lg text-gray-400 max-w-3xl">
+              Thoughts, tutorials, and insights about software development, 
+              technology trends, and my journey as a developer.
+            </p>
+          </div>
+
+          <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <BookOpen className="h-6 w-6 text-gray-400" />
+                <CardTitle className="text-xl">Latest Posts</CardTitle>
+              </div>
+              <CardDescription className="text-gray-400">
+                Check out my latest articles and tutorials
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {/* Blog Post Preview 1 */}
+                <div className="flex items-start justify-between gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium mb-1">Building Modern Web Apps with Next.js</h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      A comprehensive guide to building scalable applications with Next.js 14...
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <Calendar className="h-3 w-3" />
+                      <span>March 15, 2024</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/post-slug">
+                    <Button variant="ghost" size="icon" className="shrink-0">
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+
+                <Separator className="bg-white/10" />
+
+                {/* Blog Post Preview 2 */}
+                <div className="flex items-start justify-between gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium mb-1">TypeScript Best Practices</h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Tips and tricks for writing better TypeScript code...
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <Calendar className="h-3 w-3" />
+                      <span>February 28, 2024</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/post-slug">
+                    <Button variant="ghost" size="icon" className="shrink-0">
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <Link href="/blog">
+                  <Button 
+                    variant="outline" 
+                    className="w-full sm:w-auto border-white/20 hover:bg-white/10"
+                  >
+                    View All Posts
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <Separator className="bg-white/10" />
+
+      {/* Footer */}
+      <footer className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Edward. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs mt-1">
+              Built with Next.js, TypeScript, and Tailwind CSS
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:edward@email.com"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </footer>
+
+      {/* Background Effects */}
       <LightRays color="rgba(100, 200, 255, 0.2)" length="100vh" speed={10} count={7} />
+      
+      {/* Dock Navigation */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
         <PortfolioDock />
       </div>
