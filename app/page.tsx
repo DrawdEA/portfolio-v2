@@ -373,9 +373,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Background Effects */}
-      <LightRays color="rgba(100, 200, 255, 0.2)" length="100vh" speed={10} count={7} />
       
       {/* Dock Navigation */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
