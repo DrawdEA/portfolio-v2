@@ -1,20 +1,17 @@
-import { LightRays } from "@/components/ui/light-rays";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PortfolioDock } from "@/components/portfolio-dock";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { SpotifyCard } from "@/components/spotify-card";
+import { GitHubCard } from "@/components/github-card";
 import { 
   Briefcase, 
   Calendar, 
   MapPin, 
   BookOpen, 
   ArrowRight,
-  Code,
-  Coffee,
-  Music,
-  Heart,
   Github,
   Linkedin,
   Instagram,
@@ -108,63 +105,15 @@ export default function Home() {
       {/* General Information / About Section */}
       <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
         <div className="space-y-8">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-medium mb-4">About Me</h2>
-            <p className="text-lg text-gray-400 max-w-3xl">
-              I&apos;m a software engineer passionate about building meaningful digital experiences. 
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open source, 
-              or enjoying a good cup of coffee.
-            </p>
+          <div className="flex justify-center md:justify-start">
+            <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+              About Me
+            </Badge>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
-                <Code className="h-8 w-8 mb-2 text-gray-400" />
-                <CardTitle className="text-lg">Tech Stack</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400">
-                  React, Next.js, TypeScript, Node.js, and more
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
-                <Coffee className="h-8 w-8 mb-2 text-gray-400" />
-                <CardTitle className="text-lg">Interests</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400">
-                  Web development, UI/UX design, and continuous learning
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
-                <Music className="h-8 w-8 mb-2 text-gray-400" />
-                <CardTitle className="text-lg">Hobbies</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400">
-                  Music, gaming, reading, and exploring new places
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
-                <Heart className="h-8 w-8 mb-2 text-gray-400" />
-                <CardTitle className="text-lg">Values</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400">
-                  Clean code, user-centric design, and collaboration
-                </CardDescription>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SpotifyCard />
+            <GitHubCard username={process.env.NEXT_PUBLIC_GITHUB_USERNAME || "yourusername"} />
           </div>
         </div>
       </section>
@@ -182,7 +131,7 @@ export default function Home() {
           <div className="space-y-8">
             {/* Experience Item 1 */}
             <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
+              <CardHeader className="p-0 px-6 pt-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <CardTitle className="text-xl mb-2">Senior Software Engineer</CardTitle>
@@ -200,7 +149,7 @@ export default function Home() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-0 px-6 pb-6">
                 <p className="text-gray-300 mb-4">
                   Leading development of scalable web applications using modern technologies. 
                   Collaborating with cross-functional teams to deliver high-quality products.
@@ -216,7 +165,7 @@ export default function Home() {
 
             {/* Experience Item 2 */}
             <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader>
+              <CardHeader className="p-0 px-6 pt-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <CardTitle className="text-xl mb-2">Software Engineer</CardTitle>
@@ -234,7 +183,7 @@ export default function Home() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-0 px-6 pb-6">
                 <p className="text-gray-300 mb-4">
                   Developed and maintained web applications, worked on improving performance 
                   and user experience, and mentored junior developers.
@@ -262,7 +211,7 @@ export default function Home() {
           </div>
 
           <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-            <CardHeader>
+            <CardHeader className="p-0 px-6 pt-6">
               <div className="flex items-center gap-3 mb-2">
                 <BookOpen className="h-6 w-6 text-gray-400" />
                 <CardTitle className="text-xl">Latest Posts</CardTitle>
@@ -271,7 +220,7 @@ export default function Home() {
                 Check out my latest articles and tutorials
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-0 px-6 pb-6">
               <div className="space-y-4">
                 {/* Blog Post Preview 1 */}
                 <div className="flex items-start justify-between gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
