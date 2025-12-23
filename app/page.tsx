@@ -1,16 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { PortfolioDock } from "@/components/portfolio-dock";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
+import { MagicCard } from "@/components/ui/magic-card";
+import { Timeline } from "@/components/ui/timeline";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { SpotifyCard } from "@/components/spotify-card";
-import { GitHubCard } from "@/components/github-card";
 import { 
-  Briefcase, 
-  Calendar, 
-  MapPin, 
-  BookOpen, 
   ArrowRight,
   Github,
   Linkedin,
@@ -104,7 +102,7 @@ export default function Home() {
 
       {/* General Information / About Section */}
       <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
-        <div className="space-y-8">
+        <div className="space-y-4">
           <div className="flex justify-center md:justify-start">
             <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
               About Me
@@ -113,88 +111,182 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <SpotifyCard />
-            <GitHubCard username={process.env.NEXT_PUBLIC_GITHUB_USERNAME || "yourusername"} />
+            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
+              <CardContent className="p-0">
+                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
+                  <p className="text-sm text-gray-500">Github Stats</p>
+                </div>
+              </CardContent>
+            </MagicCard>
+          </div>
+
+          {/* Second row - 2 placeholder cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
+              <CardContent className="p-0">
+                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
+                  <p className="text-sm text-gray-500">Tech Stack</p>
+                </div>
+              </CardContent>
+            </MagicCard>
+            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
+              <CardContent className="p-0">
+                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
+                  <p className="text-sm text-gray-500">Tech Stack Icon Cloud</p>
+                </div>
+              </CardContent>
+            </MagicCard>
+          </div>
+
+          {/* Third row - 1.5x height card */}
+          <div className="grid grid-cols-1 gap-4">
+            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
+              <CardContent className="p-0">
+                <div className="flex items-center justify-center h-full min-h-[150px] px-4 py-4">
+                  <p className="text-sm text-gray-500">Interactive</p>
+                </div>
+              </CardContent>
+            </MagicCard>
           </div>
         </div>
       </section>
 
       {/* Work Experience Section */}
       <section id="experience" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
-        <div className="space-y-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-medium mb-4">Work Experience</h2>
-            <p className="text-lg text-gray-400">
-              A journey through my professional career
-            </p>
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <div className="flex justify-center md:justify-start">
+              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+                Work Experience
+              </Badge>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-medium text-center md:text-left">
+                My Professional Journey
+              </h2>
+              <p className="text-gray-400 text-center md:text-left max-w-2xl">
+                A timeline of my career progression, showcasing the companies I&apos;ve worked with, 
+                the projects I&apos;ve contributed to, and the technologies I&apos;ve mastered along the way.
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-8">
-            {/* Experience Item 1 */}
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader className="p-0 px-6 pt-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div>
-                    <CardTitle className="text-xl mb-2">Senior Software Engineer</CardTitle>
-                    <CardDescription className="flex items-center gap-2 text-gray-400">
-                      <Briefcase className="h-4 w-4" />
-                      Company Name
-                      <span className="mx-2">•</span>
-                      <MapPin className="h-4 w-4" />
-                      Location
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <Calendar className="h-4 w-4" />
-                    <span>2022 - Present</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-0 px-6 pb-6">
-                <p className="text-gray-300 mb-4">
-                  Leading development of scalable web applications using modern technologies. 
-                  Collaborating with cross-functional teams to deliver high-quality products.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="border-white/20">React</Badge>
-                  <Badge variant="outline" className="border-white/20">TypeScript</Badge>
-                  <Badge variant="outline" className="border-white/20">Next.js</Badge>
-                  <Badge variant="outline" className="border-white/20">Node.js</Badge>
-                </div>
-              </CardContent>
-            </Card>
+          <Timeline
+            items={[
+              {
+                title: "Senior Software Engineer",
+                company: "Company Name",
+                location: "Location",
+                period: "2022 - Present",
+                description:
+                  "Leading development of scalable web applications using modern technologies. Collaborating with cross-functional teams to deliver high-quality products.",
+                technologies: ["React", "TypeScript", "Next.js", "Node.js"],
+              },
+              {
+                title: "Software Engineer",
+                company: "Previous Company",
+                location: "Location",
+                period: "2020 - 2022",
+                description:
+                  "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers.",
+                technologies: ["JavaScript", "Vue.js", "Python"],
+              },
+            ]}
+          />
+        </div>
+      </section>
 
-            {/* Experience Item 2 */}
-            <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-              <CardHeader className="p-0 px-6 pt-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div>
-                    <CardTitle className="text-xl mb-2">Software Engineer</CardTitle>
-                    <CardDescription className="flex items-center gap-2 text-gray-400">
-                      <Briefcase className="h-4 w-4" />
-                      Previous Company
-                      <span className="mx-2">•</span>
-                      <MapPin className="h-4 w-4" />
-                      Location
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <Calendar className="h-4 w-4" />
-                    <span>2020 - 2022</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-0 px-6 pb-6">
-                <p className="text-gray-300 mb-4">
-                  Developed and maintained web applications, worked on improving performance 
-                  and user experience, and mentored junior developers.
+      {/* Projects Section */}
+      <section id="projects" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <div className="flex justify-center md:justify-start">
+              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+                Projects
+              </Badge>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div className="space-y-4 flex-1">
+                <h2 className="text-3xl md:text-4xl font-medium text-center md:text-left">
+                  Featured Projects
+                </h2>
+                <p className="text-gray-400 text-center md:text-left max-w-2xl">
+                  A collection of projects I&apos;ve built, showcasing my skills in web development, 
+                  design, and problem-solving.
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="border-white/20">JavaScript</Badge>
-                  <Badge variant="outline" className="border-white/20">Vue.js</Badge>
-                  <Badge variant="outline" className="border-white/20">Python</Badge>
+              </div>
+              <Link href="/projects">
+                <Button 
+                  variant="outline" 
+                  className="border-white/20 hover:bg-white/10"
+                >
+                  View all projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Project 1 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=3"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">2024</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                  Project Title
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  A brief description of the project, highlighting key features and technologies used 
+                  in the development process.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </Link>
+
+            {/* Project 2 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=4"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">2024</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                  Project Title
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  A brief description of the project, highlighting key features and technologies used 
+                  in the development process.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -202,80 +294,94 @@ export default function Home() {
       {/* Blog Intro Section */}
       <section id="blog" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
         <div className="space-y-8">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-medium mb-4">Blog</h2>
-            <p className="text-lg text-gray-400 max-w-3xl">
-              Thoughts, tutorials, and insights about software development, 
-              technology trends, and my journey as a developer.
-            </p>
+          <div className="space-y-4">
+            <div className="flex justify-center md:justify-start">
+              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+                Blog
+              </Badge>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div className="space-y-4 flex-1">
+                <h2 className="text-3xl md:text-4xl font-medium text-center md:text-left">
+                  Latest Articles
+                </h2>
+                <p className="text-gray-400 text-center md:text-left max-w-2xl">
+                  Explore my thoughts on web development, best practices, and the latest technologies 
+                  I&apos;ve been working with.
+                </p>
+              </div>
+              <Link href="/blog">
+                <Button 
+                  variant="outline" 
+                  className="border-white/20 hover:bg-white/10"
+                >
+                  View all posts
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
-            <CardHeader className="p-0 px-6 pt-6">
-              <div className="flex items-center gap-3 mb-2">
-                <BookOpen className="h-6 w-6 text-gray-400" />
-                <CardTitle className="text-xl">Latest Posts</CardTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Blog Post 1 */}
+            <Link 
+              href="/blog/post-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=1"
+                  alt="Building Modern Web Apps with Next.js"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-              <CardDescription className="text-gray-400">
-                Check out my latest articles and tutorials
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-0 px-6 pb-6">
-              <div className="space-y-4">
-                {/* Blog Post Preview 1 */}
-                <div className="flex items-start justify-between gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-medium mb-1">Building Modern Web Apps with Next.js</h3>
-                    <p className="text-sm text-gray-400 mb-2">
-                      A comprehensive guide to building scalable applications with Next.js 14...
-                    </p>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <Calendar className="h-3 w-3" />
-                      <span>March 15, 2024</span>
-                    </div>
-                  </div>
-                  <Link href="/blog/post-slug">
-                    <Button variant="ghost" size="icon" className="shrink-0">
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-
-                <Separator className="bg-white/10" />
-
-                {/* Blog Post Preview 2 */}
-                <div className="flex items-start justify-between gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-medium mb-1">TypeScript Best Practices</h3>
-                    <p className="text-sm text-gray-400 mb-2">
-                      Tips and tricks for writing better TypeScript code...
-                    </p>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <Calendar className="h-3 w-3" />
-                      <span>February 28, 2024</span>
-                    </div>
-                  </div>
-                  <Link href="/blog/post-slug">
-                    <Button variant="ghost" size="icon" className="shrink-0">
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">2024</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                  Building Modern Web Apps with Next.js
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  A comprehensive guide to building scalable applications with Next.js 14, 
+                  covering server components, routing, and performance optimization.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
+            </Link>
 
-              <div className="mt-6">
-                <Link href="/blog">
-                  <Button 
-                    variant="outline" 
-                    className="w-full sm:w-auto border-white/20 hover:bg-white/10"
-                  >
-                    View All Posts
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+            {/* Blog Post 2 */}
+            <Link 
+              href="/blog/post-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=2"
+                  alt="TypeScript Best Practices"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-            </CardContent>
-          </Card>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">2024</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                  TypeScript Best Practices
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Tips and tricks for writing better TypeScript code, including type safety, 
+                  generics, and advanced patterns for modern development.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 

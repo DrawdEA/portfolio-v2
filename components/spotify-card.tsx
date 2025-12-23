@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import { CardContent } from "@/components/ui/card"
+import { MagicCard } from "@/components/ui/magic-card"
 import { Music2, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -40,7 +41,7 @@ export function SpotifyCard() {
 
   if (isLoading) {
     return (
-      <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+      <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
         <CardContent className="p-0 px-4 py-4">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 bg-gray-700 rounded animate-pulse" />
@@ -50,13 +51,13 @@ export function SpotifyCard() {
             </div>
           </div>
         </CardContent>
-      </Card>
+      </MagicCard>
     )
   }
 
   if (!track || !track.title) {
     return (
-      <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+      <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
         <CardContent className="p-0 px-4 py-4">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 bg-gray-700 rounded flex items-center justify-center">
@@ -68,12 +69,12 @@ export function SpotifyCard() {
             </div>
           </div>
         </CardContent>
-      </Card>
+      </MagicCard>
     )
   }
 
   return (
-    <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+    <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl p-4">
       <CardContent className="p-0">
         <div className="mb-3 px-4">
           <p className="text-xs text-gray-400 font-medium">
@@ -116,7 +117,7 @@ export function SpotifyCard() {
           <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-white transition-colors shrink-0" />
         </Link>
       </CardContent>
-    </Card>
+    </MagicCard>
   )
 }
 
