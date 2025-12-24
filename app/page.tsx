@@ -2,19 +2,22 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { PortfolioDock } from "@/components/portfolio-dock";
-import { CardContent } from "@/components/ui/card";
-import { MagicCard } from "@/components/ui/magic-card";
 import { Timeline } from "@/components/ui/timeline";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { SpotifyCard } from "@/components/spotify-card";
+import { SpotifyBentoCard } from "@/components/spotify-bento-card";
+import { StravaBentoCard } from "@/components/strava-bento-card";
+import { GitHubStatsBentoCard } from "@/components/github-stats-bento-card";
+import { TechStackIconCloudBentoCard } from "@/components/tech-stack-icon-cloud-bento-card";
+import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { 
   ArrowRight,
   Github,
   Linkedin,
   Instagram,
   Mail,
-  FileText
+  FileText,
+  Code
 } from "lucide-react";
 
 export default function Home() {
@@ -104,50 +107,37 @@ export default function Home() {
       <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
         <div className="space-y-4">
           <div className="flex justify-center md:justify-start">
-            <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+            <Badge variant="outline" className="border-[#4A7BC8]/30 bg-[#4A7BC8]/10 text-[#4A7BC8]/80 text-xs px-3 py-1">
               About Me
             </Badge>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <SpotifyCard />
-            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
-              <CardContent className="p-0">
-                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
-                  <p className="text-sm text-gray-500">Github Stats</p>
-                </div>
-              </CardContent>
-            </MagicCard>
-          </div>
-
-          {/* Second row - 2 placeholder cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
-              <CardContent className="p-0">
-                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
-                  <p className="text-sm text-gray-500">Tech Stack</p>
-                </div>
-              </CardContent>
-            </MagicCard>
-            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
-              <CardContent className="p-0">
-                <div className="flex items-center justify-center h-full min-h-[100px] px-4 py-4">
-                  <p className="text-sm text-gray-500">Tech Stack Icon Cloud</p>
-                </div>
-              </CardContent>
-            </MagicCard>
-          </div>
-
-          {/* Third row - 1.5x height card */}
-          <div className="grid grid-cols-1 gap-4">
-            <MagicCard gradientFrom="#4A7BC8" gradientTo="#27508F" className="bg-white/5 border border-white/10 rounded-xl">
-              <CardContent className="p-0">
-                <div className="flex items-center justify-center h-full min-h-[150px] px-4 py-4">
-                  <p className="text-sm text-gray-500">Interactive</p>
-                </div>
-              </CardContent>
-            </MagicCard>
-          </div>
+          <BentoGrid className="md:grid-cols-3 auto-rows-[11rem]">
+            <GitHubStatsBentoCard className="col-span-3 md:col-span-1 row-span-2" />
+            <BentoCard
+              name="Tech Stack"
+              className="col-span-3 md:col-span-1 row-span-2"
+              description="Technologies and tools I work with"
+              href="/tech-stack"
+              cta="Learn more"
+              Icon={Code}
+              background={<div />}
+            />
+            <div className="col-span-3 md:col-span-1 row-span-2 flex flex-col gap-4">
+              <SpotifyBentoCard className="flex-1" />
+              <StravaBentoCard className="flex-1" />
+            </div>
+            <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1" />
+            <BentoCard
+              name="Interactive"
+              className="col-span-3 md:col-span-2"
+              description="Interactive experiences and visualizations"
+              href="/interactive"
+              cta="Discover"
+              Icon={Code}
+              background={<div />}
+            />
+          </BentoGrid>
         </div>
       </section>
 
