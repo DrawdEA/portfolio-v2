@@ -114,20 +114,11 @@ export default function Home() {
 
           <BentoGrid className="md:grid-cols-3 auto-rows-[11rem]">
             <GitHubStatsBentoCard className="col-span-3 md:col-span-1 row-span-2" />
-            <BentoCard
-              name="Tech Stack"
-              className="col-span-3 md:col-span-1 row-span-2"
-              description="Technologies and tools I work with"
-              href="/tech-stack"
-              cta="Learn more"
-              Icon={Code}
-              background={<div />}
-            />
+            <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1 row-span-2" />
             <div className="col-span-3 md:col-span-1 row-span-2 flex flex-col gap-4">
               <SpotifyBentoCard className="flex-1" />
               <StravaBentoCard className="flex-1" />
             </div>
-            <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1" />
             <BentoCard
               name="Interactive"
               className="col-span-3 md:col-span-2"

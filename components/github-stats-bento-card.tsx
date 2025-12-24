@@ -120,7 +120,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
         </div>
 
         {stats?.profileUrl && (
-          <div className="pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 hidden w-full translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
             <Link
               href={stats.profileUrl}
               target="_blank"
@@ -133,7 +133,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
           </div>
         )}
 
-        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
+        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center justify-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
           {stats?.profileUrl && (
             <Link
               href={stats.profileUrl}

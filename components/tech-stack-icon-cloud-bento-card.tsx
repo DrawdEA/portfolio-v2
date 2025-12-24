@@ -1,9 +1,9 @@
 "use client"
 
 import { Cloud, ExternalLink } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { IconCloud } from "@/components/ui/icon-cloud"
 
 // Tech stack icons from simpleicons.org
 const techStack = [
@@ -22,7 +22,27 @@ const techStack = [
   "docker",
   "figma",
   "vscode",
+  "vue",
+  "angular",
+  "svelte",
+  "express",
+  "nestjs",
+  "graphql",
+  "redis",
+  "aws",
+  "kubernetes",
+  "terraform",
+  "jest",
+  "cypress",
+  "webpack",
+  "eslint",
+  "prettier",
 ]
+
+// Generate image URLs for IconCloud (using original brand colors)
+const techStackImages = techStack.map(
+  (slug) => `https://cdn.simpleicons.org/${slug}`
+)
 
 export function TechStackIconCloudBentoCard({ className }: { className?: string }) {
   return (
@@ -34,40 +54,12 @@ export function TechStackIconCloudBentoCard({ className }: { className?: string 
         className
       )}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-full h-full">
-          {techStack.map((slug, index) => {
-            const angle = (index / techStack.length) * Math.PI * 2
-            const radius = 40
-            const x = 50 + radius * Math.cos(angle)
-            const y = 50 + radius * Math.sin(angle)
-            
-            return (
-              <div
-                key={slug}
-                className="absolute opacity-35 group-hover:opacity-55 transition-opacity animate-pulse"
-                style={{
-                  left: `${x}%`,
-                  top: `${y}%`,
-                  transform: 'translate(-50%, -50%)',
-                  animationDelay: `${index * 0.1}s`,
-                }}
-              >
-                <Image
-                  src={`https://cdn.simpleicons.org/${slug}/4A7BC8`}
-                  alt={slug}
-                  width={32}
-                  height={32}
-                  className="w-8 h-8"
-                />
-              </div>
-            )
-          })}
-        </div>
+      <div className="absolute inset-0 flex items-center justify-center -translate-y-8">
+        <IconCloud images={techStackImages} />
         {/* Subtle blue gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#4A7BC8]/5 to-[#27508F]/5 pointer-events-none" />
       </div>
-      <div className="p-4 relative z-10">
+      <div className="p-4 relative z-10 mt-auto">
         <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
           <Cloud className="h-12 w-12 origin-left transform-gpu text-[#4A7BC8]/70 transition-all duration-300 ease-in-out group-hover:scale-75 group-hover:text-[#4A7BC8]/90" />
           <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
@@ -78,7 +70,7 @@ export function TechStackIconCloudBentoCard({ className }: { className?: string 
           </p>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 hidden w-full translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
           <Link
             href="/tech-stack"
             className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
