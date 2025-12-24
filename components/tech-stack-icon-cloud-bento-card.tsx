@@ -60,7 +60,7 @@ export function TechStackIconCloudBentoCard({ className }: { className?: string 
         )}
       >
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-full h-[140%] -top-[20%] flex items-center justify-center translate-y-6">
+          <div className="relative w-full h-[140%] -top-[20%] flex items-center justify-center translate-y-8">
             <IconCloud images={techStackImages} />
             {/* Subtle blue gradient overlay - covers expanded area */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#4A7BC8]/5 to-[#27508F]/5 pointer-events-none" />

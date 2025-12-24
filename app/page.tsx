@@ -19,7 +19,11 @@ import {
   Mail,
   FileText,
   Code,
-  ArrowDown
+  ArrowDown,
+  Briefcase,
+  Users,
+  Trophy,
+  Mic
 } from "lucide-react";
 
 export default function Home() {
@@ -130,17 +134,43 @@ export default function Home() {
               buttonIcon={ArrowDown}
               centerButton={true}
               largeButton={true}
+              Icon={Briefcase}
+              background={
+                <div className="absolute inset-0 opacity-20">
+                  <Image
+                    src="/work.jpg"
+                    alt="Work Experience background"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              }
+            />
+            <BentoCard
+              name="Placeholder"
+              className="col-span-3 md:col-span-2"
+              description="Coming soon"
+              href="#"
+              cta=""
               background={<div />}
             />
-            <InteractiveReactionCounter className="col-span-3 md:col-span-2" />
             <BentoCard
               name="Org Work"
               className="col-span-3 md:col-span-1"
               description="Contributions to open source projects"
               href="/opensource"
               cta="Explore"
-              Icon={Code}
-              background={<div />}
+              Icon={Users}
+              background={
+                <div className="absolute inset-0 opacity-20">
+                  <Image
+                    src="/org.png"
+                    alt="Org Work background"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              }
             />
             <BentoCard
               name="Hackathons"
@@ -148,8 +178,17 @@ export default function Home() {
               description="Competitions and hackathon projects"
               href="/hackathons"
               cta="View projects"
-              Icon={Code}
-              background={<div />}
+              Icon={Trophy}
+              background={
+                <div className="absolute inset-0 opacity-20">
+                  <Image
+                    src="/hackathon.jpg"
+                    alt="Hackathons background"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              }
             />
             <BentoCard
               name="Speaking"
@@ -157,10 +196,26 @@ export default function Home() {
               description="Talks, presentations, and conferences"
               href="/speaking"
               cta="Watch talks"
-              Icon={Code}
-              background={<div />}
+              Icon={Mic}
+              background={
+                <div className="absolute inset-0 opacity-20">
+                  <Image
+                    src="/speaking.jpg"
+                    alt="Speaking background"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              }
             />
           </BentoGrid>
+          
+          {/* Small reaction counter at bottom right */}
+          <div className="relative">
+            <div className="flex justify-end">
+              <InteractiveReactionCounter className="w-auto" />
+            </div>
+          </div>
         </div>
       </section>
 

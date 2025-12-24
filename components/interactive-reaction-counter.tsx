@@ -117,18 +117,16 @@ export function InteractiveReactionCounter({ className }: { className?: string }
     <div
       ref={containerRef}
       className={cn(
-        "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
-        "bg-background transform-gpu",
-        "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]",
+        "group relative flex items-center gap-2 overflow-visible",
         className
       )}
     >
       {/* Particles overlay */}
-      <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-20 overflow-visible">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute text-2xl pointer-events-none"
+            className="absolute text-lg pointer-events-none"
             initial={{ opacity: 1, scale: 1 }}
             animate={{
               x: particle.x,
@@ -148,27 +146,20 @@ export function InteractiveReactionCounter({ className }: { className?: string }
         ))}
       </div>
 
-      <div className="p-4 relative z-10 flex flex-col items-center justify-center h-full">
-        <div className="flex items-center justify-center gap-6 flex-wrap">
-          {reactions.map((reaction, index) => (
-            <motion.button
-              key={reaction.emoji}
-              onClick={(e) => handleReaction(index, e)}
-              className="relative flex flex-col items-center gap-2 transition-all"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <span className="text-5xl">{reaction.emoji}</span>
-              <span className="text-sm text-neutral-300">{reaction.count}</span>
-            </motion.button>
-          ))}
-        </div>
-        <div className="mt-6 flex items-center gap-2 text-sm text-neutral-400">
-          <span>Total reactions:</span>
-          <span className="font-semibold text-[#4A7BC8]">{totalReactions}</span>
-        </div>
+      <div className="relative z-10 flex items-center gap-3">
+        {reactions.map((reaction, index) => (
+          <motion.button
+            key={reaction.emoji}
+            onClick={(e) => handleReaction(index, e)}
+            className="relative flex items-center gap-1.5 transition-all hover:scale-110"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="text-2xl">{reaction.emoji}</span>
+            <span className="text-xs text-neutral-400">{reaction.count}</span>
+          </motion.button>
+        ))}
       </div>
-
     </div>
   )
 }
