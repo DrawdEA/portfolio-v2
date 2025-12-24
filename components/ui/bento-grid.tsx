@@ -89,16 +89,20 @@ const BentoCard = ({
           asChild
           size="sm"
           className={cn(
-            "pointer-events-auto p-0",
-            centerButton && "justify-center"
+            "pointer-events-auto p-0 text-neutral-400",
+            centerButton && "justify-center",
+            whiteButton && "text-white"
           )}
         >
-          <a href={href} className={cn(centerButton && "flex items-center justify-center")}>
+          <a href={href} className={cn(
+            centerButton && "flex items-center justify-center",
+            whiteButton && "text-white"
+          )}>
             {cta}
             <IconComponent className={cn(
               cta ? "ms-2" : "",
               largeButton ? "h-12 w-12" : "h-4 w-4",
-              whiteButton && "text-white",
+              whiteButton ? "text-white" : "text-neutral-400",
               largeButton && "stroke-[3]",
               "rtl:rotate-180"
             )} />
@@ -118,16 +122,20 @@ const BentoCard = ({
         asChild
         size="sm"
         className={cn(
-          "pointer-events-auto p-0",
-          centerButton && "justify-center"
+          "pointer-events-auto p-0 text-neutral-400",
+          centerButton && "justify-center",
+          whiteButton && "text-white"
         )}
       >
-        <a href={href} className={cn(centerButton && "flex items-center justify-center")}>
+        <a href={href} className={cn(
+          centerButton && "flex items-center justify-center",
+          whiteButton && "text-white"
+        )}>
           {cta}
             <IconComponent className={cn(
               cta ? "ms-2" : "",
               largeButton ? "h-12 w-12" : "h-4 w-4",
-              whiteButton && "text-white",
+              whiteButton ? "text-white" : "text-neutral-400",
               largeButton && "stroke-[3]",
               "rtl:rotate-180"
             )} />

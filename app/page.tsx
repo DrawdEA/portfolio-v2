@@ -9,6 +9,7 @@ import { SpotifyBentoCard } from "@/components/spotify-bento-card";
 import { StravaBentoCard } from "@/components/strava-bento-card";
 import { GitHubStatsBentoCard } from "@/components/github-stats-bento-card";
 import { TechStackIconCloudBentoCard } from "@/components/tech-stack-icon-cloud-bento-card";
+import { InteractiveReactionCounter } from "@/components/interactive-reaction-counter";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { 
   ArrowRight,
@@ -129,18 +130,9 @@ export default function Home() {
               buttonIcon={ArrowDown}
               centerButton={true}
               largeButton={true}
-              whiteButton={true}
               background={<div />}
             />
-            <BentoCard
-              name="Interactive"
-              className="col-span-3 md:col-span-2"
-              description="Interactive experiences and visualizations"
-              href="/interactive"
-              cta="Discover"
-              Icon={Code}
-              background={<div />}
-            />
+            <InteractiveReactionCounter className="col-span-3 md:col-span-2" />
             <BentoCard
               name="Org Work"
               className="col-span-3 md:col-span-1"
