@@ -202,7 +202,7 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
-              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+              <Badge variant="outline" className="border-[#4A7BC8]/50 bg-[#4A7BC8]/20 text-[#4A7BC8] text-xs px-3 py-1">
                 Projects
               </Badge>
             </div>
@@ -246,7 +246,7 @@ export default function Home() {
               <div className="flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
                       Project Title
                     </h3>
                     <p className="text-sm text-gray-400">December 15, 2024 • 5 min read</p>
@@ -257,7 +257,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
                     Read more
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -285,7 +285,7 @@ export default function Home() {
               <div className="flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
                       Project Title
                     </h3>
                     <p className="text-sm text-gray-400">December 10, 2024 • 3 min read</p>
@@ -296,7 +296,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
                     Read more
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -324,7 +324,7 @@ export default function Home() {
               <div className="flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
                       Project Title
                     </h3>
                     <p className="text-sm text-gray-400">December 5, 2024 • 4 min read</p>
@@ -335,7 +335,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
                     Read more
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -355,7 +355,7 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
-              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
+              <Badge variant="outline" className="border-[#4A7BC8]/50 bg-[#4A7BC8]/20 text-[#4A7BC8] text-xs px-3 py-1">
                 Blog
               </Badge>
             </div>
@@ -397,15 +397,15 @@ export default function Home() {
                 />
               </div>
               <div className="space-y-3">
-                <p className="text-sm text-gray-400">2024</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                <p className="text-sm text-gray-400">December 20, 2024 • 8 min read</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
                   Building Modern Web Apps with Next.js
                 </h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
                   A comprehensive guide to building scalable applications with Next.js 14, 
                   covering server components, routing, and performance optimization.
                 </p>
-                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
                   Read more
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -426,15 +426,15 @@ export default function Home() {
                 />
               </div>
               <div className="space-y-3">
-                <p className="text-sm text-gray-400">2024</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
+                <p className="text-sm text-gray-400">December 12, 2024 • 6 min read</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
                   TypeScript Best Practices
                 </h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
                   Tips and tricks for writing better TypeScript code, including type safety, 
                   generics, and advanced patterns for modern development.
                 </p>
-                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
                   Read more
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
