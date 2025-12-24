@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { ChevronDown } from "lucide-react"
 
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode
@@ -13,10 +14,14 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   name: string
   className: string
   background: ReactNode
-  Icon: React.ElementType
+  Icon?: React.ElementType
   description: string
   href: string
   cta: string
+  buttonIcon?: React.ElementType
+  centerButton?: boolean
+  largeButton?: boolean
+  whiteButton?: boolean
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
@@ -41,8 +46,14 @@ const BentoCard = ({
   description,
   href,
   cta,
+  buttonIcon: ButtonIcon,
+  centerButton = false,
+  largeButton = false,
+  whiteButton = false,
   ...props
-}: BentoCardProps) => (
+}: BentoCardProps) => {
+  const IconComponent = ButtonIcon || ArrowRightIcon
+  return (
   <div
     key={name}
     className={cn(
@@ -58,7 +69,9 @@ const BentoCard = ({
     <div>{background}</div>
     <div className="p-4">
       <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
-        <Icon className="h-12 w-12 origin-left transform-gpu text-[#4A7BC8] transition-all duration-300 ease-in-out group-hover:scale-75" />
+        {Icon && (
+          <Icon className="h-12 w-12 origin-left transform-gpu text-[#4A7BC8] transition-all duration-300 ease-in-out group-hover:scale-75" />
+        )}
         <h3 className="text-xl font-semibold text-white">
           {name}
         </h3>
@@ -67,18 +80,28 @@ const BentoCard = ({
 
       <div
         className={cn(
-          "pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden"
+          "pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden",
+          centerButton && "justify-center"
         )}
       >
         <Button
           variant="link"
           asChild
           size="sm"
-          className="pointer-events-auto p-0"
+          className={cn(
+            "pointer-events-auto p-0",
+            centerButton && "justify-center"
+          )}
         >
-          <a href={href}>
+          <a href={href} className={cn(centerButton && "flex items-center justify-center")}>
             {cta}
-            <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
+            <IconComponent className={cn(
+              cta ? "ms-2" : "",
+              largeButton ? "h-12 w-12" : "h-4 w-4",
+              whiteButton && "text-white",
+              largeButton && "stroke-[3]",
+              "rtl:rotate-180"
+            )} />
           </a>
         </Button>
       </div>
@@ -86,24 +109,35 @@ const BentoCard = ({
 
     <div
       className={cn(
-        "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex"
+        "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex",
+        centerButton && "justify-center"
       )}
     >
       <Button
         variant="link"
         asChild
         size="sm"
-        className="pointer-events-auto p-0"
+        className={cn(
+          "pointer-events-auto p-0",
+          centerButton && "justify-center"
+        )}
       >
-        <a href={href}>
+        <a href={href} className={cn(centerButton && "flex items-center justify-center")}>
           {cta}
-          <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
+            <IconComponent className={cn(
+              cta ? "ms-2" : "",
+              largeButton ? "h-12 w-12" : "h-4 w-4",
+              whiteButton && "text-white",
+              largeButton && "stroke-[3]",
+              "rtl:rotate-180"
+            )} />
         </a>
       </Button>
     </div>
 
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
   </div>
-)
+  )
+}
 
 export { BentoCard, BentoGrid }

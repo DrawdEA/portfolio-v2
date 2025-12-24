@@ -17,7 +17,8 @@ import {
   Instagram,
   Mail,
   FileText,
-  Code
+  Code,
+  ArrowDown
 } from "lucide-react";
 
 export default function Home() {
@@ -120,11 +121,50 @@ export default function Home() {
               <StravaBentoCard className="flex-1" />
             </div>
             <BentoCard
+              name="Work Experience"
+              className="col-span-3 md:col-span-1"
+              description="My professional journey and career progression"
+              href="#experience"
+              cta=""
+              buttonIcon={ArrowDown}
+              centerButton={true}
+              largeButton={true}
+              whiteButton={true}
+              background={<div />}
+            />
+            <BentoCard
               name="Interactive"
               className="col-span-3 md:col-span-2"
               description="Interactive experiences and visualizations"
               href="/interactive"
               cta="Discover"
+              Icon={Code}
+              background={<div />}
+            />
+            <BentoCard
+              name="Org Work"
+              className="col-span-3 md:col-span-1"
+              description="Contributions to open source projects"
+              href="/opensource"
+              cta="Explore"
+              Icon={Code}
+              background={<div />}
+            />
+            <BentoCard
+              name="Hackathons"
+              className="col-span-3 md:col-span-1"
+              description="Competitions and hackathon projects"
+              href="/hackathons"
+              cta="View projects"
+              Icon={Code}
+              background={<div />}
+            />
+            <BentoCard
+              name="Speaking"
+              className="col-span-3 md:col-span-1"
+              description="Talks, presentations, and conferences"
+              href="/speaking"
+              cta="Watch talks"
               Icon={Code}
               background={<div />}
             />
