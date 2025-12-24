@@ -48,14 +48,17 @@ export function SpotifyBentoCard({ className }: { className?: string }) {
     >
       <div>
         {track?.albumImage ? (
-          <div className="absolute inset-0 opacity-20">
-            <Image
-              src={track.albumImage}
-              alt={track.album || 'Album cover'}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <>
+            <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+              <Image
+                src={track.albumImage}
+                alt={track.album || 'Album cover'}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+          </>
         ) : (
           <div />
         )}

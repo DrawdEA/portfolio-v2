@@ -18,12 +18,12 @@ import {
   Instagram,
   Mail,
   FileText,
-  Code,
   ArrowDown,
   Briefcase,
   Users,
   Trophy,
-  Mic
+  Mic,
+  BookOpen
 } from "lucide-react";
 
 export default function Home() {
@@ -119,6 +119,36 @@ export default function Home() {
           </div>
 
           <BentoGrid className="md:grid-cols-3 auto-rows-[11rem]">
+            <BentoCard
+              name="Featured Project"
+              className="col-span-3 relative"
+              description="A showcase of my latest and greatest work"
+              href="/projects/featured"
+              cta="View project"
+              Icon={Briefcase}
+              background={
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="https://picsum.photos/1200/400?random=1"
+                      alt="Featured project background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                    <Link
+                      href="/projects"
+                      className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                    >
+                      View all projects
+                      <ArrowRight className="ms-1.5 h-3 w-3" />
+                    </Link>
+                  </div>
+                </>
+              }
+            />
             <GitHubStatsBentoCard className="col-span-3 md:col-span-1 row-span-2" />
             <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1 row-span-2" />
             <div className="col-span-3 md:col-span-1 row-span-2 flex flex-col gap-4">
@@ -128,7 +158,7 @@ export default function Home() {
             <BentoCard
               name="Work Experience"
               className="col-span-3 md:col-span-1"
-              description="My professional journey and career progression"
+              description="My professional journey"
               href="#experience"
               cta=""
               buttonIcon={ArrowDown}
@@ -136,23 +166,48 @@ export default function Home() {
               largeButton={true}
               Icon={Briefcase}
               background={
-                <div className="absolute inset-0 opacity-20">
-                  <Image
-                    src="/work.jpg"
-                    alt="Work Experience background"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="/work.jpg"
+                      alt="Work Experience background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                </>
               }
             />
             <BentoCard
-              name="Placeholder"
-              className="col-span-3 md:col-span-2"
-              description="Coming soon"
-              href="#"
-              cta=""
-              background={<div />}
+              name="Featured Blog"
+              className="col-span-3 md:col-span-2 relative"
+              description="Latest thoughts and insights on web development"
+              href="/blog/featured"
+              cta="Read article"
+              Icon={BookOpen}
+              background={
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="https://picsum.photos/800/400?random=1"
+                      alt="Featured blog background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                    <Link
+                      href="/blog"
+                      className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                    >
+                      View all blogs
+                      <ArrowRight className="ms-1.5 h-3 w-3" />
+                    </Link>
+                  </div>
+                </>
+              }
             />
             <BentoCard
               name="Org Work"
@@ -162,14 +217,17 @@ export default function Home() {
               cta="Explore"
               Icon={Users}
               background={
-                <div className="absolute inset-0 opacity-20">
-                  <Image
-                    src="/org.png"
-                    alt="Org Work background"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="/org.png"
+                      alt="Org Work background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                </>
               }
             />
             <BentoCard
@@ -180,14 +238,17 @@ export default function Home() {
               cta="View projects"
               Icon={Trophy}
               background={
-                <div className="absolute inset-0 opacity-20">
-                  <Image
-                    src="/hackathon.jpg"
-                    alt="Hackathons background"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="/hackathon.jpg"
+                      alt="Hackathons background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                </>
               }
             />
             <BentoCard
@@ -198,14 +259,17 @@ export default function Home() {
               cta="Watch talks"
               Icon={Mic}
               background={
-                <div className="absolute inset-0 opacity-20">
-                  <Image
-                    src="/speaking.jpg"
-                    alt="Speaking background"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <>
+                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                    <Image
+                      src="/speaking.jpg"
+                      alt="Speaking background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                </>
               }
             />
           </BentoGrid>

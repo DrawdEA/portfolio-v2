@@ -60,7 +60,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
         className
       )}
     >
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
         <Image
           src="/strava.jpg"
           alt="Strava background"
@@ -68,6 +68,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
           className="object-cover"
         />
       </div>
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
       <div className="p-4 relative z-10">
         <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:translate-y-10">
           <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">

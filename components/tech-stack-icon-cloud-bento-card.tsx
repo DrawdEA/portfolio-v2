@@ -65,6 +65,7 @@ export function TechStackIconCloudBentoCard({ className }: { className?: string 
             {/* Subtle blue gradient overlay - covers expanded area */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#4A7BC8]/5 to-[#27508F]/5 pointer-events-none" />
           </div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
         </div>
         <div className="p-4 relative z-10 mt-auto">
           <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">

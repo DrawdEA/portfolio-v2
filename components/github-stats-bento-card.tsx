@@ -55,14 +55,17 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
     >
       <div>
         {stats?.avatar && (
-          <div className="absolute inset-0 opacity-10">
-            <Image
-              src={stats.avatar}
-              alt={stats.name || stats.username}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <>
+            <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
+              <Image
+                src={stats.avatar}
+                alt={stats.name || stats.username}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+          </>
         )}
       </div>
       <div className="p-4 relative z-10">
