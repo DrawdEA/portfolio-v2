@@ -229,32 +229,42 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-8">
             {/* Project 1 */}
             <Link 
               href="/projects/project-slug" 
-              className="block space-y-4 group cursor-pointer"
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
             >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                 <Image
-                  src="https://picsum.photos/800/400?random=3"
+                  src="https://picsum.photos/400/400?random=3"
                   alt="Project Name"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">2024</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
-                  Project Title
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  A brief description of the project, highlighting key features and technologies used 
-                  in the development process.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 15, 2024 • 5 min read</p>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">react</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">css</span>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -262,28 +272,77 @@ export default function Home() {
             {/* Project 2 */}
             <Link 
               href="/projects/project-slug" 
-              className="block space-y-4 group cursor-pointer"
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
             >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                 <Image
-                  src="https://picsum.photos/800/400?random=4"
+                  src="https://picsum.photos/400/400?random=4"
                   alt="Project Name"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">2024</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-green-400 transition-colors">
-                  Project Title
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  A brief description of the project, highlighting key features and technologies used 
-                  in the development process.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 10, 2024 • 3 min read</p>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">nextjs</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">typescript</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Project 3 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+            >
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src="https://picsum.photos/400/400?random=5"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 5, 2024 • 4 min read</p>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-green-400 group-hover:text-green-300 transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">vue</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">tailwind</span>
+                  </div>
                 </div>
               </div>
             </Link>

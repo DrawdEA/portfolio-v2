@@ -39,49 +39,47 @@ export function Timeline({ items, className }: TimelineProps) {
               </div>
             </div>
             
-            {/* Content card */}
+            {/* Content */}
             <div className="flex-1 pb-4 pl-14 md:pl-20">
-              <div className="relative bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#27508F]/10">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#4A7BC8] transition-colors">
-                      {item.title}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
-                      <div className="flex items-center gap-1.5">
-                        <Briefcase className="h-4 w-4 text-gray-500" />
-                        <span>{item.company}</span>
-                      </div>
-                      <span className="text-gray-600">•</span>
-                      <div className="flex items-center gap-1.5">
-                        <MapPin className="h-4 w-4 text-gray-500" />
-                        <span>{item.location}</span>
-                      </div>
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-3">
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#4A7BC8] transition-colors">
+                    {item.title}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
+                    <div className="flex items-center gap-1.5">
+                      <Briefcase className="h-4 w-4 text-gray-500" />
+                      <span>{item.company}</span>
+                    </div>
+                    <span className="text-gray-600">•</span>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="h-4 w-4 text-gray-500" />
+                      <span>{item.location}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-400 bg-white/5 px-3 py-1.5 rounded-md border border-white/10">
-                    <Calendar className="h-4 w-4 text-gray-500" />
-                    <span className="font-medium">{item.period}</span>
-                  </div>
                 </div>
-                
-                {/* Description */}
-                <p className="text-gray-300 mb-5 leading-relaxed">
-                  {item.description}
-                </p>
-                
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {item.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1.5 text-xs font-medium rounded-md border border-white/20 bg-white/5 text-gray-300 hover:bg-[#27508F]/20 hover:border-[#27508F]/50 hover:text-white transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Calendar className="h-4 w-4 text-gray-500" />
+                  <span className="font-medium">{item.period}</span>
                 </div>
+              </div>
+              
+              {/* Description */}
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                {item.description}
+              </p>
+              
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2">
+                {item.technologies.map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
