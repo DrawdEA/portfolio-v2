@@ -26,10 +26,3 @@ function Separator({
 }
 
 export { Separator }
-
-
-
-
-
-
-

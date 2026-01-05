@@ -11,6 +11,8 @@ import { GitHubStatsBentoCard } from "@/components/github-stats-bento-card";
 import { TechStackIconCloudBentoCard } from "@/components/tech-stack-icon-cloud-bento-card";
 import { InteractiveReactionCounter } from "@/components/interactive-reaction-counter";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { getBlogPosts, getProjects } from "@/lib/markdown";
 import { 
   ArrowRight,
   Github,
@@ -26,7 +28,15 @@ import {
   BookOpen
 } from "lucide-react";
 
+// Revalidate every 60 seconds to ensure fresh content
+export const revalidate = 60;
+
 export default function Home() {
+  const posts = getBlogPosts();
+  const projects = getProjects();
+  // Get the latest (first item after sorting by date descending)
+  const latestPost = posts.length > 0 ? posts[0] : null;
+  const latestProject = projects.length > 0 ? projects[0] : null;
   return (
     <div className="flex min-h-screen flex-col bg-black font-sans">
       {/* Hero Section */}
@@ -119,36 +129,71 @@ export default function Home() {
           </div>
 
           <BentoGrid className="md:grid-cols-3 auto-rows-[11rem]">
-            <BentoCard
-              name="Featured Project"
-              className="col-span-3 relative"
-              description="A showcase of my latest and greatest work"
-              href="/projects/featured"
-              cta="View project"
-              Icon={Briefcase}
-              background={
-                <>
-                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
-                    <Image
-                      src="https://picsum.photos/1200/400?random=1"
-                      alt="Featured project background"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
-                    <Link
-                      href="/projects"
-                      className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
-                    >
-                      View all projects
-                      <ArrowRight className="ms-1.5 h-3 w-3" />
-                    </Link>
-                  </div>
-                </>
-              }
-            />
+            {latestProject ? (
+              <BentoCard
+                name={latestProject.title}
+                className="col-span-3 relative"
+                description={latestProject.description}
+                href={`/projects/${latestProject.slug}`}
+                cta="View project"
+                Icon={Briefcase}
+                background={
+                  <>
+                    {latestProject.image && (
+                      <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                        <Image
+                          src={latestProject.image}
+                          alt={latestProject.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                      <Link
+                        href="/projects"
+                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                      >
+                        View all projects
+                        <ArrowRight className="ms-1.5 h-3 w-3" />
+                      </Link>
+                    </div>
+                  </>
+                }
+              />
+            ) : (
+              <BentoCard
+                name="Featured Project"
+                className="col-span-3 relative"
+                description="A showcase of my latest and greatest work"
+                href="/projects"
+                cta="View projects"
+                Icon={Briefcase}
+                background={
+                  <>
+                    <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                      <Image
+                        src="https://picsum.photos/1200/400?random=1"
+                        alt="Featured project background"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                      <Link
+                        href="/projects"
+                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                      >
+                        View all projects
+                        <ArrowRight className="ms-1.5 h-3 w-3" />
+                      </Link>
+                    </div>
+                  </>
+                }
+              />
+            )}
             <GitHubStatsBentoCard className="col-span-3 md:col-span-1 row-span-2" />
             <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1 row-span-2" />
             <div className="col-span-3 md:col-span-1 row-span-2 flex flex-col gap-4">
@@ -179,36 +224,71 @@ export default function Home() {
                 </>
               }
             />
-            <BentoCard
-              name="Featured Blog"
-              className="col-span-3 md:col-span-2 relative"
-              description="Latest thoughts and insights on web development"
-              href="/blog/featured"
-              cta="Read article"
-              Icon={BookOpen}
-              background={
-                <>
-                  <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
-                    <Image
-                      src="https://picsum.photos/800/400?random=1"
-                      alt="Featured blog background"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
-                    <Link
-                      href="/blog"
-                      className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
-                    >
-                      View all blogs
-                      <ArrowRight className="ms-1.5 h-3 w-3" />
-                    </Link>
-                  </div>
-                </>
-              }
-            />
+            {latestPost ? (
+              <BentoCard
+                name={latestPost.title}
+                className="col-span-3 md:col-span-2 relative"
+                description={latestPost.description}
+                href={`/blog/${latestPost.slug}`}
+                cta="Read article"
+                Icon={BookOpen}
+                background={
+                  <>
+                    {latestPost.image && (
+                      <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                        <Image
+                          src={latestPost.image}
+                          alt={latestPost.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                      <Link
+                        href="/blog"
+                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                      >
+                        View all blogs
+                        <ArrowRight className="ms-1.5 h-3 w-3" />
+                      </Link>
+                    </div>
+                  </>
+                }
+              />
+            ) : (
+              <BentoCard
+                name="Featured Blog"
+                className="col-span-3 md:col-span-2 relative"
+                description="Latest thoughts and insights on web development"
+                href="/blog"
+                cta="Read articles"
+                Icon={BookOpen}
+                background={
+                  <>
+                    <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
+                      <Image
+                        src="https://picsum.photos/800/400?random=1"
+                        alt="Featured blog background"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                      <Link
+                        href="/blog"
+                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                      >
+                        View all blogs
+                        <ArrowRight className="ms-1.5 h-3 w-3" />
+                      </Link>
+                    </div>
+                  </>
+                }
+              />
+            )}
             <BentoCard
               name="Org Work"
               className="col-span-3 md:col-span-1"
@@ -350,134 +430,69 @@ export default function Home() {
                 </p>
               </div>
               <Link href="/projects">
-                <Button 
-                  variant="outline" 
-                  className="border-white/20 hover:bg-white/10"
-                >
+                <InteractiveHoverButton className="border-white/20 bg-transparent text-white">
                   View all projects
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                </InteractiveHoverButton>
               </Link>
             </div>
           </div>
 
           <div className="space-y-8">
-            {/* Project 1 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=3"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 15, 2024 • 5 min read</p>
+            {projects.slice(0, 3).map((project) => (
+              <Link 
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+              >
+                {project.image && (
+                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                )}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-gray-400">
+                        {new Date(project.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                    <p className="text-sm text-gray-300 leading-relaxed">
+                      {project.description}
+                    </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">react</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">css</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project 2 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=4"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 10, 2024 • 3 min read</p>
-                  </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">nextjs</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">typescript</span>
+                  <div className="flex items-center justify-between mt-6">
+                    <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                      View project
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    {project.tags && project.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Project 3 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=5"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 5, 2024 • 4 min read</p>
-                  </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">vue</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">tailwind</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
+            {projects.length === 0 && (
+              <p className="text-gray-400 text-center py-12">No projects yet. Check back soon!</p>
+            )}
           </div>
         </div>
       </section>
@@ -503,75 +518,54 @@ export default function Home() {
                 </p>
               </div>
               <Link href="/blog">
-                <Button 
-                  variant="outline" 
-                  className="border-white/20 hover:bg-white/10"
-                >
+                <InteractiveHoverButton className="border-white/20 bg-transparent text-white">
                   View all posts
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                </InteractiveHoverButton>
               </Link>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Blog Post 1 */}
-            <Link 
-              href="/blog/post-slug" 
-              className="block space-y-4 group cursor-pointer"
-            >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                <Image
-                  src="https://picsum.photos/800/400?random=1"
-                  alt="Building Modern Web Apps with Next.js"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">December 20, 2024 • 8 min read</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
-                  Building Modern Web Apps with Next.js
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  A comprehensive guide to building scalable applications with Next.js 14, 
-                  covering server components, routing, and performance optimization.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            {posts.slice(0, 2).map((post) => (
+              <Link 
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="block space-y-4 group cursor-pointer"
+              >
+                {post.image && (
+                  <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+                <div className="space-y-3">
+                  <p className="text-sm text-gray-400">
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </p>
+                  <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    {post.description}
+                  </p>
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Blog Post 2 */}
-            <Link 
-              href="/blog/post-slug" 
-              className="block space-y-4 group cursor-pointer"
-            >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                <Image
-                  src="https://picsum.photos/800/400?random=2"
-                  alt="TypeScript Best Practices"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">December 12, 2024 • 6 min read</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
-                  TypeScript Best Practices
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  Tips and tricks for writing better TypeScript code, including type safety, 
-                  generics, and advanced patterns for modern development.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
+            {posts.length === 0 && (
+              <p className="text-gray-400 text-center py-12 col-span-2">No blog posts yet. Check back soon!</p>
+            )}
           </div>
         </div>
       </section>
