@@ -18,6 +18,7 @@ interface SpotifyTrack {
 export function SpotifyBentoCard({ className }: { className?: string }) {
   const [track, setTrack] = useState<SpotifyTrack | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [imageError, setImageError] = useState(false)
 
   useEffect(() => {
     async function fetchTrack() {
@@ -47,7 +48,7 @@ export function SpotifyBentoCard({ className }: { className?: string }) {
       )}
     >
       <div>
-        {track?.albumImage ? (
+        {track?.albumImage && !imageError ? (
           <>
             <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
               <Image
@@ -55,12 +56,13 @@ export function SpotifyBentoCard({ className }: { className?: string }) {
                 alt={track.album || 'Album cover'}
                 fill
                 className="object-cover"
+                onError={() => setImageError(true)}
               />
             </div>
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
           </>
         ) : (
-          <div />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
         )}
       </div>
       <div className="p-4 relative z-10">

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { PortfolioDock } from "@/components/portfolio-dock";
+import { ImageWithFallback } from "@/components/image-with-fallback";
+import { ScrollAwareDock } from "@/components/scroll-aware-dock";
 import { Timeline } from "@/components/ui/timeline";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -38,9 +39,11 @@ export default function Home() {
   const latestPost = posts.length > 0 ? posts[0] : null;
   const latestProject = projects.length > 0 ? projects[0] : null;
   return (
-    <div className="flex min-h-screen flex-col bg-black font-sans">
+    <div className="flex min-h-screen flex-col bg-black font-sans relative">
       {/* Hero Section */}
-      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-black sm:items-start relative">
+      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-transparent sm:items-start relative">
+        {/* Background Effects */}
+        {/* <LightRays color="#07152E" length="90vh" speed={4} count={10} /> */}
         <section className="text-center sm:text-left">
           <h1 className="text-4xl md:text-5xl font-medium mb-4">Hello, I&apos;m Edward.<br />A software engineer.</h1>
           <p className="text-md md:text-lg text-gray-400 mb-8">Currently working on lots of things.</p>
@@ -120,7 +123,7 @@ export default function Home() {
       </main>
 
       {/* General Information / About Section */}
-      <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+      <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
         <div className="space-y-4">
           <div className="flex justify-center md:justify-start">
             <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
@@ -139,21 +142,23 @@ export default function Home() {
                 Icon={Briefcase}
                 background={
                   <>
-                    {latestProject.image && (
+                    {latestProject.image ? (
                       <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
-                        <Image
+                        <ImageWithFallback
                           src={latestProject.image}
                           alt={latestProject.title}
                           fill
                           className="object-cover"
                         />
                       </div>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
                     )}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/projects"
-                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
                       >
                         View all projects
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -184,7 +189,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/projects"
-                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
                       >
                         View all projects
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -234,21 +239,23 @@ export default function Home() {
                 Icon={BookOpen}
                 background={
                   <>
-                    {latestPost.image && (
+                    {latestPost.image ? (
                       <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
-                        <Image
+                        <ImageWithFallback
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
                           className="object-cover"
                         />
                       </div>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
                     )}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/blog"
-                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
                       >
                         View all blogs
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -279,7 +286,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/blog"
-                        className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
                       >
                         View all blogs
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -364,7 +371,7 @@ export default function Home() {
       </section>
 
       {/* Work Experience Section */}
-      <section id="experience" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+      <section id="experience" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
@@ -410,7 +417,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+      <section id="projects" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
@@ -431,7 +438,7 @@ export default function Home() {
               </div>
               <Link href="/projects" className="inline-block">
                 <InteractiveHoverButton
-                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-white"
+                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-black"
                 >
                   View all projects
                 </InteractiveHoverButton>
@@ -561,7 +568,7 @@ export default function Home() {
       </section>
 
       {/* Blog Intro Section */}
-      <section id="blog" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
+      <section id="blog" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
@@ -582,7 +589,7 @@ export default function Home() {
               </div>
               <Link href="/blog" className="inline-block">
                 <InteractiveHoverButton
-                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-white"
+                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-black"
                 >
                   View all posts
                 </InteractiveHoverButton>
@@ -655,7 +662,7 @@ export default function Home() {
       <Separator className="bg-white/10" />
 
       {/* Footer */}
-      <footer className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-12">
+      <footer className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-12 bg-transparent">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-gray-400 text-sm">
@@ -697,9 +704,7 @@ export default function Home() {
       </footer>
       
       {/* Dock Navigation */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-        <PortfolioDock />
-      </div>
+      <ScrollAwareDock />
     </div>
   );
 }

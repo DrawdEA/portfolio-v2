@@ -23,6 +23,7 @@ interface StravaActivity {
 export function StravaBentoCard({ className }: { className?: string }) {
   const [activity, setActivity] = useState<StravaActivity | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [imageError, setImageError] = useState(false)
 
   useEffect(() => {
     async function fetchActivity() {
@@ -60,49 +61,46 @@ export function StravaBentoCard({ className }: { className?: string }) {
         className
       )}
     >
-      <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
-        <Image
-          src="/strava.jpg"
-          alt="Strava background"
-          fill
-          className="object-cover"
-        />
+      <div>
+        {!imageError ? (
+          <>
+            <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
+              <Image
+                src="/strava.jpg"
+                alt="Strava background"
+                fill
+                className="object-cover"
+                onError={() => setImageError(true)}
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors pointer-events-none" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-50 group-hover:opacity-40 transition-opacity" />
+        )}
       </div>
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
       <div className="p-4 relative z-10">
-        <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:translate-y-10">
+        <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
           <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
-            Latest Activity
+            {isLoading 
+              ? "Loading..." 
+              : activity?.hasActivity 
+                ? "Latest Activity" 
+                : "No recent activity"}
           </h3>
           {activity?.hasActivity && activity.name ? (
-            <div className="space-y-2 mt-2">
-              <div className="flex items-center gap-4 flex-wrap text-xs">
-                {activity.distanceFormatted && (
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-neutral-500">Distance:</span>
-                    <span className="text-neutral-400">{activity.distanceFormatted}</span>
-                  </div>
-                )}
-                {activity.durationFormatted && (
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-neutral-500">Time:</span>
-                    <span className="text-neutral-400">{activity.durationFormatted}</span>
-                  </div>
-                )}
-                {activity.paceFormatted && (
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-neutral-500">Pace:</span>
-                    <span className="text-neutral-400">{activity.paceFormatted}</span>
-                  </div>
-                )}
-              </div>
+            <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">{activity.typeIcon || '🏃'}</span>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-neutral-400">{activity.name}</p>
-                  <p className="text-xs text-neutral-500">{formatDate(activity.startDateLocal)}</p>
-                </div>
+                {activity.typeIcon && (
+                  <span className="text-lg">{activity.typeIcon}</span>
+                )}
+                <p className="text-sm font-medium text-neutral-400">{activity.name}</p>
               </div>
+              <p className="text-xs text-neutral-500">
+                {activity.distanceFormatted && `${activity.distanceFormatted} • `}
+                {activity.durationFormatted && `${activity.durationFormatted} • `}
+                {activity.paceFormatted || formatDate(activity.startDateLocal)}
+              </p>
             </div>
           ) : (
             <p className="max-w-lg text-neutral-400">No recent activity</p>
@@ -110,7 +108,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
         </div>
 
         {activity?.activityUrl && (
-          <div className="pointer-events-none absolute top-0 left-0 right-0 hidden w-full -translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 hidden w-full translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
             <Link
               href={activity.activityUrl}
               target="_blank"
@@ -123,7 +121,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
           </div>
         )}
 
-        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center justify-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
+        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
           {activity?.activityUrl && (
             <Link
               href={activity.activityUrl}

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { LightRays } from "@/components/ui/light-rays";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,9 +28,6 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white`}
       >
         {children}
-
-        {/* Background Effects */}
-        <LightRays color="#07152E" length="90vh" speed={4} count={10} />
       </body>
     </html>
   );
