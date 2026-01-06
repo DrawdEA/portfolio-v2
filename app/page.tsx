@@ -123,7 +123,7 @@ export default function Home() {
       <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24">
         <div className="space-y-4">
           <div className="flex justify-center md:justify-start">
-            <Badge variant="outline" className="border-[#4A7BC8]/30 bg-[#4A7BC8]/10 text-[#4A7BC8]/80 text-xs px-3 py-1">
+            <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
               About Me
             </Badge>
           </div>
@@ -414,7 +414,7 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
-              <Badge variant="outline" className="border-[#4A7BC8]/50 bg-[#4A7BC8]/20 text-[#4A7BC8] text-xs px-3 py-1">
+              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
                 Projects
               </Badge>
             </div>
@@ -429,8 +429,10 @@ export default function Home() {
                   design, and problem-solving.
                 </p>
               </div>
-              <Link href="/projects">
-                <InteractiveHoverButton className="border-white/20 bg-transparent text-white">
+              <Link href="/projects" className="inline-block">
+                <InteractiveHoverButton
+                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-white"
+                >
                   View all projects
                 </InteractiveHoverButton>
               </Link>
@@ -438,61 +440,122 @@ export default function Home() {
           </div>
 
           <div className="space-y-8">
-            {projects.slice(0, 3).map((project) => (
-              <Link 
-                key={project.slug}
-                href={`/projects/${project.slug}`}
-                className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-              >
-                {project.image && (
-                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+            {/* Project 1 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+            >
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src="https://picsum.photos/400/400?random=3"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 15, 2024 • 5 min read</p>
                   </div>
-                )}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-gray-400">
-                        {new Date(project.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </p>
-                    </div>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      {project.description}
-                    </p>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  <div className="flex items-center justify-between mt-6">
-                    <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                      View project
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                    {project.tags && project.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">react</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">css</span>
                   </div>
                 </div>
-              </Link>
-            ))}
-            {projects.length === 0 && (
-              <p className="text-gray-400 text-center py-12">No projects yet. Check back soon!</p>
-            )}
+              </div>
+            </Link>
+
+            {/* Project 2 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+            >
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src="https://picsum.photos/400/400?random=4"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 10, 2024 • 3 min read</p>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">nextjs</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">typescript</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Project 3 */}
+            <Link 
+              href="/projects/project-slug" 
+              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+            >
+              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src="https://picsum.photos/400/400?random=5"
+                  alt="Project Name"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                      Project Title
+                    </h3>
+                    <p className="text-sm text-gray-400">December 5, 2024 • 4 min read</p>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    A brief description of the project, highlighting key features and technologies used 
+                    in the development process.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-6">
+                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                    Read more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">vue</span>
+                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">tailwind</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -502,7 +565,7 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex justify-center md:justify-start">
-              <Badge variant="outline" className="border-[#4A7BC8]/50 bg-[#4A7BC8]/20 text-[#4A7BC8] text-xs px-3 py-1">
+              <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
                 Blog
               </Badge>
             </div>
@@ -517,8 +580,10 @@ export default function Home() {
                   I&apos;ve been working with.
                 </p>
               </div>
-              <Link href="/blog">
-                <InteractiveHoverButton className="border-white/20 bg-transparent text-white">
+              <Link href="/blog" className="inline-block">
+                <InteractiveHoverButton
+                  className="bg-transparent border-white/20 text-white [&>div>div:first-child]:bg-white [&>div>div:last-child]:text-white"
+                >
                   View all posts
                 </InteractiveHoverButton>
               </Link>
@@ -526,46 +591,63 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {posts.slice(0, 2).map((post) => (
-              <Link 
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="block space-y-4 group cursor-pointer"
-              >
-                {post.image && (
-                  <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-                <div className="space-y-3">
-                  <p className="text-sm text-gray-400">
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
-                  <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {post.description}
-                  </p>
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
+            {/* Blog Post 1 */}
+            <Link 
+              href="/blog/post-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=1"
+                  alt="Building Modern Web Apps with Next.js"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">December 20, 2024 • 8 min read</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
+                  Building Modern Web Apps with Next.js
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  A comprehensive guide to building scalable applications with Next.js 14, 
+                  covering server components, routing, and performance optimization.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
-            ))}
-            {posts.length === 0 && (
-              <p className="text-gray-400 text-center py-12 col-span-2">No blog posts yet. Check back soon!</p>
-            )}
+              </div>
+            </Link>
+
+            {/* Blog Post 2 */}
+            <Link 
+              href="/blog/post-slug" 
+              className="block space-y-4 group cursor-pointer"
+            >
+              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/800/400?random=2"
+                  alt="TypeScript Best Practices"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm text-gray-400">December 12, 2024 • 6 min read</p>
+                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
+                  TypeScript Best Practices
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Tips and tricks for writing better TypeScript code, including type safety, 
+                  generics, and advanced patterns for modern development.
+                </p>
+                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                  Read more
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
