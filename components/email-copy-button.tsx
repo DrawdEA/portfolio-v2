@@ -20,13 +20,11 @@ export function EmailCopyButton({ email }: { email: string }) {
   }
 
   return (
-    <button
-      onClick={handleCopy}
-      aria-label="Copy email"
-      className="group relative"
-    >
+    <div className="group relative">
       <Button
+        onClick={handleCopy}
         size="icon"
+        aria-label="Copy email"
         className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
       >
         {copied ? (
@@ -38,7 +36,7 @@ export function EmailCopyButton({ email }: { email: string }) {
       <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
         Email
       </span>
-    </button>
+    </div>
   )
 }
 

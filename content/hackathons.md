@@ -1,0 +1,20 @@
+---
+title: "Hackathons"
+description: "Competitions and hackathon projects"
+items:
+  - date: "2018-11-23 to 2018-11-25"
+    title: "Hack Western 5"
+    location: "London, Ontario"
+    description: "Developed a mobile application which delivered bedtime stories to children using augmented reality."
+    image: "/hackathon.jpg"
+  - date: "2018-09-14 to 2018-09-16"
+    title: "Hack The North"
+    location: "Waterloo, Ontario"
+    description: "Developed a mobile application which delivers university campus wide events in real time to all students."
+    image: "/hackathon.jpg"
+  - date: "2018-03-23 to 2018-03-24"
+    title: "FirstNet Public Safety Hackathon"
+    location: "San Francisco, California"
+    description: "Developed a mobile application which communicates a victims medical data from inside an ambulance to doctors at hospital."
+    image: "/hackathon.jpg"
+---

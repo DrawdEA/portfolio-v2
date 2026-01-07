@@ -306,10 +306,10 @@ export default function Home() {
               />
             )}
             <BentoCard
-              name="Org Work"
+              name="Organizational Work"
               className="col-span-3 md:col-span-1"
               description="Contributions to open source projects"
-              href="/opensource"
+              href="/orgwork"
               cta="Explore"
               Icon={Users}
               background={
@@ -317,7 +317,7 @@ export default function Home() {
                   <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
                     <Image
                       src="/org.png"
-                      alt="Org Work background"
+                      alt="Organizational Work background"
                       fill
                       className="object-cover"
                     />

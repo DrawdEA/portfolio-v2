@@ -204,3 +204,97 @@ export function getWorkExperience(): WorkExperience[] {
   return experiences
 }
 
+export interface ContentPage {
+  title: string
+  description: string
+  content: string
+  contentHtml?: string
+  items?: ContentItem[]
+}
+
+export interface ContentItem {
+  date: string
+  title: string
+  location: string
+  description: string
+  image?: string
+  icon?: string
+}
+
+export interface TechStackCategory {
+  name: string
+  technologies: {
+    name: string
+    icon: string
+  }[]
+}
+
+export interface TechStackPage {
+  title: string
+  description: string
+  categories: TechStackCategory[]
+}
+
+// Get content page by filename (without .md extension)
+export async function getContentPage(filename: string): Promise<ContentPage | null> {
+  const contentFile = path.join(contentDirectory, `${filename}.md`)
+  
+  if (!fs.existsSync(contentFile)) {
+    return null
+  }
+  
+  const fileContents = fs.readFileSync(contentFile, 'utf8')
+  const { data, content } = matter(fileContents)
+  
+  const processedContent = await remark().use(html).process(content)
+  const contentHtml = processedContent.toString()
+  
+  // Parse items if they exist in frontmatter
+  const items = (data.items || []).map((item: any) => ({
+    date: item.date || '',
+    title: item.title || '',
+    location: item.location || '',
+    description: item.description || '',
+    image: item.image,
+    icon: item.icon,
+  })).filter((item: ContentItem) => item.title && item.date)
+    .sort((a: ContentItem, b: ContentItem) => {
+      // Sort by date (most recent first)
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+  
+  return {
+    title: data.title || '',
+    description: data.description || '',
+    content,
+    contentHtml,
+    items: items.length > 0 ? items : undefined,
+  }
+}
+
+// Get tech stack page
+export function getTechStack(): TechStackPage | null {
+  const techStackFile = path.join(contentDirectory, 'tech-stack.md')
+  
+  if (!fs.existsSync(techStackFile)) {
+    return null
+  }
+  
+  const fileContents = fs.readFileSync(techStackFile, 'utf8')
+  const { data } = matter(fileContents)
+  
+  const categories = (data.categories || []).map((cat: any) => ({
+    name: cat.name || '',
+    technologies: (cat.technologies || []).map((tech: any) => ({
+      name: tech.name || '',
+      icon: tech.icon || '',
+    }))
+  })).filter((cat: TechStackCategory) => cat.name && cat.technologies.length > 0)
+  
+  return {
+    title: data.title || 'Tech Stack',
+    description: data.description || 'Technologies and tools I work with',
+    categories,
+  }
+}
+

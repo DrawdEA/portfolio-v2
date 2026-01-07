@@ -16,12 +16,13 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   background: ReactNode
   Icon?: React.ElementType
   description: string
-  href: string
+  href?: string
   cta: string
   buttonIcon?: React.ElementType
   centerButton?: boolean
   largeButton?: boolean
   whiteButton?: boolean
+  onClick?: () => void
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
@@ -50,9 +51,11 @@ const BentoCard = ({
   centerButton = false,
   largeButton = false,
   whiteButton = false,
+  onClick,
   ...props
 }: BentoCardProps) => {
   const IconComponent = ButtonIcon || ArrowRightIcon
+  const handleClick = onClick || (href ? () => {} : undefined)
   return (
   <div
     key={name}
@@ -62,8 +65,10 @@ const BentoCard = ({
       "bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
       // dark styles
       "dark:bg-background transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]",
+      onClick && "cursor-pointer",
       className
     )}
+    onClick={onClick}
     {...props}
   >
     <div>{background}</div>
@@ -84,6 +89,66 @@ const BentoCard = ({
           centerButton && "justify-center"
         )}
       >
+        {href ? (
+          <Button
+            variant="link"
+            asChild
+            size="sm"
+            className={cn(
+              "pointer-events-auto p-0 text-neutral-400",
+              centerButton && "justify-center",
+              whiteButton && "text-white"
+            )}
+          >
+            <a href={href} className={cn(
+              centerButton && "flex items-center justify-center",
+              whiteButton && "text-white"
+            )}>
+              {cta}
+              <IconComponent className={cn(
+                cta ? "ms-2" : "",
+                largeButton ? "h-12 w-12" : "h-4 w-4",
+                whiteButton ? "text-white" : "text-neutral-400",
+                largeButton && "stroke-[3]",
+                "rtl:rotate-180"
+              )} />
+            </a>
+          </Button>
+        ) : (
+          <Button
+            variant="link"
+            size="sm"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onClick?.()
+            }}
+            className={cn(
+              "pointer-events-auto p-0 text-neutral-400",
+              centerButton && "justify-center",
+              whiteButton && "text-white"
+            )}
+          >
+            {cta}
+            <IconComponent className={cn(
+              cta ? "ms-2" : "",
+              largeButton ? "h-12 w-12" : "h-4 w-4",
+              whiteButton ? "text-white" : "text-neutral-400",
+              largeButton && "stroke-[3]",
+              "rtl:rotate-180"
+            )} />
+          </Button>
+        )}
+      </div>
+    </div>
+
+    <div
+      className={cn(
+        "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex",
+        centerButton && "justify-center"
+      )}
+    >
+      {href ? (
         <Button
           variant="link"
           asChild
@@ -108,39 +173,31 @@ const BentoCard = ({
             )} />
           </a>
         </Button>
-      </div>
-    </div>
-
-    <div
-      className={cn(
-        "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex",
-        centerButton && "justify-center"
-      )}
-    >
-      <Button
-        variant="link"
-        asChild
-        size="sm"
-        className={cn(
-          "pointer-events-auto p-0 text-neutral-400",
-          centerButton && "justify-center",
-          whiteButton && "text-white"
-        )}
-      >
-        <a href={href} className={cn(
-          centerButton && "flex items-center justify-center",
-          whiteButton && "text-white"
-        )}>
+      ) : (
+        <Button
+          variant="link"
+          size="sm"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            onClick?.()
+          }}
+          className={cn(
+            "pointer-events-auto p-0 text-neutral-400",
+            centerButton && "justify-center",
+            whiteButton && "text-white"
+          )}
+        >
           {cta}
-            <IconComponent className={cn(
-              cta ? "ms-2" : "",
-              largeButton ? "h-12 w-12" : "h-4 w-4",
-              whiteButton ? "text-white" : "text-neutral-400",
-              largeButton && "stroke-[3]",
-              "rtl:rotate-180"
-            )} />
-        </a>
-      </Button>
+          <IconComponent className={cn(
+            cta ? "ms-2" : "",
+            largeButton ? "h-12 w-12" : "h-4 w-4",
+            whiteButton ? "text-white" : "text-neutral-400",
+            largeButton && "stroke-[3]",
+            "rtl:rotate-180"
+          )} />
+        </Button>
+      )}
     </div>
 
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
