@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Github, Linkedin, Instagram, FileText } from "lucide-react";
+import { Github, Linkedin, Instagram, Facebook } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { FooterEmailCopy } from "@/components/footer-email-copy";
+import { FooterResumeDownload } from "@/components/footer-resume-download";
 
 export function Footer() {
   return (
@@ -12,7 +13,7 @@ export function Footer() {
       <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-8">
         {/* Left - Personal Information */}
         <div className="flex-1">
-          <h2 className="text-2xl font-medium text-gray-300 mb-2">Edward</h2>
+          <h2 className="text-2xl font-medium text-gray-300 mb-2">Edward Diesta</h2>
           <p className="text-sm text-gray-400 leading-relaxed">
             A software engineer who thrives<br />
             on learning and building.
@@ -31,11 +32,24 @@ export function Footer() {
             <Link href="/blog" className="text-sm text-gray-400 hover:text-gray-300 transition-colors">
               Blog
             </Link>
-            <Link href="/resume" className="text-sm text-gray-400 hover:text-gray-300 transition-colors">
+            <a
+              href="/resume.pdf"
+              download="Edward-Diesta_Resume.pdf"
+              className="text-sm text-gray-400 hover:text-gray-300 transition-colors"
+            >
               Resume
-            </Link>
+            </a>
           </div>
           <div className="flex items-center gap-4">
+            <a
+              href="https://www.facebook.com/edwardjoshua.diesta/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-5 w-5" />
+            </a>
             <a
               href="https://github.com/DrawdEA"
               target="_blank"
@@ -63,13 +77,7 @@ export function Footer() {
             >
               <Instagram className="h-5 w-5" />
             </a>
-            <a
-              href="/resume"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Resume"
-            >
-              <FileText className="h-5 w-5" />
-            </a>
+            <FooterResumeDownload />
             <FooterEmailCopy email="edwardjoshua.diesta@gmail.com" />
           </div>
         </div>
