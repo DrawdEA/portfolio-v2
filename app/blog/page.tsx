@@ -3,13 +3,18 @@ import Image from 'next/image'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
 import { getBlogPosts } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
+import { LightRays } from '@/components/ui/light-rays'
 
 export default function BlogPage() {
   const posts = getBlogPosts()
 
   return (
-    <div className="min-h-screen bg-black">
-      <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Effects - Full Width, Top Only */}
+      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
+        <LightRays color="#07152E" length="50vh" speed={4} count={5} />
+      </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-gray-400 hover:text-[#4A7BC8] transition-colors mb-8"

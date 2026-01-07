@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/footer";
+import { ScrollAwareDock } from "@/components/scroll-aware-dock";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,6 +30,8 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white`}
       >
         {children}
+        <Footer />
+        <ScrollAwareDock />
       </body>
     </html>
   );

@@ -2,9 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/image-with-fallback";
-import { ScrollAwareDock } from "@/components/scroll-aware-dock";
 import { Timeline } from "@/components/ui/timeline";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { SpotifyBentoCard } from "@/components/spotify-bento-card";
 import { StravaBentoCard } from "@/components/strava-bento-card";
@@ -28,6 +26,7 @@ import {
   Mic,
   BookOpen
 } from "lucide-react";
+import { LightRays } from "@/components/ui/light-rays";
 
 // Revalidate every 60 seconds to ensure fresh content
 export const revalidate = 60;
@@ -40,10 +39,12 @@ export default function Home() {
   const latestProject = projects.length > 0 ? projects[0] : null;
   return (
     <div className="flex min-h-screen flex-col bg-black font-sans relative">
+      {/* Background Effects - Full Width, Top Only */}
+      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
+        <LightRays color="#07152E" length="90vh" speed={4} count={5} />
+      </div>
       {/* Hero Section */}
-      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-transparent sm:items-start relative">
-        {/* Background Effects */}
-        {/* <LightRays color="#07152E" length="90vh" speed={4} count={10} /> */}
+      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-transparent sm:items-start relative z-10">
         <section className="text-center sm:text-left">
           <h1 className="text-4xl md:text-5xl font-medium mb-4">Hello, I&apos;m Edward.<br />A software engineer.</h1>
           <p className="text-md md:text-lg text-gray-400 mb-8">Currently working on lots of things.</p>
@@ -658,53 +659,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Separator className="bg-white/10" />
-
-      {/* Footer */}
-      <footer className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-12 bg-transparent">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Edward. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-xs mt-1">
-              Built with Next.js, TypeScript, and Tailwind CSS
-            </p>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:edward@email.com"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </footer>
-      
-      {/* Dock Navigation */}
-      <ScrollAwareDock />
     </div>
   );
 }
