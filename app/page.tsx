@@ -135,7 +135,7 @@ export default function Home() {
           <BentoGrid className="md:grid-cols-3 auto-rows-[11rem]">
             {latestProject ? (
               <BentoCard
-                name={latestProject.title}
+                name={`Featured • ${latestProject.title}`}
                 className="col-span-3 relative"
                 description={latestProject.description}
                 href={`/projects/${latestProject.slug}`}
@@ -232,7 +232,7 @@ export default function Home() {
             />
             {latestPost ? (
               <BentoCard
-                name={latestPost.title}
+                name={`Featured • ${latestPost.title}`}
                 className="col-span-3 md:col-span-2 relative"
                 description={latestPost.description}
                 href={`/blog/${latestPost.slug}`}
