@@ -30,6 +30,15 @@ export interface Project {
   contentHtml?: string
 }
 
+export interface WorkExperience {
+  title: string
+  company: string
+  location: string
+  period: string
+  description: string
+  technologies: string[]
+}
+
 // Get all blog posts
 export function getBlogPosts(): BlogPost[] {
   const blogDir = path.join(contentDirectory, 'blog')
@@ -152,5 +161,46 @@ export async function getProject(slug: string): Promise<Project | null> {
     content,
     contentHtml,
   }
+}
+
+// Get all work experience entries
+export function getWorkExperience(): WorkExperience[] {
+  const experienceFile = path.join(contentDirectory, 'experience.md')
+  
+  if (!fs.existsSync(experienceFile)) {
+    return []
+  }
+  
+  const fileContents = fs.readFileSync(experienceFile, 'utf8')
+  const { data } = matter(fileContents)
+  
+  // Expect an array of experiences in the frontmatter
+  const experiences = (data.experiences || []).map((exp: any) => ({
+    title: exp.title || '',
+    company: exp.company || '',
+    location: exp.location || '',
+    period: exp.period || '',
+    description: exp.description || '',
+    technologies: exp.technologies || [],
+  }))
+    .filter((exp: WorkExperience) => exp.title && exp.company) // Filter out invalid entries
+    .sort((a, b) => {
+      // Sort by period (most recent first)
+      // Extract end date or current date for sorting
+      const getEndDate = (period: string): number => {
+        if (!period) return 0
+        if (period.includes('Present') || period.includes('Current')) {
+          return new Date().getTime()
+        }
+        const parts = period.split(' - ')
+        if (parts.length < 2) return 0
+        const endYear = parts[1]?.trim().split(' ')[0]
+        const year = endYear ? parseInt(endYear, 10) : 0
+        return isNaN(year) ? 0 : year
+      }
+      return getEndDate(b.period) - getEndDate(a.period)
+    })
+
+  return experiences
 }
 

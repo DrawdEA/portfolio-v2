@@ -1,0 +1,50 @@
+---
+experiences:
+  - title: "Senior Software Engineer"
+    company: "Company Name"
+    location: "Location"
+    period: "2022 - Present"
+    description: "Leading development of scalable web applications using modern technologies. Collaborating with cross-functional teams to deliver high-quality products."
+    technologies:
+      - "React"
+      - "TypeScript"
+      - "Next.js"
+      - "Node.js"
+  - title: "Software Engineer"
+    company: "Previous Company"
+    location: "Location"
+    period: "2020 - 2022"
+    description: "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers."
+    technologies:
+      - "JavaScript"
+      - "Vue.js"
+      - "Python"
+  - title: "Sigma Engineer"
+    company: "Previous Company"
+    location: "Location"
+    period: "2020 - 2022"
+    description: "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers."
+    technologies:
+        - "JavaScript"
+        - "Vue.js"
+        - "Python"
+  - title: "Sigma Engineer"
+    company: "Previous Company"
+    location: "Location"
+    period: "2020 - 2022"
+    description: "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers."
+    technologies:
+        - "JavaScript"
+        - "Vue.js"
+        - "Python"
+  - title: "Sigma Engineer"
+    company: "Previous Company"
+    location: "Location"
+    period: "2020 - 2022"
+    description: "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers."
+    technologies:
+        - "JavaScript"
+        - "Vue.js"
+        - "Python"
+---
+

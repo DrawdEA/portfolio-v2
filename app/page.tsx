@@ -13,7 +13,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { EmailCopyButton } from "@/components/email-copy-button";
 import { ResumeDownloadButton } from "@/components/resume-download-button";
-import { getBlogPosts, getProjects } from "@/lib/markdown";
+import { getBlogPosts, getProjects, getWorkExperience } from "@/lib/markdown";
 import { 
   ArrowRight,
   Github,
@@ -35,6 +35,7 @@ export const revalidate = 60;
 export default function Home() {
   const posts = getBlogPosts();
   const projects = getProjects();
+  const workExperience = getWorkExperience();
   // Get the latest (first item after sorting by date descending)
   const latestPost = posts.length > 0 ? posts[0] : null;
   const latestProject = projects.length > 0 ? projects[0] : null;
@@ -399,28 +400,13 @@ export default function Home() {
             </div>
           </div>
 
-          <Timeline
-            items={[
-              {
-                title: "Senior Software Engineer",
-                company: "Company Name",
-                location: "Location",
-                period: "2022 - Present",
-                description:
-                  "Leading development of scalable web applications using modern technologies. Collaborating with cross-functional teams to deliver high-quality products.",
-                technologies: ["React", "TypeScript", "Next.js", "Node.js"],
-              },
-              {
-                title: "Software Engineer",
-                company: "Previous Company",
-                location: "Location",
-                period: "2020 - 2022",
-                description:
-                  "Developed and maintained web applications, worked on improving performance and user experience, and mentored junior developers.",
-                technologies: ["JavaScript", "Vue.js", "Python"],
-              },
-            ]}
-          />
+          {workExperience.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400">No work experience entries yet.</p>
+            </div>
+          ) : (
+            <Timeline items={workExperience} />
+          )}
         </div>
       </section>
 
@@ -454,124 +440,68 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-8">
-            {/* Project 1 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=3"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 15, 2024 • 5 min read</p>
+          {projects.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400">No projects yet. Check back soon!</p>
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {projects.slice(0, 3).map((project) => (
+                <Link 
+                  key={project.slug}
+                  href={`/projects/${project.slug}`} 
+                  className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+                >
+                  {project.image ? (
+                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                      <ImageWithFallback
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0" />
+                  )}
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-gray-400">
+                          {new Date(project.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                      <p className="text-sm text-gray-300 leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between mt-6">
+                      <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                        View project
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                      {project.tags && project.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">react</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">css</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project 2 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=4"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 10, 2024 • 3 min read</p>
-                  </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">nextjs</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">typescript</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Project 3 */}
-            <Link 
-              href="/projects/project-slug" 
-              className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-            >
-              <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src="https://picsum.photos/400/400?random=5"
-                  alt="Project Name"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
-                      Project Title
-                    </h3>
-                    <p className="text-sm text-gray-400">December 5, 2024 • 4 min read</p>
-                  </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    A brief description of the project, highlighting key features and technologies used 
-                    in the development process.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">vue</span>
-                    <span className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">tailwind</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -605,65 +535,53 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Blog Post 1 */}
-            <Link 
-              href="/blog/post-slug" 
-              className="block space-y-4 group cursor-pointer"
-            >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                <Image
-                  src="https://picsum.photos/800/400?random=1"
-                  alt="Building Modern Web Apps with Next.js"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">December 20, 2024 • 8 min read</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
-                  Building Modern Web Apps with Next.js
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  A comprehensive guide to building scalable applications with Next.js 14, 
-                  covering server components, routing, and performance optimization.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Blog Post 2 */}
-            <Link 
-              href="/blog/post-slug" 
-              className="block space-y-4 group cursor-pointer"
-            >
-              <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                <Image
-                  src="https://picsum.photos/800/400?random=2"
-                  alt="TypeScript Best Practices"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm text-gray-400">December 12, 2024 • 6 min read</p>
-                <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
-                  TypeScript Best Practices
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  Tips and tricks for writing better TypeScript code, including type safety, 
-                  generics, and advanced patterns for modern development.
-                </p>
-                <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
-                  Read more
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-          </div>
+          {posts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400">No blog posts yet. Check back soon!</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {posts.slice(0, 2).map((post) => (
+                <Link 
+                  key={post.slug}
+                  href={`/blog/${post.slug}`} 
+                  className="block space-y-4 group cursor-pointer"
+                >
+                  {post.image ? (
+                    <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                      <ImageWithFallback
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden" />
+                  )}
+                  <div className="space-y-3">
+                    <p className="text-sm text-gray-400">
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                    <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      {post.description}
+                    </p>
+                    <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                      Read more
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
