@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Github, Linkedin, Instagram, FileText } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { FooterEmailCopy } from "@/components/footer-email-copy";
 
 export function Footer() {
   return (
@@ -36,7 +37,7 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/DrawdEA"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
@@ -45,7 +46,7 @@ export function Footer() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/edwarddiesta/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
@@ -54,19 +55,22 @@ export function Footer() {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
+              href="https://www.instagram.com/edward.diesta/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a
               href="/resume"
               className="text-gray-400 hover:text-white transition-colors"
               aria-label="Resume"
             >
               <FileText className="h-5 w-5" />
             </a>
-            <a
-              href="mailto:edward@email.com"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+            <FooterEmailCopy email="edwardjoshua.diesta@gmail.com" />
           </div>
         </div>
       </div>

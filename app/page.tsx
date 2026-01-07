@@ -11,13 +11,13 @@ import { TechStackIconCloudBentoCard } from "@/components/tech-stack-icon-cloud-
 import { InteractiveReactionCounter } from "@/components/interactive-reaction-counter";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { EmailCopyButton } from "@/components/email-copy-button";
 import { getBlogPosts, getProjects } from "@/lib/markdown";
 import { 
   ArrowRight,
   Github,
   Linkedin,
   Instagram,
-  Mail,
   FileText,
   ArrowDown,
   Briefcase,
@@ -41,58 +41,67 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-black font-sans relative">
       {/* Background Effects - Full Width, Top Only */}
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
-        <LightRays color="#07152E" length="90vh" speed={4} count={5} />
+      <LightRays color="#07152E" length="90vh" speed={4} count={5} />
       </div>
       {/* Hero Section */}
       <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-transparent sm:items-start relative z-10">
         <section className="text-center sm:text-left">
           <h1 className="text-4xl md:text-5xl font-medium mb-4">Hello, I&apos;m Edward.<br />A software engineer.</h1>
           <p className="text-md md:text-lg text-gray-400 mb-8">Currently working on lots of things.</p>
-          <div className="flex gap-4 mt-6">
+          <div className="flex gap-4 mt-6 items-center">
             {/* GitHub */}
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/DrawdEA"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
+              className="group relative"
             >
               <Button
-                variant="outline"
                 size="icon"
-                className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
+                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
               >
-                <Github className="h-6 w-6" />
+                <Github className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
               </Button>
+              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                GitHub
+              </span>
             </a>
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/edwarddiesta/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
+              className="group relative"
             >
               <Button
-                variant="outline"
                 size="icon"
-                className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
+                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
               >
-                <Linkedin className="h-6 w-6" />
+                <Linkedin className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
               </Button>
+              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                LinkedIn
+              </span>
             </a>
             {/* Instagram */}
             <a
-              href="https://instagram.com/yourusername"
+              href="https://www.instagram.com/edward.diesta/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
+              className="group relative"
             >
               <Button
-                variant="outline"
                 size="icon"
-                className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
+                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
               >
-                <Instagram className="h-6 w-6" />
+                <Instagram className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
               </Button>
+              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                Instagram
+              </span>
             </a>
             {/* CV */}
             <a
@@ -100,25 +109,20 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="CV"
+              className="group relative"
             >
               <Button
-                variant="outline"
                 size="icon"
-                className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
+                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
               >
-                <FileText className="h-6 w-6" />
+                <FileText className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
               </Button>
+              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                Resume
+              </span>
             </a>
-            {/* Contact Me */}
-            <Link href="/contact" aria-label="Contact Me">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-12 w-12 rounded-lg bg-transparent border-white/20 hover:bg-white/10"
-              >
-                <Mail className="h-6 w-6" />
-              </Button>
-            </Link>
+            {/* Email Copy */}
+            <EmailCopyButton email="edwardjoshua.diesta@gmail.com" />
           </div>
         </section>
       </main>
