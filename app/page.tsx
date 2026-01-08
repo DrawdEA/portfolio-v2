@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/image-with-fallback";
@@ -11,15 +10,9 @@ import { TechStackIconCloudBentoCard } from "@/components/tech-stack-icon-cloud-
 import { InteractiveReactionCounter } from "@/components/interactive-reaction-counter";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { EmailCopyButton } from "@/components/email-copy-button";
-import { ResumeDownloadButton } from "@/components/resume-download-button";
 import { getBlogPosts, getProjects, getWorkExperience, getTechStack } from "@/lib/markdown";
 import { 
   ArrowRight,
-  Github,
-  Linkedin,
-  Instagram,
-  Facebook,
   ArrowDown,
   Briefcase,
   Users,
@@ -28,6 +21,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { LightRays } from "@/components/ui/light-rays";
+import { HeroSection } from "@/components/hero-section";
 
 // Revalidate every 60 seconds to ensure fresh content
 export const revalidate = 60;
@@ -51,90 +45,7 @@ export default function Home() {
       <LightRays color="#07152E" length="90vh" speed={4} count={5} />
       </div>
       {/* Hero Section */}
-      <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-center justify-center py-32 px-4 sm:px-16 bg-transparent sm:items-start relative z-10">
-        <section className="text-center sm:text-left">
-          <h1 className="text-4xl md:text-5xl font-medium mb-4">Hello, I&apos;m Edward.<br />A software engineer.</h1>
-          <p className="text-md md:text-lg text-gray-400 mb-8">Currently working on lots of things.</p>
-          <div className="flex gap-4 mt-6 items-center">
-            {/* Facebook */}
-            <a
-              href="https://www.facebook.com/edwardjoshua.diesta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="group relative"
-            >
-              <Button
-                size="icon"
-                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Facebook className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-              </Button>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                Facebook
-              </span>
-            </a>
-            {/* GitHub */}
-            <a
-              href="https://github.com/DrawdEA"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="group relative"
-            >
-              <Button
-                size="icon"
-                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Github className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-              </Button>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                GitHub
-              </span>
-            </a>
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/edwarddiesta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="group relative"
-            >
-              <Button
-                size="icon"
-                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Linkedin className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-              </Button>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                LinkedIn
-              </span>
-            </a>
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/edward.diesta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="group relative"
-            >
-              <Button
-                size="icon"
-                className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Instagram className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-              </Button>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                Instagram
-              </span>
-            </a>
-            {/* CV */}
-            <ResumeDownloadButton />
-            {/* Email Copy */}
-            <EmailCopyButton email="edwardjoshua.diesta@gmail.com" />
-          </div>
-        </section>
-      </main>
+      <HeroSection />
 
       {/* General Information / About Section */}
       <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">

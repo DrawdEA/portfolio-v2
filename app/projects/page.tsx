@@ -1,9 +1,12 @@
 import Link from 'next/link'
-import { ArrowRight, Github, ExternalLink, ArrowLeft } from 'lucide-react'
+import { ArrowRight, Github, ExternalLink } from 'lucide-react'
 import { getProjects } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
 import { LightRays } from '@/components/ui/light-rays'
 import { ImageWithFallback } from '@/components/image-with-fallback'
+import { AnimatedPageContent } from '@/components/animated-page-content'
+import { AnimatedPageHeader } from '@/components/animated-page-header'
+import { AnimatedContentItem } from '@/components/animated-content-item'
 
 export default function ProjectsPage() {
   const projects = getProjects()
@@ -14,30 +17,24 @@ export default function ProjectsPage() {
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
       </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to home
-        </Link>
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">Projects</h1>
-          <p className="text-gray-400 text-lg">A collection of my work</p>
-        </div>
+      <AnimatedPageContent>
+        <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
+          <AnimatedPageHeader
+            title="Projects"
+            description="A collection of my work"
+          />
 
-        {projects.length === 0 ? (
-          <div className="text-center py-24">
-            <p className="text-gray-400 text-lg">No projects yet. Check back soon!</p>
-          </div>
-        ) : (
-          <div className="space-y-8">
-            {projects.map((project) => (
-              <div
-                key={project.slug}
-                className="flex flex-col sm:flex-row gap-6 group"
-              >
+          {projects.length === 0 ? (
+            <AnimatedContentItem>
+              <div className="text-center py-24">
+                <p className="text-gray-400 text-lg">No projects yet. Check back soon!</p>
+              </div>
+            </AnimatedContentItem>
+          ) : (
+            <div className="space-y-8">
+              {projects.map((project, index) => (
+                <AnimatedContentItem key={project.slug} index={index}>
+                  <div className="flex flex-col sm:flex-row gap-6 group">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="flex flex-col sm:flex-row gap-6 flex-1 cursor-pointer"
@@ -117,11 +114,13 @@ export default function ProjectsPage() {
                     </a>
                   )}
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                  </div>
+                </AnimatedContentItem>
+              ))}
+            </div>
+          )}
+        </div>
+      </AnimatedPageContent>
     </div>
   )
 }

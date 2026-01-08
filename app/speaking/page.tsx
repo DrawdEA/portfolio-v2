@@ -1,8 +1,9 @@
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 import { getContentPage } from '@/lib/markdown'
 import { LightRays } from '@/components/ui/light-rays'
 import { ImageWithFallback } from '@/components/image-with-fallback'
+import { AnimatedPageContent } from '@/components/animated-page-content'
+import { AnimatedPageHeader } from '@/components/animated-page-header'
+import { AnimatedContentItem } from '@/components/animated-content-item'
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {
@@ -42,30 +43,18 @@ export default async function SpeakingPage() {
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
       </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to home
-        </Link>
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">
-            {content?.title || 'Speaking'}
-          </h1>
-          <p className="text-gray-400 text-lg">
-            {content?.description || 'Talks, presentations, and conferences'}
-          </p>
-        </div>
+      <AnimatedPageContent>
+        <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
+          <AnimatedPageHeader
+            title={content?.title || 'Speaking'}
+            description={content?.description || 'Talks, presentations, and conferences'}
+          />
 
-        {content?.items && content.items.length > 0 ? (
-          <div className="space-y-8">
-            {content.items.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col sm:flex-row gap-6 group"
-              >
+          {content?.items && content.items.length > 0 ? (
+            <div className="space-y-8">
+              {content.items.map((item, index) => (
+                <AnimatedContentItem key={index} index={index}>
+                  <div className="flex flex-col sm:flex-row gap-6 group">
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                   <ImageWithFallback
                     src={item.image}
@@ -93,16 +82,20 @@ export default async function SpeakingPage() {
                       {item.description}
                     </p>
                   </div>
+                  </div>
                 </div>
+                </AnimatedContentItem>
+              ))}
+            </div>
+          ) : (
+            <AnimatedContentItem>
+              <div className="text-center py-24">
+                <p className="text-gray-400 text-lg">No entries yet. Check back soon!</p>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-24">
-            <p className="text-gray-400 text-lg">No entries yet. Check back soon!</p>
-          </div>
-        )}
-      </div>
+            </AnimatedContentItem>
+          )}
+        </div>
+      </AnimatedPageContent>
     </div>
   )
 }

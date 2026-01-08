@@ -1,9 +1,12 @@
 import Link from 'next/link'
-import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getBlogPosts } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
 import { LightRays } from '@/components/ui/light-rays'
 import { ImageWithFallback } from '@/components/image-with-fallback'
+import { AnimatedPageContent } from '@/components/animated-page-content'
+import { AnimatedPageHeader } from '@/components/animated-page-header'
+import { AnimatedContentItem } from '@/components/animated-content-item'
 
 export default function BlogPage() {
   const posts = getBlogPosts()
@@ -14,31 +17,27 @@ export default function BlogPage() {
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
       </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to home
-        </Link>
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">Blog</h1>
-          <p className="text-gray-400 text-lg">Thoughts, tutorials, and insights</p>
-        </div>
+      <AnimatedPageContent>
+        <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
+          <AnimatedPageHeader
+            title="Blog"
+            description="Thoughts, tutorials, and insights"
+          />
 
-        {posts.length === 0 ? (
-          <div className="text-center py-24">
-            <p className="text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
-          </div>
-        ) : (
-          <div className="space-y-8">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
-              >
+          {posts.length === 0 ? (
+            <AnimatedContentItem>
+              <div className="text-center py-24">
+                <p className="text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
+              </div>
+            </AnimatedContentItem>
+          ) : (
+            <div className="space-y-8">
+              {posts.map((post, index) => (
+                <AnimatedContentItem key={post.slug} index={index}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
+                  >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                   <ImageWithFallback
                     src={post.image}
@@ -88,12 +87,14 @@ export default function BlogPage() {
                       </div>
                     )}
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
+                  </div>
+                </Link>
+                </AnimatedContentItem>
+              ))}
+            </div>
+          )}
+        </div>
+      </AnimatedPageContent>
     </div>
   )
 }
