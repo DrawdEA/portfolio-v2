@@ -66,7 +66,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
       </div>
       <div className="p-4 relative z-10">
         <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
-          <Github className="h-12 w-12 origin-left transform-gpu text-[#4A7BC8]/70 transition-all duration-300 ease-in-out group-hover:scale-75 group-hover:text-[#4A7BC8]/90" />
+          <Github className="h-12 w-12 origin-left transform-gpu text-[#1e3a8a]/70 transition-all duration-300 ease-in-out group-hover:scale-75" />
           <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
             GitHub Stats
           </h3>
@@ -76,17 +76,17 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
             <div className="space-y-2 mt-2">
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-1.5">
-                  <Code className="h-4 w-4 text-[#4A7BC8]" />
+                  <Code className="h-4 w-4 text-[#1e3a8a]" />
                   <span className="text-sm text-neutral-400">{stats.publicRepos}</span>
                   <span className="text-xs text-neutral-500">repos</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Star className="h-4 w-4 text-[#4A7BC8]" />
+                  <Star className="h-4 w-4 text-[#1e3a8a]" />
                   <span className="text-sm text-neutral-400">{stats.totalStars}</span>
                   <span className="text-xs text-neutral-500">stars</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-[#4A7BC8]" />
+                  <Users className="h-4 w-4 text-[#1e3a8a]" />
                   <span className="text-sm text-neutral-400">{stats.followers}</span>
                   <span className="text-xs text-neutral-500">followers</span>
                 </div>

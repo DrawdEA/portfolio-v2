@@ -172,7 +172,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/projects"
-                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                       >
                         View all projects
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -203,7 +203,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/projects"
-                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                       >
                         View all projects
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -271,7 +271,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/blog"
-                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                       >
                         View all blogs
                         <ArrowRight className="ms-1.5 h-3 w-3" />
@@ -302,7 +302,7 @@ export default function Home() {
                     <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
                       <Link
                         href="/blog"
-                        className="text-xs text-neutral-400 hover:text-black transition-colors inline-flex items-center"
+                        className="text-xs text-neutral-400 hover:text-black transition-colors underline-offset-4 hover:underline inline-flex items-center"
                       >
                         View all blogs
                         <ArrowRight className="ms-1.5 h-3 w-3" />
