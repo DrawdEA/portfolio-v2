@@ -14,7 +14,7 @@ import {
   Briefcase,
   Users,
   Trophy,
-  Mic,
+  Award,
   BookOpen
 } from "lucide-react";
 
@@ -134,7 +134,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
               <>
                 <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
                   <Image
-                    src="/work.jpg"
+                    src="/home/work.jpg"
                     alt="Work Experience background"
                     fill
                     className="object-cover blur-[2px] group-hover:blur-none transition-all"
@@ -214,7 +214,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
           <BentoCard
             name="Organizational Work"
             className="col-span-3 md:col-span-1"
-            description="Contributions to open source projects"
+            description="Activities inside Ateneo"
             href="/orgwork"
             cta="Explore"
             Icon={Users}
@@ -222,7 +222,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
               <>
                 <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
                   <Image
-                    src="/org.png"
+                    src="/home/org.png"
                     alt="Organizational Work background"
                     fill
                     className="object-cover blur-[2px] group-hover:blur-none transition-all"
@@ -233,9 +233,9 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
             }
           />
           <BentoCard
-            name="Hackathons"
+            name="Hackathons, Events"
             className="col-span-3 md:col-span-1"
-            description="Competitions and hackathon projects"
+            description="Hackathons, Case Competitions, Speaking, Presentations"
             href="/hackathons"
             cta="View projects"
             Icon={Trophy}
@@ -243,7 +243,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
               <>
                 <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
                   <Image
-                    src="/hackathon.jpg"
+                    src="/home/hackathon.jpg"
                     alt="Hackathons background"
                     fill
                     className="object-cover blur-[2px] group-hover:blur-none transition-all"
@@ -254,18 +254,18 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
             }
           />
           <BentoCard
-            name="Speaking"
+            name="Certifications"
             className="col-span-3 md:col-span-1"
-            description="Talks, presentations, and conferences"
-            href="/speaking"
-            cta="Watch talks"
-            Icon={Mic}
+            description="Professional certifications and credentials"
+            href="/certifications"
+            cta="View certifications"
+            Icon={Award}
             background={
               <>
                 <div className="absolute inset-0 opacity-50 group-hover:opacity-40 transition-opacity">
                   <Image
-                    src="/speaking.jpg"
-                    alt="Speaking background"
+                    src="/home/certifications.png"
+                    alt="Certifications background"
                     fill
                     className="object-cover blur-[2px] group-hover:blur-none transition-all"
                   />

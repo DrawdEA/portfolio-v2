@@ -34,8 +34,8 @@ function formatDate(dateString: string): string {
   })
 }
 
-export default async function SpeakingPage() {
-  const content = await getContentPage('speaking')
+export default async function CertificationsPage() {
+  const content = await getContentPage('certifications')
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -46,8 +46,8 @@ export default async function SpeakingPage() {
       <AnimatedPageContent>
         <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
           <AnimatedPageHeader
-            title={content?.title || 'Speaking'}
-            description={content?.description || 'Talks, presentations, and conferences'}
+            title={content?.title || 'Certifications'}
+            description={content?.description || 'Professional certifications and credentials'}
           />
 
           {content?.items && content.items.length > 0 ? (
@@ -60,7 +60,7 @@ export default async function SpeakingPage() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover blur-[2px] group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
@@ -99,4 +99,3 @@ export default async function SpeakingPage() {
     </div>
   )
 }
-

@@ -6,10 +6,10 @@ items:
     title: "Open Source Project"
     location: "Remote"
     description: "Contributed core features and bug fixes to a popular open source project."
-    image: "/org.png"
+    image: "/orgwork/open-source-project.png"
   - date: "2023-06-20"
     title: "Community Organization"
     location: "Remote"
     description: "Maintained and improved developer tools used by thousands of developers worldwide."
-    image: "/org.png"
+    image: "/orgwork/community-organization.png"
 ---

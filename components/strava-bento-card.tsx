@@ -66,7 +66,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
           <>
             <div className="absolute inset-0 opacity-40 group-hover:opacity-35 transition-opacity">
               <Image
-                src="/strava.jpg"
+                src="/home/strava.jpg"
                 alt="Strava background"
                 fill
                 className="object-cover blur-[2px] group-hover:blur-none transition-all"

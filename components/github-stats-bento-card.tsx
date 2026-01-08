@@ -56,7 +56,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
       <div>
         <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
           <Image
-            src="/github.jpg"
+            src="/home/github.jpg"
             alt="GitHub"
             fill
             className="object-cover blur-[2px] group-hover:blur-none transition-all"
