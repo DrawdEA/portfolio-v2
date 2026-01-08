@@ -75,7 +75,7 @@ export function Timeline({ items, className }: TimelineProps) {
                 {item.technologies.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300"
+                    className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
                   >
                     {tech}
                   </span>

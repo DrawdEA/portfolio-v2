@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { getBlogPost, getBlogPosts } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
+import { ImageWithFallback } from '@/components/image-with-fallback'
 
 export const dynamicParams = true
 
@@ -37,16 +37,14 @@ export default async function BlogPostPage({
           Back to blog
         </Link>
 
-        {post.image && (
-          <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
-          </div>
-        )}
+        <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
+          <ImageWithFallback
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
+        </div>
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">
@@ -60,6 +58,11 @@ export default async function BlogPostPage({
                 day: 'numeric'
               })}
             </p>
+            {post.readTime && (
+              <p className="text-gray-400">
+                {post.readTime} min read
+              </p>
+            )}
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (

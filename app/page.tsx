@@ -13,7 +13,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { EmailCopyButton } from "@/components/email-copy-button";
 import { ResumeDownloadButton } from "@/components/resume-download-button";
-import { getBlogPosts, getProjects, getWorkExperience } from "@/lib/markdown";
+import { getBlogPosts, getProjects, getWorkExperience, getTechStack } from "@/lib/markdown";
 import { 
   ArrowRight,
   Github,
@@ -36,8 +36,13 @@ export default function Home() {
   const posts = getBlogPosts();
   const projects = getProjects();
   const workExperience = getWorkExperience();
+  const techStack = getTechStack();
   // Get the latest (first item after sorting by date descending)
   const latestPost = posts.length > 0 ? posts[0] : null;
+  // Extract all icon slugs from tech stack categories
+  const techStackIcons = techStack?.categories.flatMap(category => 
+    category.technologies.map(tech => tech.icon).filter(Boolean)
+  ) || [];
   const latestProject = projects.length > 0 ? projects[0] : null;
   return (
     <div className="flex min-h-screen flex-col bg-black font-sans relative">
@@ -209,7 +214,10 @@ export default function Home() {
               />
             )}
             <GitHubStatsBentoCard className="col-span-3 md:col-span-1 row-span-2" />
-            <TechStackIconCloudBentoCard className="col-span-3 md:col-span-1 row-span-2" />
+            <TechStackIconCloudBentoCard 
+              className="col-span-3 md:col-span-1 row-span-2"
+              iconSlugs={techStackIcons}
+            />
             <div className="col-span-3 md:col-span-1 row-span-2 flex flex-col gap-4">
               <SpotifyBentoCard className="flex-1" />
               <StravaBentoCard className="flex-1" />
@@ -219,9 +227,8 @@ export default function Home() {
               className="col-span-3 md:col-span-1"
               description="My professional journey"
               href="#experience"
-              cta=""
+              cta="Go down"
               buttonIcon={ArrowDown}
-              centerButton={true}
               largeButton={true}
               Icon={Briefcase}
               background={
@@ -452,18 +459,14 @@ export default function Home() {
                   href={`/projects/${project.slug}`} 
                   className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
                 >
-                  {project.image ? (
-                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                      <ImageWithFallback
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  ) : (
-                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0" />
-                  )}
+                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="flex-1 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 flex-wrap">
@@ -477,6 +480,11 @@ export default function Home() {
                             day: 'numeric'
                           })}
                         </p>
+                        {project.readTime && (
+                          <p className="text-sm text-gray-500">
+                            {project.readTime} min read
+                          </p>
+                        )}
                       </div>
                       <p className="text-sm text-gray-300 leading-relaxed">
                         {project.description}
@@ -490,7 +498,10 @@ export default function Home() {
                       {project.tags && project.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
-                            <span key={tag} className="px-2.5 py-1 text-xs rounded-md bg-gray-800 text-gray-300">
+                            <span
+                              key={tag}
+                              className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
+                            >
                               {tag}
                             </span>
                           ))}
@@ -547,26 +558,29 @@ export default function Home() {
                   href={`/blog/${post.slug}`} 
                   className="block space-y-4 group cursor-pointer"
                 >
-                  {post.image ? (
-                    <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                      <ImageWithFallback
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  ) : (
-                    <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden" />
-                  )}
+                  <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                    <ImageWithFallback
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="space-y-3">
-                    <p className="text-sm text-gray-400">
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </p>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <p className="text-sm text-gray-400">
+                        {new Date(post.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                      {post.readTime && (
+                        <p className="text-sm text-gray-500">
+                          {post.readTime} min read
+                        </p>
+                      )}
+                    </div>
                     <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
                       {post.title}
                     </h3>

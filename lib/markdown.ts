@@ -6,6 +6,13 @@ import html from 'remark-html'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
+// Calculate read time in minutes (average reading speed: 200 words per minute)
+function calculateReadTime(content: string): number {
+  const words = content.trim().split(/\s+/).length
+  const minutes = Math.ceil(words / 200)
+  return Math.max(1, minutes) // Minimum 1 minute
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -15,6 +22,7 @@ export interface BlogPost {
   tags?: string[]
   content: string
   contentHtml?: string
+  readTime?: number
 }
 
 export interface Project {
@@ -28,6 +36,7 @@ export interface Project {
   live?: string
   content: string
   contentHtml?: string
+  readTime?: number
 }
 
 export interface WorkExperience {
@@ -64,6 +73,7 @@ export function getBlogPosts(): BlogPost[] {
         image: data.image,
         tags: data.tags || [],
         content,
+        readTime: calculateReadTime(content),
       }
     })
     .filter((post) => post.title) // Filter out invalid posts
@@ -96,6 +106,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     tags: data.tags || [],
     content,
     contentHtml,
+    readTime: calculateReadTime(content),
   }
 }
 
@@ -126,6 +137,7 @@ export function getProjects(): Project[] {
         github: data.github,
         live: data.live,
         content,
+        readTime: calculateReadTime(content),
       }
     })
     .filter((project) => project.title) // Filter out invalid projects
@@ -160,6 +172,7 @@ export async function getProject(slug: string): Promise<Project | null> {
     live: data.live,
     content,
     contentHtml,
+    readTime: calculateReadTime(content),
   }
 }
 

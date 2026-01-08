@@ -2,49 +2,27 @@
 
 import Link from "next/link"
 import { Cloud, ArrowRight } from "lucide-react"
+import { useMemo } from "react"
 import { cn } from "@/lib/utils"
 import { IconCloud } from "@/components/ui/icon-cloud"
 
-// Tech stack icons from simpleicons.org
-const techStack = [
-  "react",
-  "nextjs",
-  "typescript",
-  "javascript",
-  "nodejs",
-  "tailwindcss",
-  "python",
-  "git",
-  "github",
-  "vercel",
-  "postgresql",
-  "mongodb",
-  "docker",
-  "figma",
-  "vscode",
-  "vue",
-  "angular",
-  "svelte",
-  "express",
-  "nestjs",
-  "graphql",
-  "redis",
-  "aws",
-  "kubernetes",
-  "terraform",
-  "jest",
-  "cypress",
-  "webpack",
-  "eslint",
-  "prettier",
-]
-
 // Generate image URLs for IconCloud (using original brand colors)
-const techStackImages = techStack.map(
-  (slug) => `https://cdn.simpleicons.org/${slug}`
-)
+// Note: Some icons might not exist on simpleicons.org (e.g., "rest", "cursor")
+function getTechStackImages(iconSlugs: string[]) {
+  return iconSlugs
+    .filter(slug => slug && slug.trim().length > 0) // Filter out empty slugs
+    .map((slug) => `https://cdn.simpleicons.org/${slug}`)
+}
 
-export function TechStackIconCloudBentoCard({ className }: { className?: string }) {
+export function TechStackIconCloudBentoCard({ 
+  className,
+  iconSlugs = []
+}: { 
+  className?: string
+  iconSlugs?: string[]
+}) {
+  // Memoize the images array to prevent unnecessary re-renders
+  const techStackImages = useMemo(() => getTechStackImages(iconSlugs), [iconSlugs])
   return (
     <Link
       href="/tech-stack"
@@ -76,14 +54,14 @@ export function TechStackIconCloudBentoCard({ className }: { className?: string 
         </div>
 
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 hidden w-full translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
-          <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center">
+          <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center">
             Explore tech stack
             <ArrowRight className="ms-2 h-4 w-4 text-neutral-400" />
           </span>
         </div>
 
         <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
-          <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors inline-flex items-center">
+          <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center">
             Explore tech stack
             <ArrowRight className="ms-2 h-4 w-4 text-neutral-400" />
           </span>

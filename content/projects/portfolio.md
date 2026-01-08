@@ -2,7 +2,7 @@
 title: "Portfolio Website"
 date: "2024-12-15"
 description: "A modern, responsive portfolio website built with Next.js, featuring dynamic content, real-time integrations, and an interactive design."
-image: "/projects/portfolio.png"
+image: "/projects/test.png"
 tags: ["nextjs", "typescript", "tailwindcss", "react"]
 github: "https://github.com/yourusername/portfolio-v2"
 live: "https://yourportfolio.com"

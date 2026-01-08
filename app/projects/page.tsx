@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, Github, ExternalLink, ArrowLeft } from 'lucide-react'
 import { getProjects } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
 import { LightRays } from '@/components/ui/light-rays'
+import { ImageWithFallback } from '@/components/image-with-fallback'
 
 export default function ProjectsPage() {
   const projects = getProjects()
@@ -42,16 +42,14 @@ export default function ProjectsPage() {
                   href={`/projects/${project.slug}`}
                   className="flex flex-col sm:flex-row gap-6 flex-1 cursor-pointer"
                 >
-                  {project.image && (
-                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  )}
+                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="flex-1 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 flex-wrap">
@@ -65,6 +63,11 @@ export default function ProjectsPage() {
                             day: 'numeric'
                           })}
                         </p>
+                        {project.readTime && (
+                          <p className="text-sm text-gray-500">
+                            {project.readTime} min read
+                          </p>
+                        )}
                       </div>
                       <p className="text-sm text-gray-300 leading-relaxed">
                         {project.description}
@@ -78,13 +81,12 @@ export default function ProjectsPage() {
                       {project.tags && project.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
-                            <Badge
+                            <span
                               key={tag}
-                              variant="secondary"
-                              className="bg-gray-800 text-gray-300"
+                              className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
                             >
                               {tag}
-                            </Badge>
+                            </span>
                           ))}
                         </div>
                       )}

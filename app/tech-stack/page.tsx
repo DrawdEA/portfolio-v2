@@ -41,7 +41,7 @@ export default function TechStackPage() {
                   {category.technologies.map((tech, techIndex) => (
                     <div
                       key={techIndex}
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg hover:border-[#4A7BC8]/50 hover:bg-gray-800 transition-all group"
+                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 group"
                     >
                       {tech.icon && (
                         <TechIcon

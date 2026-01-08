@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 
 const STRAVA_CLIENT_ID = process.env.STRAVA_CLIENT_ID;
 const STRAVA_CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
@@ -66,17 +67,12 @@ function formatPace(seconds: number, distance: number, unit: 'metric' | 'imperia
   return `${minutes}:${secs.toString().padStart(2, '0')} /km`;
 }
 
-export async function GET() {
-  try {
-    console.log('Strava API: Starting request...');
-    console.log('Strava API: Client ID exists:', !!STRAVA_CLIENT_ID);
-    console.log('Strava API: Client Secret exists:', !!STRAVA_CLIENT_SECRET);
-    console.log('Strava API: Refresh Token exists:', !!STRAVA_REFRESH_TOKEN);
-
+// Cached function to fetch Strava activities
+const getCachedActivities = unstable_cache(
+  async () => {
+    console.log('Strava API: Fetching fresh data from Strava...');
     const { access_token } = await getAccessToken();
-    console.log('Strava API: Got access token:', !!access_token);
-
-    // Get recent activities
+    
     const response = await fetch(
       'https://www.strava.com/api/v3/athlete/activities?per_page=1',
       {
@@ -86,15 +82,28 @@ export async function GET() {
       }
     );
 
-    console.log('Strava API: Response status:', response.status);
-
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Strava API: Error response:', errorText);
       throw new Error(`Failed to fetch activities: ${response.status} ${errorText}`);
     }
 
-    const activities = await response.json();
+    return response.json();
+  },
+  ['strava-activities'],
+  {
+    revalidate: 300, // Cache for 5 minutes
+    tags: ['strava-activities'],
+  }
+);
+
+export async function GET() {
+  try {
+    console.log('Strava API: Starting request...');
+    console.log('Strava API: Client ID exists:', !!STRAVA_CLIENT_ID);
+    console.log('Strava API: Client Secret exists:', !!STRAVA_CLIENT_SECRET);
+    console.log('Strava API: Refresh Token exists:', !!STRAVA_REFRESH_TOKEN);
+
+    const activities = await getCachedActivities();
     console.log('Strava API: Activities received:', activities?.length || 0);
     console.log('Strava API: Activities data:', JSON.stringify(activities, null, 2));
 
@@ -104,6 +113,10 @@ export async function GET() {
         hasActivity: false,
         message: 'No recent activities',
         debug: { activitiesCount: 0 }
+      }, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
       });
     }
 
@@ -145,12 +158,16 @@ export async function GET() {
     };
 
     console.log('Strava API: Returning result:', JSON.stringify(result, null, 2));
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      },
+    });
   } catch (error: any) {
     console.error('Strava API: Error caught:', error);
     console.error('Strava API: Error message:', error.message);
     console.error('Strava API: Error stack:', error.stack);
-    return NextResponse.json(
+      return NextResponse.json(
       { 
         error: 'Failed to fetch Strava data', 
         message: error.message,
@@ -160,7 +177,12 @@ export async function GET() {
           hasRefreshToken: !!STRAVA_REFRESH_TOKEN,
         }
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store',
+        },
+      }
     );
   }
 }

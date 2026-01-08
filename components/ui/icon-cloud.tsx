@@ -47,7 +47,10 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     if (!icons && !images) return
 
     const items = icons || images || []
-    imagesLoadedRef.current = new Array(items.length).fill(false)
+    // Only reset if the length actually changed, to prevent unnecessary reloads
+    if (imagesLoadedRef.current.length !== items.length) {
+      imagesLoadedRef.current = new Array(items.length).fill(false)
+    }
 
     const newIconCanvases = items.map((item, index) => {
       const offscreen = document.createElement("canvas")
@@ -74,6 +77,20 @@ export function IconCloud({ icons, images }: IconCloudProps) {
             offCtx.drawImage(img, 0, 0, 40, 40)
 
             imagesLoadedRef.current[index] = true
+          }
+          img.onerror = () => {
+            // If image fails to load, create a placeholder
+            offCtx.clearRect(0, 0, offscreen.width, offscreen.height)
+            
+            // Draw a placeholder circle
+            offCtx.beginPath()
+            offCtx.arc(20, 20, 18, 0, Math.PI * 2)
+            offCtx.fillStyle = "#333"
+            offCtx.fill()
+            
+            // Mark as loaded so it still renders (as a placeholder)
+            imagesLoadedRef.current[index] = true
+            console.warn(`Failed to load icon: ${items[index]}`)
           }
         } else {
           // Handle SVG icons

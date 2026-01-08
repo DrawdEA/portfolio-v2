@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 
 interface ImageWithFallbackProps {
-  src: string
+  src?: string | null
   alt: string
   fill?: boolean
   className?: string
@@ -21,21 +21,11 @@ export function ImageWithFallback({
   height,
 }: ImageWithFallbackProps) {
   const [imageError, setImageError] = useState(false)
-
-  if (imageError) {
-    return (
-      <div
-        className={className}
-        style={fill ? undefined : { width, height }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
-      </div>
-    )
-  }
+  const imageSrc = (!src || imageError) ? "/placeholder.jpg" : src
 
   return (
     <Image
-      src={src}
+      src={imageSrc}
       alt={alt}
       fill={fill}
       width={width}

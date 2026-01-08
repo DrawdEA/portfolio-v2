@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
 import { getBlogPosts } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
 import { LightRays } from '@/components/ui/light-rays'
+import { ImageWithFallback } from '@/components/image-with-fallback'
 
 export default function BlogPage() {
   const posts = getBlogPosts()
@@ -39,16 +39,14 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
               >
-                {post.image && (
-                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
+                <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                  <ImageWithFallback
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 flex-wrap">
@@ -62,6 +60,11 @@ export default function BlogPage() {
                           day: 'numeric'
                         })}
                       </p>
+                      {post.readTime && (
+                        <p className="text-sm text-gray-500">
+                          {post.readTime} min read
+                        </p>
+                      )}
                     </div>
                     <p className="text-sm text-gray-300 leading-relaxed">
                       {post.description}
@@ -73,15 +76,14 @@ export default function BlogPage() {
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                     {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3">
                         {post.tags.map((tag) => (
-                          <Badge
+                          <span
                             key={tag}
-                            variant="secondary"
-                            className="bg-gray-800 text-gray-300"
+                            className="px-4 py-2 text-sm bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
                           >
                             {tag}
-                          </Badge>
+                          </span>
                         ))}
                       </div>
                     )}

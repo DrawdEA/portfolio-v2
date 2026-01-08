@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import { getContentPage } from '@/lib/markdown'
 import { LightRays } from '@/components/ui/light-rays'
+import { ImageWithFallback } from '@/components/image-with-fallback'
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {
@@ -66,16 +66,14 @@ export default async function HackathonsPage() {
                 key={index}
                 className="flex flex-col sm:flex-row gap-6 group"
               >
-                {item.image && (
-                  <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
+                <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                  <ImageWithFallback
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 flex-wrap">

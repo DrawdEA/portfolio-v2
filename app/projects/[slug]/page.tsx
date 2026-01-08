@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Github, ExternalLink } from 'lucide-react'
 import { getProject, getProjects } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
+import { ImageWithFallback } from '@/components/image-with-fallback'
 
 export const dynamicParams = true
 
@@ -37,16 +37,14 @@ export default async function ProjectPage({
           Back to projects
         </Link>
 
-        {project.image && (
-          <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-            />
-          </div>
-        )}
+        <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
+          <ImageWithFallback
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
+        </div>
 
         <header className="mb-8">
           <div className="flex items-start justify-between gap-4 mb-4">
@@ -86,6 +84,11 @@ export default async function ProjectPage({
                 day: 'numeric'
               })}
             </p>
+            {project.readTime && (
+              <p className="text-gray-400">
+                {project.readTime} min read
+              </p>
+            )}
             {project.tags && project.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
