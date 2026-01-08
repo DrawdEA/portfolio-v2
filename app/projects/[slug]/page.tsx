@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import type { Metadata } from 'next'
 
 export const dynamicParams = true
 
@@ -14,6 +15,26 @@ export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const project = await getProject(slug)
+
+  if (!project) {
+    return {
+      title: "Projects | Edward Diesta",
+    }
+  }
+
+  return {
+    title: `${project.title} | Projects | Edward Diesta`,
+    description: project.description,
+  }
 }
 
 export default async function ProjectPage({

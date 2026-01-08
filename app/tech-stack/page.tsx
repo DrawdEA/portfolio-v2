@@ -4,6 +4,12 @@ import { TechIcon } from '@/components/tech-icon'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Tech Stack | Edward Diesta",
+  description: "Technologies and tools I work with",
+}
 
 export default function TechStackPage() {
   const techStack = getTechStack()

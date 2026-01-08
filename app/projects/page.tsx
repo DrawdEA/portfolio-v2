@@ -7,6 +7,12 @@ import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Projects | Edward Diesta",
+  description: "Projects and work by Edward Diesta",
+}
 
 export default function ProjectsPage() {
   const projects = getProjects()

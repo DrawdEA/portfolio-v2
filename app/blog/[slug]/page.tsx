@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import type { Metadata } from 'next'
 
 export const dynamicParams = true
 
@@ -14,6 +15,26 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPost(slug)
+
+  if (!post) {
+    return {
+      title: "Blog | Edward Diesta",
+    }
+  }
+
+  return {
+    title: `${post.title} | Blog | Edward Diesta`,
+    description: post.description,
+  }
 }
 
 export default async function BlogPostPage({

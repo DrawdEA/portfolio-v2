@@ -4,6 +4,12 @@ import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Hackathons, Events | Edward Diesta",
+  description: "Hackathons, Case Competitions, Speaking, Presentations",
+}
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {
