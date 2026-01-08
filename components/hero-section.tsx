@@ -70,11 +70,11 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="group relative"
+            className="group relative cursor-pointer"
           >
             <Button
               size="icon"
-              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
+              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
             >
               <Facebook className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
             </Button>
@@ -88,11 +88,11 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="group relative"
+            className="group relative cursor-pointer"
           >
             <Button
               size="icon"
-              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
+              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
             >
               <Github className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
             </Button>
@@ -106,11 +106,11 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="group relative"
+            className="group relative cursor-pointer"
           >
             <Button
               size="icon"
-              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
+              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
             >
               <Linkedin className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
             </Button>
@@ -124,11 +124,11 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="group relative"
+            className="group relative cursor-pointer"
           >
             <Button
               size="icon"
-              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20"
+              className="h-12 w-12 rounded-lg bg-white/10 hover:bg-white/25 border-0 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
             >
               <Instagram className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
             </Button>
