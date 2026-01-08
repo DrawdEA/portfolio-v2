@@ -45,7 +45,7 @@ export default async function HackathonsPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#4A7BC8] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to home
@@ -64,7 +64,7 @@ export default async function HackathonsPage() {
             {content.items.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col sm:flex-row gap-6 group"
+                className="flex flex-col sm:flex-row gap-6 group bg-white/10 hover:bg-white/25 rounded-lg p-4 transition-all duration-300"
               >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                   <ImageWithFallback

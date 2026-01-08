@@ -56,7 +56,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
       <div>
         <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
           <Image
-            src="/github.png"
+            src="/github.jpg"
             alt="GitHub"
             fill
             className="object-cover"
@@ -103,11 +103,11 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
               )}
               {stats.username && (
                 <div className="mt-3 pt-3 border-t border-neutral-800">
-                  <div className="w-full h-16 overflow-hidden rounded opacity-60 group-hover:opacity-80 transition-opacity">
+                  <div className="w-full rounded opacity-60 group-hover:opacity-80 transition-opacity">
                     <img
                       src={`https://ghchart.rshah.org/409BA5/${stats.username}`}
                       alt={`${stats.username}'s GitHub contributions`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain"
                     />
                   </div>
                 </div>

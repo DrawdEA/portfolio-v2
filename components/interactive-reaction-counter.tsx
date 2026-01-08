@@ -22,30 +22,53 @@ interface Particle {
 
 export function InteractiveReactionCounter({ className }: { className?: string }) {
   const [reactions, setReactions] = useState<Reaction[]>([
-    { emoji: "👍", label: "Like", count: 0 },
     { emoji: "❤️", label: "Love", count: 0 },
-    { emoji: "🎉", label: "Celebrate", count: 0 },
-    { emoji: "🔥", label: "Fire", count: 0 },
-    { emoji: "🚀", label: "Rocket", count: 0 },
-    { emoji: "💯", label: "Perfect", count: 0 },
   ])
   const [particles, setParticles] = useState<Particle[]>([])
   const [totalReactions, setTotalReactions] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [hasReactedToday, setHasReactedToday] = useState(false)
+  const [showMessage, setShowMessage] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Check if user has already reacted today
+    const checkReactionStatus = () => {
+      const lastReactionDate = localStorage.getItem('lastReactionDate')
+      const today = new Date().toDateString()
+      
+      if (lastReactionDate === today) {
+        setHasReactedToday(true)
+      }
+    }
+
+    checkReactionStatus()
+
     async function fetchReactions() {
       try {
         const response = await fetch('/api/reactions')
         const data = await response.json()
         if (data.reactions) {
-          setReactions(data.reactions)
-          const total = data.reactions.reduce((sum: number, r: Reaction) => sum + r.count, 0)
-          setTotalReactions(total)
+          // Only show heart emoji - filter out everything else
+          const heartReaction = data.reactions.find((r: Reaction) => r.emoji === "❤️")
+          if (heartReaction) {
+            setReactions([heartReaction])
+            setTotalReactions(heartReaction.count)
+          } else {
+            // If API doesn't have heart, initialize with 0
+            setReactions([{ emoji: "❤️", label: "Love", count: 0 }])
+            setTotalReactions(0)
+          }
+        } else {
+          // Fallback: only show heart
+          setReactions([{ emoji: "❤️", label: "Love", count: 0 }])
+          setTotalReactions(0)
         }
       } catch (error) {
         console.error('Error fetching reactions:', error)
+        // Fallback: only show heart
+        setReactions([{ emoji: "❤️", label: "Love", count: 0 }])
+        setTotalReactions(0)
       } finally {
         setIsLoading(false)
       }
@@ -68,21 +91,24 @@ export function InteractiveReactionCounter({ className }: { className?: string }
   const handleReaction = async (reactionIndex: number, event: React.MouseEvent<HTMLButtonElement>) => {
     const reaction = reactions[reactionIndex]
     
-    // Get click position relative to container
+    // Get button center position relative to container
     const containerRect = containerRef.current?.getBoundingClientRect()
-    const buttonRect = event.currentTarget.getBoundingClientRect()
+    const button = event.currentTarget
+    const buttonRect = button.getBoundingClientRect()
     
-    // Create particles
+    // Always create particles for visual feedback
     const newParticles: Particle[] = []
-    if (containerRect) {
-      const clickX = buttonRect.left - containerRect.left + buttonRect.width / 2
-      const clickY = buttonRect.top - containerRect.top + buttonRect.height / 2
+    if (containerRect && buttonRect) {
+      // Calculate the center of the button relative to the container
+      // Use the button's actual center coordinates
+      const buttonCenterX = (buttonRect.left + buttonRect.right) / 2 - containerRect.left
+      const buttonCenterY = (buttonRect.top + buttonRect.bottom) / 2 - containerRect.top
       
       for (let i = 0; i < 12; i++) {
         newParticles.push({
           id: Date.now() + i,
-          x: clickX,
-          y: clickY,
+          x: buttonCenterX,
+          y: buttonCenterY,
           vx: (Math.random() - 0.5) * 8,
           vy: (Math.random() - 0.5) * 8 - 2,
           life: 60,
@@ -92,6 +118,17 @@ export function InteractiveReactionCounter({ className }: { className?: string }
     }
     setParticles((prev) => [...prev, ...newParticles])
 
+    // Check if user has already reacted today
+    const lastReactionDate = localStorage.getItem('lastReactionDate')
+    const today = new Date().toDateString()
+    
+    if (lastReactionDate === today) {
+      // Show message and don't update count
+      setShowMessage(true)
+      setTimeout(() => setShowMessage(false), 3000)
+      return
+    }
+
     // Update reaction count
     const updatedReactions = [...reactions]
     updatedReactions[reactionIndex] = {
@@ -100,6 +137,10 @@ export function InteractiveReactionCounter({ className }: { className?: string }
     }
     setReactions(updatedReactions)
     setTotalReactions((prev) => prev + 1)
+
+    // Mark as reacted today
+    localStorage.setItem('lastReactionDate', today)
+    setHasReactedToday(true)
 
     // Send to API
     try {
@@ -129,16 +170,15 @@ export function InteractiveReactionCounter({ className }: { className?: string }
             className="absolute text-lg pointer-events-none"
             initial={{ opacity: 1, scale: 1 }}
             animate={{
-              x: particle.x,
-              y: particle.y,
               opacity: particle.life / 60,
               scale: 0.5 + (particle.life / 60) * 0.5,
             }}
             exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.1, ease: "linear" }}
             style={{
-              left: 0,
-              top: 0,
+              left: `${particle.x}px`,
+              top: `${particle.y}px`,
+              transform: 'translate(-50%, -50%)',
             }}
           >
             {particle.emoji}
@@ -148,16 +188,33 @@ export function InteractiveReactionCounter({ className }: { className?: string }
 
       <div className="relative z-10 flex items-center gap-3">
         {reactions.map((reaction, index) => (
-          <motion.button
-            key={reaction.emoji}
-            onClick={(e) => handleReaction(index, e)}
-            className="relative flex items-center gap-1.5 transition-all hover:scale-110"
-            whileHover={{ scale: 1.15 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="text-2xl">{reaction.emoji}</span>
-            <span className="text-xs text-neutral-400">{reaction.count}</span>
-          </motion.button>
+          <div key={reaction.emoji} className="relative flex items-center">
+            <motion.button
+              onClick={(e) => handleReaction(index, e)}
+              className="relative flex items-center gap-1.5 transition-all hover:scale-110"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="text-2xl">{reaction.emoji}</span>
+              <span className="text-xs text-neutral-400">{reaction.count}</span>
+            </motion.button>
+            {/* Message in separate absolutely positioned container to avoid layout shifts */}
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-3 pointer-events-none z-30">
+              <AnimatePresence>
+                {showMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-xs text-neutral-400 whitespace-nowrap"
+                  >
+                    Thank you for the support! Only one react per person!
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         ))}
       </div>
     </div>

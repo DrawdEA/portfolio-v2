@@ -31,7 +31,7 @@ export default async function BlogPostPage({
       <article className="max-w-4xl mx-auto px-4 sm:px-16 py-24">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#4A7BC8] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to blog

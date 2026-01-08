@@ -470,7 +470,7 @@ export default function Home() {
                   <div className="flex-1 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-[#1e3a8a] transition-colors">
                           {project.title}
                         </h3>
                         <p className="text-sm text-gray-400">
@@ -491,7 +491,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="flex items-center justify-between mt-6">
-                      <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                      <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors">
                         View project
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -581,13 +581,13 @@ export default function Home() {
                         </p>
                       )}
                     </div>
-                    <h3 className="text-xl font-medium text-white group-hover:text-[#4A7BC8] transition-colors">
+                    <h3 className="text-xl font-medium text-white group-hover:text-[#1e3a8a] transition-colors">
                       {post.title}
                     </h3>
                     <p className="text-sm text-gray-400 leading-relaxed">
                       {post.description}
                     </p>
-                    <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                    <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors">
                       Read more
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>

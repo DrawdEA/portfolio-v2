@@ -62,7 +62,7 @@ export function ContentTimeline({ items, className }: ContentTimelineProps) {
   return (
     <div className={cn("relative", className)}>
       {/* Vertical line with gradient */}
-      <div className="absolute left-[20px] top-5 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#27508F] via-white/10 to-transparent md:left-[40px]" />
+      <div className="absolute left-[20px] top-5 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#1e3a8a] via-white/10 to-transparent md:left-[40px]" />
       
       <div className="space-y-12">
         {items.map((item, index) => (
@@ -71,9 +71,9 @@ export function ContentTimeline({ items, className }: ContentTimelineProps) {
             <div className="absolute left-[20px] md:left-[40px] top-0 -translate-x-1/2 z-10">
               <div className="relative">
                 {/* Glow effect */}
-                <div className="absolute inset-0 rounded-full bg-[#27508F] opacity-20 blur-md group-hover:opacity-40 transition-opacity" />
+                <div className="absolute inset-0 rounded-full bg-[#1e3a8a] opacity-20 blur-md group-hover:opacity-40 transition-opacity" />
                 {/* Outer ring */}
-                <div className="relative h-10 w-10 rounded-full bg-white/5 border-2 border-[#27508F] flex items-center justify-center group-hover:border-[#4A7BC8] transition-colors overflow-hidden">
+                <div className="relative h-10 w-10 rounded-full bg-white/5 border-2 border-[#1e3a8a] flex items-center justify-center group-hover:border-[#1e3a8a] transition-colors overflow-hidden">
                   {item.icon ? (
                     <Image
                       src={item.icon}
@@ -83,7 +83,7 @@ export function ContentTimeline({ items, className }: ContentTimelineProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="h-4 w-4 rounded-full bg-[#27508F] group-hover:bg-[#4A7BC8] transition-colors" />
+                    <div className="h-4 w-4 rounded-full bg-[#1e3a8a] group-hover:bg-[#1e3a8a] transition-colors" />
                   )}
                 </div>
               </div>
@@ -98,7 +98,7 @@ export function ContentTimeline({ items, className }: ContentTimelineProps) {
               </div>
               
               {/* Title */}
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#4A7BC8] transition-colors">
+              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#1e3a8a] transition-colors">
                 {item.title}
               </h3>
               

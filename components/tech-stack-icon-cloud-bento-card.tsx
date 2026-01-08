@@ -38,7 +38,7 @@ export function TechStackIconCloudBentoCard({
         <div className="relative w-full h-[140%] -top-[20%] flex items-center justify-center translate-y-8">
           <IconCloud images={techStackImages} />
           {/* Subtle blue gradient overlay - covers expanded area */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#4A7BC8]/5 to-[#27508F]/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/5 to-[#1e3a8a]/5 pointer-events-none" />
         </div>
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
       </div>

@@ -230,7 +230,7 @@
   }
   
   .markdown-content a {
-    @apply text-[#4A7BC8] no-underline hover:underline transition-colors;
+    @apply text-[#1e3a8a] no-underline hover:underline transition-colors;
   }
   
   .markdown-content strong {
@@ -242,7 +242,7 @@
   }
   
   .markdown-content code {
-    @apply text-[#4A7BC8] bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono;
+    @apply text-[#1e3a8a] bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono;
   }
   
   .markdown-content pre {
@@ -254,7 +254,7 @@
   }
   
   .markdown-content blockquote {
-    @apply border-l-4 border-[#4A7BC8] pl-4 italic text-gray-300 my-4;
+    @apply border-l-4 border-[#1e3a8a] pl-4 italic text-gray-300 my-4;
   }
   
   .markdown-content img {

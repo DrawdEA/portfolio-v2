@@ -2,12 +2,7 @@ import { NextResponse } from 'next/server'
 
 // In-memory storage (replace with database in production)
 let reactions: Record<string, number> = {
-  '👍': 0,
   '❤️': 0,
-  '🎉': 0,
-  '🔥': 0,
-  '🚀': 0,
-  '💯': 0,
 }
 
 export async function GET() {
@@ -45,12 +40,7 @@ export async function POST(request: Request) {
 
 function getLabel(emoji: string): string {
   const labels: Record<string, string> = {
-    '👍': 'Like',
     '❤️': 'Love',
-    '🎉': 'Celebrate',
-    '🔥': 'Fire',
-    '🚀': 'Rocket',
-    '💯': 'Perfect',
   }
   return labels[emoji] || 'Unknown'
 }

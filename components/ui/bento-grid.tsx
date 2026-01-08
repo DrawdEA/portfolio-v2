@@ -101,6 +101,7 @@ const BentoCard = ({
             )}
           >
             <a href={href} className={cn(
+              "text-sm transition-all duration-300 text-gray-300 hover:text-white font-normal",
               centerButton && "flex items-center justify-center",
               whiteButton && "text-white"
             )}>
@@ -124,7 +125,7 @@ const BentoCard = ({
               onClick?.()
             }}
             className={cn(
-              "pointer-events-auto p-0 text-neutral-400",
+              "pointer-events-auto p-0 text-gray-300 hover:text-white transition-all duration-300",
               centerButton && "justify-center",
               whiteButton && "text-white"
             )}
@@ -160,6 +161,7 @@ const BentoCard = ({
           )}
         >
           <a href={href} className={cn(
+            "text-sm transition-all duration-300 text-gray-300 hover:text-white font-normal",
             centerButton && "flex items-center justify-center",
             whiteButton && "text-white"
           )}>

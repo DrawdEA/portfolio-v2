@@ -17,7 +17,7 @@ export default function ProjectsPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#4A7BC8] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to home
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <div
                 key={project.slug}
-                className="flex flex-col sm:flex-row gap-6 group"
+                className="flex flex-col sm:flex-row gap-6 group bg-white/10 hover:bg-white/25 rounded-lg p-4 transition-all duration-300"
               >
                 <Link
                   href={`/projects/${project.slug}`}
@@ -53,7 +53,7 @@ export default function ProjectsPage() {
                   <div className="flex-1 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="text-xl font-semibold text-white group-hover:text-[#4A7BC8] transition-colors">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-[#1e3a8a] transition-colors">
                           {project.title}
                         </h3>
                         <p className="text-sm text-gray-400">
@@ -74,7 +74,7 @@ export default function ProjectsPage() {
                       </p>
                     </div>
                     <div className="flex items-center justify-between mt-6">
-                      <div className="inline-flex items-center gap-1 text-sm text-[#4A7BC8] group-hover:text-[#27508F] transition-colors">
+                      <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors">
                         View project
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-[#4A7BC8] transition-colors"
+                      className="text-gray-400 hover:text-[#1e3a8a] transition-colors"
                       aria-label="View on GitHub"
                     >
                       <Github className="h-5 w-5" />
@@ -110,7 +110,7 @@ export default function ProjectsPage() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-[#4A7BC8] transition-colors"
+                      className="text-gray-400 hover:text-[#1e3a8a] transition-colors"
                       aria-label="View live site"
                     >
                       <ExternalLink className="h-5 w-5" />
