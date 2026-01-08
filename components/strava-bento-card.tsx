@@ -69,7 +69,7 @@ export function StravaBentoCard({ className }: { className?: string }) {
                 src="/strava.jpg"
                 alt="Strava background"
                 fill
-                className="object-cover blur-[2px]"
+                className="object-cover blur-[2px] group-hover:blur-none transition-all"
                 onError={() => setImageError(true)}
               />
             </div>
