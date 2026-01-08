@@ -100,20 +100,20 @@ const BentoCard = ({
               whiteButton && "text-white"
             )}
           >
-            <a href={href} className={cn(
-              "text-sm transition-all duration-300 text-gray-300 hover:text-white font-normal",
-              centerButton && "flex items-center justify-center",
-              whiteButton && "text-white"
-            )}>
-              {cta}
-              <IconComponent className={cn(
-                cta ? "ms-2" : "",
-                largeButton ? "h-12 w-12" : "h-4 w-4",
-                whiteButton ? "text-white" : "text-neutral-400",
-                largeButton && "stroke-[3]",
-                "rtl:rotate-180"
-              )} />
-            </a>
+          <a href={href} className={cn(
+            "text-sm transition-all duration-300 text-neutral-400 hover:text-neutral-300 font-normal group",
+            centerButton && "flex items-center justify-center",
+            whiteButton && "text-white"
+          )}>
+            {cta}
+            <IconComponent className={cn(
+              cta ? "ms-2" : "",
+              largeButton ? "h-12 w-12" : "h-4 w-4",
+              whiteButton ? "text-white" : "text-current",
+              largeButton && "stroke-[3]",
+              "rtl:rotate-180"
+            )} />
+          </a>
           </Button>
         ) : (
           <Button
@@ -125,19 +125,19 @@ const BentoCard = ({
               onClick?.()
             }}
             className={cn(
-              "pointer-events-auto p-0 text-gray-300 hover:text-white transition-all duration-300",
+              "pointer-events-auto p-0 text-neutral-400 hover:text-neutral-300 transition-all duration-300",
               centerButton && "justify-center",
               whiteButton && "text-white"
             )}
           >
             {cta}
-            <IconComponent className={cn(
-              cta ? "ms-2" : "",
-              largeButton ? "h-12 w-12" : "h-4 w-4",
-              whiteButton ? "text-white" : "text-neutral-400",
-              largeButton && "stroke-[3]",
-              "rtl:rotate-180"
-            )} />
+              <IconComponent className={cn(
+                cta ? "ms-2" : "",
+                largeButton ? "h-12 w-12" : "h-4 w-4",
+                whiteButton ? "text-white" : "text-current",
+                largeButton && "stroke-[3]",
+                "rtl:rotate-180"
+              )} />
           </Button>
         )}
       </div>
@@ -161,7 +161,7 @@ const BentoCard = ({
           )}
         >
           <a href={href} className={cn(
-            "text-sm transition-all duration-300 text-gray-300 hover:text-white font-normal",
+            "text-sm transition-all duration-300 text-neutral-400 hover:text-neutral-300 font-normal group",
             centerButton && "flex items-center justify-center",
             whiteButton && "text-white"
           )}>
@@ -169,7 +169,7 @@ const BentoCard = ({
             <IconComponent className={cn(
               cta ? "ms-2" : "",
               largeButton ? "h-12 w-12" : "h-4 w-4",
-              whiteButton ? "text-white" : "text-neutral-400",
+              whiteButton ? "text-white" : "text-current",
               largeButton && "stroke-[3]",
               "rtl:rotate-180"
             )} />
@@ -191,13 +191,13 @@ const BentoCard = ({
           )}
         >
           {cta}
-          <IconComponent className={cn(
-            cta ? "ms-2" : "",
-            largeButton ? "h-12 w-12" : "h-4 w-4",
-            whiteButton ? "text-white" : "text-neutral-400",
-            largeButton && "stroke-[3]",
-            "rtl:rotate-180"
-          )} />
+              <IconComponent className={cn(
+                cta ? "ms-2" : "",
+                largeButton ? "h-12 w-12" : "h-4 w-4",
+                whiteButton ? "text-white" : "text-current",
+                largeButton && "stroke-[3]",
+                "rtl:rotate-180"
+              )} />
         </Button>
       )}
     </div>

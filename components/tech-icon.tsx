@@ -21,7 +21,7 @@ export function TechIcon({ src, alt }: TechIconProps) {
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
           onError={() => setImageError(true)}
         />
       )}

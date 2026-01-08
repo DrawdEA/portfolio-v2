@@ -127,7 +127,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
               className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
             >
               View on GitHub
-              <ExternalLink className="ms-2 h-4 w-4" />
+              <ExternalLink className="ms-2 h-4 w-4 text-current" />
             </Link>
           </div>
         )}
@@ -141,7 +141,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
               className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
             >
               View on GitHub
-              <ExternalLink className="ms-2 h-4 w-4" />
+              <ExternalLink className="ms-2 h-4 w-4 text-current" />
             </Link>
           )}
         </div>

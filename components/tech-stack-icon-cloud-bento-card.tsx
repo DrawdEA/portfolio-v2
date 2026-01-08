@@ -56,14 +56,14 @@ export function TechStackIconCloudBentoCard({
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 hidden w-full translate-y-10 transform-gpu flex-row items-center justify-center py-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex">
           <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center">
             Explore tech stack
-            <ArrowRight className="ms-2 h-4 w-4 text-neutral-400" />
+            <ArrowRight className="ms-2 h-4 w-4 text-current" />
           </span>
         </div>
 
         <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
           <span className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center">
             Explore tech stack
-            <ArrowRight className="ms-2 h-4 w-4 text-neutral-400" />
+            <ArrowRight className="ms-2 h-4 w-4 text-current" />
           </span>
         </div>
       </div>
