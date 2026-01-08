@@ -60,11 +60,11 @@ export default async function HackathonsPage() {
         </div>
 
         {content?.items && content.items.length > 0 ? (
-          <div className="grid gap-8">
+          <div className="space-y-8">
             {content.items.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col sm:flex-row gap-6 group bg-white/10 hover:bg-white/25 rounded-lg p-4 transition-all duration-300"
+                className="flex flex-col sm:flex-row gap-6 group"
               >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                   <ImageWithFallback

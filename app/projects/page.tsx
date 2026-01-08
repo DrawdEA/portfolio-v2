@@ -32,11 +32,11 @@ export default function ProjectsPage() {
             <p className="text-gray-400 text-lg">No projects yet. Check back soon!</p>
           </div>
         ) : (
-          <div className="grid gap-8">
+          <div className="space-y-8">
             {projects.map((project) => (
               <div
                 key={project.slug}
-                className="flex flex-col sm:flex-row gap-6 group bg-white/10 hover:bg-white/25 rounded-lg p-4 transition-all duration-300"
+                className="flex flex-col sm:flex-row gap-6 group"
               >
                 <Link
                   href={`/projects/${project.slug}`}

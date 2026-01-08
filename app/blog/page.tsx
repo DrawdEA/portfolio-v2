@@ -32,12 +32,12 @@ export default function BlogPage() {
             <p className="text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
           </div>
         ) : (
-          <div className="grid gap-8">
+          <div className="space-y-8">
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="flex flex-col sm:flex-row gap-6 group cursor-pointer bg-white/10 hover:bg-white/25 rounded-lg p-4 transition-all duration-300"
+                className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
               >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
                   <ImageWithFallback
@@ -76,11 +76,11 @@ export default function BlogPage() {
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                     {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2">
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-4 py-2 text-sm bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
+                            className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
                           >
                             {tag}
                           </span>
