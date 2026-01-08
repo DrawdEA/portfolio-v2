@@ -55,7 +55,7 @@ export function SpotifyBentoCard({ className }: { className?: string }) {
                 src={track.albumImage}
                 alt={track.album || 'Album cover'}
                 fill
-                className="object-cover"
+                className="object-cover blur-[2px]"
                 onError={() => setImageError(true)}
               />
             </div>

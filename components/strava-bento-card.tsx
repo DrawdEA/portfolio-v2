@@ -64,16 +64,16 @@ export function StravaBentoCard({ className }: { className?: string }) {
       <div>
         {!imageError ? (
           <>
-            <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
+            <div className="absolute inset-0 opacity-40 group-hover:opacity-35 transition-opacity">
               <Image
                 src="/strava.jpg"
                 alt="Strava background"
                 fill
-                className="object-cover"
+                className="object-cover blur-[2px]"
                 onError={() => setImageError(true)}
               />
             </div>
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors pointer-events-none" />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors pointer-events-none" />
           </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-50 group-hover:opacity-40 transition-opacity" />

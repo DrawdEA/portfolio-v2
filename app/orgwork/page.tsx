@@ -60,7 +60,7 @@ export default async function OrgWorkPage() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover blur-[2px] group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-between">

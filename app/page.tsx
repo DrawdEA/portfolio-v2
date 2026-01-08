@@ -73,7 +73,7 @@ export default function Home() {
                           src={latestProject.image}
                           alt={latestProject.title}
                           fill
-                          className="object-cover"
+                          className="object-cover blur-[2px]"
                         />
                       </div>
                     ) : (
@@ -107,7 +107,7 @@ export default function Home() {
                         src="https://picsum.photos/1200/400?random=1"
                         alt="Featured project background"
                         fill
-                        className="object-cover"
+                        className="object-cover blur-sm"
                       />
                     </div>
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
@@ -149,7 +149,7 @@ export default function Home() {
                       src="/work.jpg"
                       alt="Work Experience background"
                       fill
-                      className="object-cover"
+                      className="object-cover blur-[1px]"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
@@ -172,7 +172,7 @@ export default function Home() {
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
-                          className="object-cover"
+                          className="object-cover blur-[2px]"
                         />
                       </div>
                     ) : (
@@ -206,7 +206,7 @@ export default function Home() {
                         src="https://picsum.photos/800/400?random=1"
                         alt="Featured blog background"
                         fill
-                        className="object-cover"
+                        className="object-cover blur-[1px]"
                       />
                     </div>
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
@@ -237,7 +237,7 @@ export default function Home() {
                       src="/org.png"
                       alt="Organizational Work background"
                       fill
-                      className="object-cover"
+                      className="object-cover blur-[1px]"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
@@ -258,7 +258,7 @@ export default function Home() {
                       src="/hackathon.jpg"
                       alt="Hackathons background"
                       fill
-                      className="object-cover"
+                      className="object-cover blur-[1px]"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
@@ -279,7 +279,7 @@ export default function Home() {
                       src="/speaking.jpg"
                       alt="Speaking background"
                       fill
-                      className="object-cover"
+                      className="object-cover blur-[1px]"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
