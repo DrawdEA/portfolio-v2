@@ -197,7 +197,7 @@ export function getWorkExperience(): WorkExperience[] {
     technologies: exp.technologies || [],
   }))
     .filter((exp: WorkExperience) => exp.title && exp.company) // Filter out invalid entries
-    .sort((a, b) => {
+    .sort((a: WorkExperience, b: WorkExperience) => {
       // Sort by period (most recent first)
       // Extract end date or current date for sorting
       const getEndDate = (period: string): number => {

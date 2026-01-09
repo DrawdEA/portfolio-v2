@@ -17,9 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Edward Diesta",
   description: "Portfolio of Edward Diesta",
+  manifest: "/manifest.json",
   icons: {
     icon: [
       { url: "/favicon.ico" },
+      { url: "/icon0.svg", type: "image/svg+xml" },
       { url: "/icon.png", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
@@ -27,6 +29,24 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
+  },
+  openGraph: {
+    title: "Edward Diesta",
+    description: "Portfolio of Edward Diesta",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Edward Diesta Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Edward Diesta",
+    description: "Portfolio of Edward Diesta",
+    images: ["/og-image.png"],
   },
 };
 
