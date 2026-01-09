@@ -25,6 +25,8 @@ export default function TechStackPage() {
           <AnimatedPageHeader
             title={techStack?.title || 'Tech Stack'}
             description={techStack?.description || 'Technologies and tools I work with'}
+            backHref="/#about"
+            backLabel="Back to about"
           />
 
           {techStack && techStack.categories.length > 0 ? (

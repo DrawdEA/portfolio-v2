@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import { LightRays } from '@/components/ui/light-rays'
 import type { Metadata } from 'next'
 
 export const dynamicParams = true
@@ -65,9 +66,13 @@ export default async function BlogPostPage({
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Effects - Full Width, Top Only */}
+      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
+        <LightRays color="#07152E" length="50vh" speed={4} count={5} />
+      </div>
       <AnimatedPageContent>
-        <article className="max-w-4xl mx-auto px-4 sm:px-16 py-24">
+        <article className="max-w-4xl mx-auto px-4 sm:px-16 py-24 relative z-10">
           <AnimatedContentItem index={0}>
             <Link
               href={backHref}

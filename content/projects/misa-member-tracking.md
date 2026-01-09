@@ -1,14 +1,14 @@
 ---
-title: "MISA (An Organization) Registration System"
+title: "MISA's Event Registration System"
 date: "2025-01-01"
 description: "A custom-built platform to streamline operations for a 550-member organization, featuring event check-ins, voting eligibility tracking, and real-time member engagement data."
 image: "/projects/regsys.png"
 tags: ["web development", "database", "ui/ux", "systems design"]
 ---
 
-# MISA Member Tracking System
+# MISA's Event Registration System
 
-The MISA Member Tracking System is a custom-built platform I helped develop to bring order to the chaos of managing a 550-member organization. As one of two Lead Developers, I worked with a team of developers, designers, and project managers to build a centralized system that streamlines everything from event check-ins to voting eligibility. It's now used organization-wide and has successfully powered 5 major events and counting.
+The Event Registration System is a custom-built platform I helped develop to bring order to the chaos of managing a 550-member organization. As one of two Lead Developers, I worked with a team of developers, designers, and project managers to build a centralized system that streamlines everything from event check-ins to voting eligibility. It's now used organization-wide and has successfully powered 5 major events and counting.
 
 ## The Problem
 

@@ -54,6 +54,8 @@ export default async function OrgWorkPage() {
           <AnimatedPageHeader
             title={content?.title || 'Organizational Work'}
             description={content?.description || 'Contributions to open source projects and organizations'}
+            backHref="/#about"
+            backLabel="Back to about"
           />
 
           {content?.items && content.items.length > 0 ? (

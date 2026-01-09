@@ -54,6 +54,8 @@ export default async function HackathonsPage() {
           <AnimatedPageHeader
             title={content?.title || 'Hackathons, Events'}
             description={content?.description || 'Competitions and hackathon projects'}
+            backHref="/#about"
+            backLabel="Back to about"
           />
 
           {content?.items && content.items.length > 0 ? (

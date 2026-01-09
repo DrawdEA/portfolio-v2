@@ -56,6 +56,8 @@ export default async function CertificationsPage() {
           <AnimatedPageHeader
             title={content?.title || 'Certifications'}
             description={content?.description || 'Professional certifications and credentials'}
+            backHref="/#about"
+            backLabel="Back to about"
           />
 
           {content?.items && content.items.length > 0 ? (
