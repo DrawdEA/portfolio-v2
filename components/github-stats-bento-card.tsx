@@ -44,14 +44,25 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
     return () => clearInterval(interval)
   }, [])
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Only handle clicks on mobile (< 1024px)
+    if (typeof window !== 'undefined' && window.innerWidth < 1024 && stats?.profileUrl) {
+      e.preventDefault()
+      e.stopPropagation()
+      window.open(stats.profileUrl, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <div
       className={cn(
         "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
         "bg-background transform-gpu",
         "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]",
+        stats?.profileUrl && "cursor-pointer lg:cursor-default",
         className
       )}
+      onClick={handleCardClick}
     >
       <div>
         <div className="absolute inset-0 opacity-30 group-hover:opacity-25 transition-opacity">
@@ -132,19 +143,7 @@ export function GitHubStatsBentoCard({ className }: { className?: string }) {
           </div>
         )}
 
-        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center justify-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
-          {stats?.profileUrl && (
-            <Link
-              href={stats.profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
-            >
-              View on GitHub
-              <ExternalLink className="ms-2 h-4 w-4 text-current" />
-            </Link>
-          )}
-        </div>
+        {/* Mobile button - hidden on all screens */}
       </div>
       <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
     </div>

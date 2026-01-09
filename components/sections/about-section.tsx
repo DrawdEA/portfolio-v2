@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/image-with-fallback";
@@ -68,9 +70,10 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                     <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
                   )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                  <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
                       href="/projects"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
                       View all projects
@@ -99,9 +102,10 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                  <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
                       href="/projects"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
                       View all projects
@@ -167,9 +171,10 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                     <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
                   )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                  <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
                       href="/blog"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
                       View all blogs
@@ -198,9 +203,10 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
-                  <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
+                  <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
                       href="/blog"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
                       View all blogs

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Cloud, ArrowRight } from "lucide-react"
 import { useMemo } from "react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { IconCloud } from "@/components/ui/icon-cloud"
 
@@ -21,16 +22,29 @@ export function TechStackIconCloudBentoCard({
   className?: string
   iconSlugs?: string[]
 }) {
+  const router = useRouter()
   // Memoize the images array to prevent unnecessary re-renders
   const techStackImages = useMemo(() => getTechStackImages(iconSlugs), [iconSlugs])
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Only handle clicks on mobile (< 1024px)
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      e.preventDefault()
+      e.stopPropagation()
+      router.push('/tech-stack')
+    }
+  }
+
   return (
     <div
       className={cn(
         "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
         "bg-background transform-gpu",
         "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]",
+        "cursor-pointer lg:cursor-default",
         className
       )}
+      onClick={handleCardClick}
     >
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative w-full h-[140%] -top-[20%] flex items-center justify-center translate-y-8">
@@ -61,15 +75,7 @@ export function TechStackIconCloudBentoCard({
           </Link>
         </div>
 
-        <div className="pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden">
-          <Link
-            href="/tech-stack"
-            className="pointer-events-auto text-sm text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
-          >
-            Explore tech stack
-            <ArrowRight className="ms-2 h-4 w-4 text-current" />
-          </Link>
-        </div>
+        {/* Mobile button - hidden on all screens */}
       </div>
       <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
     </div>
