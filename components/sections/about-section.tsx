@@ -67,7 +67,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                       />
                     </div>
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[rgb(12,20,38)] to-[rgb(8,15,30)] opacity-50 group-hover:opacity-40 transition-opacity" />
                   )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
@@ -168,7 +168,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                       />
                     </div>
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 group-hover:opacity-40 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[rgb(12,20,38)] to-[rgb(8,15,30)] opacity-50 group-hover:opacity-40 transition-opacity" />
                   )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
