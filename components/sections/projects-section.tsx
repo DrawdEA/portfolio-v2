@@ -23,11 +23,10 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div className="space-y-4 flex-1">
               <h2 className="text-3xl md:text-4xl font-medium text-left">
-                Featured Projects
+                Latest Projects
               </h2>
               <p className="text-gray-400 text-left max-w-2xl">
-                A collection of projects I&apos;ve built, showcasing my skills in web development, 
-                design, and problem-solving.
+                A collection of projects I&apos;ve built so far.
               </p>
             </div>
             <Link href="/projects" className="inline-block">

@@ -26,7 +26,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
                 Latest Articles
               </h2>
               <p className="text-gray-400 text-left max-w-2xl">
-                Explore my thoughts on web development, best practices, and the latest technologies 
+                Here are my thoughts on web development, best practices, and the latest technologies 
                 I&apos;ve been working with.
               </p>
             </div>
