@@ -4,6 +4,8 @@ import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
+import { Button } from '@/components/ui/button'
+import { ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -60,36 +62,52 @@ export default async function CertificationsPage() {
             <div className="space-y-8">
               {content.items.map((item, index) => (
                 <AnimatedContentItem key={index} index={index}>
-                  <div className="flex flex-col sm:flex-row gap-6 group">
-                <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
-                  <ImageWithFallback
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <h3 className="text-xl font-semibold text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-gray-400">
-                        {formatDate(item.date)}
-                      </p>
-                    </div>
-                    {item.location && (
-                      <p className="text-sm text-gray-500">
-                        {item.location}
-                      </p>
+                  <div className="relative flex flex-col sm:flex-row gap-6 group">
+                    {item.credentialUrl && (
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        asChild
+                        className="absolute top-0 right-0 z-20 text-neutral-400 hover:text-white"
+                      >
+                        <a
+                          href={item.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
                     )}
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      {item.description}
-                    </p>
+                    <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
+                      <ImageWithFallback
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <h3 className="text-xl font-semibold text-white">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-gray-400">
+                            {formatDate(item.date)}
+                          </p>
+                        </div>
+                        {item.location && (
+                          <p className="text-sm text-gray-500">
+                            {item.location}
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-300 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  </div>
-                </div>
                 </AnimatedContentItem>
               ))}
             </div>

@@ -52,7 +52,7 @@ export default async function HackathonsPage() {
       <AnimatedPageContent>
         <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">
           <AnimatedPageHeader
-            title={content?.title || 'Hackathons'}
+            title={content?.title || 'Hackathons, Events'}
             description={content?.description || 'Competitions and hackathon projects'}
           />
 

@@ -20,7 +20,7 @@ experiences:
       - "Java"
       - "Django"
       - "Git"
-  - title: "Hello World"
+  - title: "Hello World!"
     company: "Roblox Studio"
     location: "Laguna, Philippines"
     period: "December 2016"

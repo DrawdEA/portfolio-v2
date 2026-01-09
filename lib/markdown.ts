@@ -232,6 +232,7 @@ export interface ContentItem {
   description: string
   image?: string
   icon?: string
+  credentialUrl?: string
 }
 
 export interface TechStackCategory {
@@ -270,6 +271,7 @@ export async function getContentPage(filename: string): Promise<ContentPage | nu
     description: item.description || '',
     image: item.image,
     icon: item.icon,
+    credentialUrl: item.credentialUrl,
   })).filter((item: ContentItem) => item.title && item.date)
     .sort((a: ContentItem, b: ContentItem) => {
       // Sort by date (most recent first)
