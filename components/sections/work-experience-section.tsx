@@ -19,11 +19,10 @@ export function WorkExperienceSection({ workExperience }: WorkExperienceSectionP
 
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-medium text-left">
-              My Professional Journey
+              Career Timeline
             </h2>
             <p className="text-gray-400 text-left max-w-2xl">
-              A timeline of my career progression, showcasing the companies I&apos;ve worked with, 
-              the projects I&apos;ve contributed to, and the technologies I&apos;ve mastered along the way.
+              The companies I&apos;ve worked with, and the technologies I&apos;ve mastered along the way.
             </p>
           </div>
         </div>
