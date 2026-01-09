@@ -40,7 +40,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
   return (
     <section id="about" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
       <div className="space-y-4">
-        <div className="flex justify-center md:justify-start">
+        <div className="flex justify-start">
           <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
             About Me
           </Badge>

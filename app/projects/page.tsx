@@ -53,12 +53,9 @@ export default function ProjectsPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div className="space-y-3">
+                  <div className="flex-1 flex flex-col">
+                    <div className="space-y-3 flex-1">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="text-xl font-semibold text-white group-hover:text-[#1e3a8a] transition-colors">
-                          {project.title}
-                        </h3>
                         <p className="text-sm text-gray-400">
                           {new Date(project.date).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -72,17 +69,16 @@ export default function ProjectsPage() {
                           </p>
                         )}
                       </div>
+                      <h3 className="text-xl font-semibold text-white group-hover:text-[#1e3a8a] transition-colors">
+                        {project.title}
+                      </h3>
                       <p className="text-sm text-gray-300 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
-                    <div className="flex items-center justify-between mt-6">
-                      <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors">
-                        View project
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4">
                       {project.tags && project.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 order-1 sm:order-2">
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
@@ -93,6 +89,10 @@ export default function ProjectsPage() {
                           ))}
                         </div>
                       )}
+                      <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors order-2 sm:order-1">
+                        View project
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </div>
                 </Link>

@@ -14,7 +14,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
     <section id="blog" className="w-full max-w-6xl mx-auto px-4 sm:px-16 py-24 bg-transparent">
       <div className="space-y-8">
         <div className="space-y-4">
-          <div className="flex justify-center md:justify-start">
+          <div className="flex justify-start">
             <Badge variant="outline" className="border-white/20 text-xs px-3 py-1">
               Blog
             </Badge>
@@ -22,10 +22,10 @@ export function BlogSection({ posts }: BlogSectionProps) {
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div className="space-y-4 flex-1">
-              <h2 className="text-3xl md:text-4xl font-medium text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-medium text-left">
                 Latest Articles
               </h2>
-              <p className="text-gray-400 text-center md:text-left max-w-2xl">
+              <p className="text-gray-400 text-left max-w-2xl">
                 Explore my thoughts on web development, best practices, and the latest technologies 
                 I&apos;ve been working with.
               </p>
@@ -60,30 +60,46 @@ export function BlogSection({ posts }: BlogSectionProps) {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <p className="text-sm text-gray-400">
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </p>
-                    {post.readTime && (
-                      <p className="text-sm text-gray-500">
-                        {post.readTime} min read
+                <div className="flex flex-col flex-1">
+                  <div className="space-y-3 flex-1">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <p className="text-sm text-gray-400">
+                        {new Date(post.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
                       </p>
-                    )}
+                      {post.readTime && (
+                        <p className="text-sm text-gray-500">
+                          {post.readTime} min read
+                        </p>
+                      )}
+                    </div>
+                    <h3 className="text-xl font-medium text-white group-hover:text-[#1e3a8a] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      {post.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-medium text-white group-hover:text-[#1e3a8a] transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {post.description}
-                  </p>
-                  <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4">
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 order-1 sm:order-2">
+                        {post.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/25 border-0 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-gray-300 hover:text-white"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="inline-flex items-center gap-1 text-sm text-[#1e3a8a] group-hover:text-[#1e3a8a] transition-colors order-2 sm:order-1">
+                      Read more
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </Link>
