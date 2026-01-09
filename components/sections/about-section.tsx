@@ -52,7 +52,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
               name={`Featured • ${latestProject.title}`}
               className="col-span-3 relative"
               description={latestProject.description}
-              href={`/projects/${latestProject.slug}`}
+              href={`/projects/${latestProject.slug}?from=home`}
               cta="View project"
               Icon={Briefcase}
               background={
@@ -72,7 +72,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
-                      href="/projects"
+                      href="/projects?from=home"
                       onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
@@ -104,7 +104,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
-                      href="/projects"
+                      href="/projects?from=home"
                       onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
@@ -153,7 +153,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
               name={`Featured • ${latestPost.title}`}
               className="col-span-3 md:col-span-2 relative"
               description={latestPost.description}
-              href={`/blog/${latestPost.slug}`}
+              href={`/blog/${latestPost.slug}?from=home`}
               cta="Read article"
               Icon={BookOpen}
               background={
@@ -173,7 +173,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
-                      href="/blog"
+                      href="/blog?from=home"
                       onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >
@@ -205,7 +205,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
                   <div className="absolute top-4 right-4 lg:bottom-4 lg:top-auto z-20 pointer-events-auto">
                     <Link
-                      href="/blog"
+                      href="/blog?from=home"
                       onClick={(e) => e.stopPropagation()}
                       className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors underline-offset-4 hover:underline inline-flex items-center"
                     >

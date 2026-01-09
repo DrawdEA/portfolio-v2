@@ -14,8 +14,17 @@ export const metadata: Metadata = {
   description: "Projects and work by Edward Diesta",
 }
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>
+}) {
+  const { from } = await searchParams
   const projects = getProjects()
+
+  // Determine back link based on where user came from
+  const backHref = from === 'home' ? '/#about' : '/'
+  const backLabel = from === 'home' ? 'Back to home' : 'Back to home'
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -28,6 +37,8 @@ export default function ProjectsPage() {
           <AnimatedPageHeader
             title="Projects"
             description="A collection of my work"
+            backHref={backHref}
+            backLabel={backLabel}
           />
 
           {projects.length === 0 ? (
@@ -42,7 +53,7 @@ export default function ProjectsPage() {
                 <AnimatedContentItem key={project.slug} index={index}>
                   <div className="flex flex-col sm:flex-row gap-6 group">
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={`/projects/${project.slug}${from === 'home' ? '?from=home' : ''}`}
                   className="flex flex-col sm:flex-row gap-6 flex-1 cursor-pointer"
                 >
                   <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">

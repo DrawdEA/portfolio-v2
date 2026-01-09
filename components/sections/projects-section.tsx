@@ -48,7 +48,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             {projects.slice(0, 3).map((project) => (
               <Link 
                 key={project.slug}
-                href={`/projects/${project.slug}`} 
+                href={`/projects/${project.slug}?from=home-projects`} 
                 className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
               >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">

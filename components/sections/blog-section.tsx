@@ -49,7 +49,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
             {posts.slice(0, 2).map((post) => (
               <Link 
                 key={post.slug}
-                href={`/blog/${post.slug}`} 
+                href={`/blog/${post.slug}?from=home-blog`} 
                 className="block space-y-4 group cursor-pointer"
               >
                 <div className="relative w-full h-48 bg-gray-800 rounded-lg overflow-hidden">

@@ -39,14 +39,29 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ from?: string }>
 }) {
   const { slug } = await params
+  const { from } = await searchParams
   const post = await getBlogPost(slug)
 
   if (!post) {
     notFound()
+  }
+
+  // Determine back link based on where user came from
+  let backHref = '/blog'
+  let backText = 'Back to blog'
+  
+  if (from === 'home') {
+    backHref = '/#about'
+    backText = 'Back to home'
+  } else if (from === 'home-blog') {
+    backHref = '/#blog'
+    backText = 'Back to home'
   }
 
   return (
@@ -55,11 +70,11 @@ export default async function BlogPostPage({
         <article className="max-w-4xl mx-auto px-4 sm:px-16 py-24">
           <AnimatedContentItem index={0}>
             <Link
-              href="/blog"
+              href={backHref}
               className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to blog
+              {backText}
             </Link>
           </AnimatedContentItem>
 

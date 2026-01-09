@@ -14,8 +14,17 @@ export const metadata: Metadata = {
   description: "Blog posts and articles by Edward Diesta",
 }
 
-export default function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>
+}) {
+  const { from } = await searchParams
   const posts = getBlogPosts()
+
+  // Determine back link based on where user came from
+  const backHref = from === 'home' ? '/#about' : '/'
+  const backLabel = from === 'home' ? 'Back to home' : 'Back to home'
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -28,6 +37,8 @@ export default function BlogPage() {
           <AnimatedPageHeader
             title="Blog"
             description="Thoughts, tutorials, and insights"
+            backHref={backHref}
+            backLabel={backLabel}
           />
 
           {posts.length === 0 ? (
@@ -41,7 +52,7 @@ export default function BlogPage() {
               {posts.map((post, index) => (
                 <AnimatedContentItem key={post.slug} index={index}>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}${from === 'home' ? '?from=home' : ''}`}
                     className="flex flex-col sm:flex-row gap-6 group cursor-pointer"
                   >
                 <div className="relative w-full sm:w-48 h-32 bg-gray-800 rounded-lg overflow-hidden shrink-0">
