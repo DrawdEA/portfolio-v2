@@ -50,7 +50,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
           {latestProject ? (
             <BentoCard
               name={`Featured • ${latestProject.title}`}
-              className="col-span-3 relative"
+              className="col-span-3 row-span-2 relative"
               description={latestProject.description}
               href={`/projects/${latestProject.slug}?from=home`}
               cta="View project"
@@ -86,7 +86,7 @@ export function AboutSection({ latestProject, latestPost, techStackIcons }: Abou
           ) : (
             <BentoCard
               name="Featured Project"
-              className="col-span-3 relative"
+              className="col-span-3 row-span-2 relative"
               description="A showcase of my latest and greatest work"
               href="/projects"
               cta="View projects"
