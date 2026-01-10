@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { 
   Github,
   Linkedin,
@@ -48,11 +49,22 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
+        <motion.div
+          variants={itemVariants}
+          className="mb-4 sm:mb-6"
+        >
+          <Badge 
+            variant="outline" 
+            className="border-white/20 text-xs px-3 py-1"
+          >
+            Open to work!
+          </Badge>
+        </motion.div>
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 sm:mb-4 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 sm:mb-4 leading-none"
           variants={itemVariants}
         >
-          Hello, I&apos;m Edward.<br />A software engineer.
+          Hello, I&apos;m Edward.<br className="block -mt-1" />A software engineer.
         </motion.h1>
         <motion.p
           className="text-sm sm:text-md md:text-lg text-gray-400 mb-6 sm:mb-8"

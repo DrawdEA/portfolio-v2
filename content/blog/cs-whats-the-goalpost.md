@@ -58,7 +58,7 @@ Towards the future, I think I'll be approaching my career with this philosophy:
 
 ## The Moving Goalpost
 
-Knowing which goals to set is as a computer science student is still proves to be quite the confusing task for me. 
+Knowing which goals to set is as a computer science student still proves to be quite the confusing task for me. 
 
 I see some of my classmates getting into cybersecurity, studying leetcode, which inspires me a lot.
 
