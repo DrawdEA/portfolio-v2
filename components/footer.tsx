@@ -15,8 +15,8 @@ export function Footer() {
         <div className="flex-1">
           <h2 className="text-2xl font-medium text-gray-300 mb-2">Edward Diesta</h2>
           <p className="text-sm text-gray-400 leading-relaxed">
-            A software engineer who thrives<br />
-            on learning and building.
+            A software engineer and computer science student<br />
+            who loves learning and building things.
           </p>
         </div>
         
