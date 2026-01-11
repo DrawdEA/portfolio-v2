@@ -89,15 +89,11 @@ export function TableOfContents({ contentHtml, className }: TableOfContentsProps
   useEffect(() => {
     if (headings.length === 0) return
 
-    let scrollTimeout: NodeJS.Timeout
     const OFFSET = 80 // Must match the offset in handleClick
 
     const handleScroll = () => {
       // Don't update if user just clicked a link (manual scroll)
       if (isManualScroll) return
-      
-      // Clear any existing timeout
-      clearTimeout(scrollTimeout)
       
       // Use the same calculation as handleClick
       const scrollY = window.scrollY
@@ -132,7 +128,6 @@ export function TableOfContents({ contentHtml, className }: TableOfContentsProps
     handleScroll() // Initial check
 
     return () => {
-      clearTimeout(scrollTimeout)
       window.removeEventListener("scroll", handleScroll)
     }
   }, [headings, isManualScroll])
