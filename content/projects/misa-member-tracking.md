@@ -8,11 +8,11 @@ tags: ["web development", "database", "ui/ux", "systems design"]
 
 # MISA's Event Registration System
 
-This project custom-built platform I helped develop to bring order to the chaos of managing a 550-member organization. 
+This is a custom-built platform I helped develop to bring order to the chaos of managing a 550-member organization.
 
 As one of two Lead Developers, I worked with a team of developers, designers, and project managers to build a centralized system that streamlines everything from event check-ins to voting eligibility.
 
-It's now used organization-wide and has successfully powered 5 major events and counting.
+It's now used organization-wide and has successfully powered **5 major events** and counting.
 
 ## The Problem
 
@@ -30,17 +30,17 @@ It was slow, inefficient, and prone to human error.
 
 ## Building It Together: A Single Source of Truth
 
-What MISA needed was a single source of truth.
+What MISA needed was a **single source of truth**.
 
 For this project, we were part of a structured team that included:
 
 - **Project Managers** who organized our work into sprints
 - **A UX Designer** who created the wireframes and overall look and feel
-- **A Systems Documentation lead** who managed our repository and ensured the project's longevity
+- **A Systems Documentation Lead** who managed our repository and ensured the project's longevity
 
-As a Lead Developer, my core responsibility was to turn the designer's vision into a fully functional reality. 
+As a Lead Developer, my core responsibility was to turn the designer's vision into a fully functional reality.
 
-I worked closely with our UX designer to ensure that the designs were not only aesthetically pleasing but also technically feasible and user-friendly. 
+I worked closely with our UX designer to ensure that the designs were not only aesthetically pleasing but also technically feasible and user-friendly.
 
 My co-lead developer and I handled the coding, building out the front-end UI for event check-ins and connecting it to the backend database that stored all the member data.
 
@@ -56,12 +56,12 @@ The entire process was a fantastic experience in communication and teamwork, ens
 
 ## The Solution and Its Impact
 
-The system we built provides a simple, centralized solution. 
+The system we built provides a simple, centralized solution.
 
 Instead of messy sheets scattered throughout the organization, we now have a master database that holds all member information.
 
-We then built a clean front-end interface that Operations Managers can use on a laptop or tablet at the entrance of any event. 
+We then built a clean front-end interface that Operations Managers can use on a laptop or tablet at the entrance of any event.
 
-When a member checks in, the manager finds their name and, with a single click, marks them as attended. 
+When a member checks in, the manager finds their name and, with a single click, marks them as attended.
 
 This instantly updates the master sheet, placing a checkmark next to their name for that specific event.

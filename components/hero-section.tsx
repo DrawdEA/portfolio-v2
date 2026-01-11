@@ -42,7 +42,7 @@ const itemVariants = {
 
 export function HeroSection() {
   return (
-    <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-start justify-center py-16 sm:py-32 px-4 sm:px-16 bg-transparent relative z-10">
+    <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-start justify-center pt-8 pb-16 sm:py-32 px-4 sm:px-16 bg-transparent relative z-10">
       <motion.section
         className="text-left w-full"
         variants={containerVariants}
@@ -57,6 +57,10 @@ export function HeroSection() {
             variant="outline" 
             className="border-white/20 text-xs px-3 py-1"
           >
+            <span className="relative flex h-2 w-2 mr-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
             Open to work!
           </Badge>
         </motion.div>

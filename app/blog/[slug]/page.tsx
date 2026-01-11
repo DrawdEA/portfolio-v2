@@ -7,6 +7,7 @@ import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedContentItem } from '@/components/animated-content-item'
 import { LightRays } from '@/components/ui/light-rays'
+import { TableOfContents } from '@/components/table-of-contents'
 import type { Metadata } from 'next'
 
 export const dynamicParams = true
@@ -72,75 +73,87 @@ export default async function BlogPostPage({
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
       </div>
       <AnimatedPageContent>
-        <article className="max-w-4xl mx-auto px-4 sm:px-16 py-24 relative z-10">
-          <AnimatedContentItem index={0}>
-            <Link
-              href={backHref}
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              {backText}
-            </Link>
-          </AnimatedContentItem>
+        <div className="max-w-7xl mx-auto px-4 sm:px-16 py-24 relative z-10">
+          <div className="flex gap-12">
+            <article className="flex-1 max-w-4xl">
+              <AnimatedContentItem index={0}>
+                <Link
+                  href={backHref}
+                  className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e3a8a] transition-colors mb-8"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  {backText}
+                </Link>
+              </AnimatedContentItem>
 
-          <AnimatedContentItem index={1}>
-            <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-              <ImageWithFallback
-                src={post.image}
-                alt={post.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-          </AnimatedContentItem>
+              <AnimatedContentItem index={1}>
+                <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
+                  <ImageWithFallback
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </AnimatedContentItem>
 
-          <AnimatedContentItem index={2}>
-            <header className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">
-                {post.title}
-              </h1>
-              <div className="flex items-center gap-4 flex-wrap mb-4">
-                <p className="text-gray-400">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-                {post.readTime && (
-                  <p className="text-gray-400">
-                    {post.readTime} min read
-                  </p>
-                )}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="secondary"
-                        className="bg-gray-800 text-gray-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+              <AnimatedContentItem index={2}>
+                <header className="mb-8">
+                  <h1 className="text-4xl md:text-5xl font-medium mb-4 text-white">
+                    {post.title}
+                  </h1>
+                  <div className="flex items-center gap-4 flex-wrap mb-4">
+                    <p className="text-gray-400">
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                    {post.readTime && (
+                      <p className="text-gray-400">
+                        {post.readTime} min read
+                      </p>
+                    )}
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="bg-gray-800 text-gray-300"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              {post.description && (
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  {post.description}
-                </p>
-              )}
-            </header>
-          </AnimatedContentItem>
+                  {post.description && (
+                    <p className="text-xl text-gray-300 leading-relaxed">
+                      {post.description}
+                    </p>
+                  )}
+                </header>
+              </AnimatedContentItem>
 
-          <AnimatedContentItem index={3}>
-            <div
-              className="markdown-content"
-              dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }}
-            />
-          </AnimatedContentItem>
-        </article>
+              <AnimatedContentItem index={3}>
+                <div
+                  className="markdown-content"
+                  dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }}
+                />
+              </AnimatedContentItem>
+            </article>
+
+            {post.contentHtml && (
+              <aside className="hidden lg:block w-64 shrink-0">
+                <div className="sticky top-8 pt-[4.5rem]">
+                  <TableOfContents contentHtml={post.contentHtml} />
+                </div>
+              </aside>
+            )}
+          </div>
+        </div>
       </AnimatedPageContent>
     </div>
   )
