@@ -5,11 +5,14 @@ import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
 import type { Metadata } from 'next'
+import { getMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Hackathons, Events | Edward Diesta",
-  description: "Hackathons, Case Competitions, Speaking, Presentations",
-}
+export const metadata: Metadata = getMetadata({
+  title: "Hackathons & Events",
+  description: "Hackathons, case competitions, speaking engagements, and presentations by Edward Diesta. Explore participation in tech events and competitions.",
+  url: "/hackathons",
+  tags: ["hackathons", "events", "competitions", "case competitions", "speaking", "presentations"],
+})
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {

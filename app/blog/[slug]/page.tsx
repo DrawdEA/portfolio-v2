@@ -9,6 +9,7 @@ import { AnimatedContentItem } from '@/components/animated-content-item'
 import { LightRays } from '@/components/ui/light-rays'
 import { TableOfContents } from '@/components/table-of-contents'
 import type { Metadata } from 'next'
+import { getMetadata, generateArticleSchema, siteConfig } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -28,15 +29,28 @@ export async function generateMetadata({
   const post = await getBlogPost(slug)
 
   if (!post) {
-    return {
-      title: "Blog | Edward Diesta",
-    }
+    return getMetadata({
+      title: "Blog",
+      url: "/blog",
+    })
   }
 
-  return {
-    title: `${post.title} | Blog | Edward Diesta`,
+  const url = `/blog/${slug}`
+  const imageUrl = post.image
+    ? post.image.startsWith('http')
+      ? post.image
+      : `${siteConfig.url}${post.image}`
+    : `${siteConfig.url}${siteConfig.ogImage}`
+
+  return getMetadata({
+    title: post.title,
     description: post.description,
-  }
+    image: imageUrl,
+    url,
+    type: 'article',
+    publishedTime: post.date,
+    tags: post.tags,
+  })
 }
 
 export default async function BlogPostPage({
@@ -66,8 +80,22 @@ export default async function BlogPostPage({
     backText = 'Back to home'
   }
 
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.description,
+    image: post.image,
+    url: `/blog/${slug}`,
+    publishedTime: post.date,
+    tags: post.tags,
+  })
+
   return (
-    <div className="min-h-screen bg-black relative">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <div className="min-h-screen bg-black relative">
       {/* Background Effects - Full Width, Top Only */}
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
@@ -156,6 +184,7 @@ export default async function BlogPostPage({
         </div>
       </AnimatedPageContent>
     </div>
+    </>
   )
 }
 

@@ -5,11 +5,14 @@ import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
 import type { Metadata } from 'next'
+import { getMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Tech Stack | Edward Diesta",
-  description: "Technologies and tools I work with",
-}
+export const metadata: Metadata = getMetadata({
+  title: "Tech Stack",
+  description: "Technologies, frameworks, and tools that Edward Diesta works with. Explore the tech stack including programming languages, frameworks, databases, and development tools.",
+  url: "/tech-stack",
+  tags: ["tech stack", "technologies", "programming languages", "frameworks", "tools", "skills"],
+})
 
 export default function TechStackPage() {
   const techStack = getTechStack()

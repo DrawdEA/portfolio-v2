@@ -8,11 +8,14 @@ import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
 import type { Metadata } from 'next'
+import { getMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Projects | Edward Diesta",
-  description: "Projects and work by Edward Diesta",
-}
+export const metadata: Metadata = getMetadata({
+  title: "Projects",
+  description: "Explore projects and work by Edward Diesta. A collection of web applications, software projects, and open source contributions showcasing technical skills and creativity.",
+  url: "/projects",
+  tags: ["projects", "portfolio", "web development", "software projects", "applications"],
+})
 
 export default async function ProjectsPage({
   searchParams,

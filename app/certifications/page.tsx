@@ -7,11 +7,14 @@ import { AnimatedContentItem } from '@/components/animated-content-item'
 import { Button } from '@/components/ui/button'
 import { ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
+import { getMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Certifications | Edward Diesta",
-  description: "Professional certifications and credentials",
-}
+export const metadata: Metadata = getMetadata({
+  title: "Certifications",
+  description: "Professional certifications and credentials earned by Edward Diesta. View verified certifications, courses, and professional development achievements.",
+  url: "/certifications",
+  tags: ["certifications", "credentials", "professional development", "courses", "education"],
+})
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {

@@ -9,6 +9,7 @@ import { AnimatedContentItem } from '@/components/animated-content-item'
 import { LightRays } from '@/components/ui/light-rays'
 import { TableOfContents } from '@/components/table-of-contents'
 import type { Metadata } from 'next'
+import { getMetadata, generateProjectSchema, siteConfig } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -28,15 +29,26 @@ export async function generateMetadata({
   const project = await getProject(slug)
 
   if (!project) {
-    return {
-      title: "Projects | Edward Diesta",
-    }
+    return getMetadata({
+      title: "Projects",
+      url: "/projects",
+    })
   }
 
-  return {
-    title: `${project.title} | Projects | Edward Diesta`,
+  const url = `/projects/${slug}`
+  const imageUrl = project.image
+    ? project.image.startsWith('http')
+      ? project.image
+      : `${siteConfig.url}${project.image}`
+    : `${siteConfig.url}${siteConfig.ogImage}`
+
+  return getMetadata({
+    title: project.title,
     description: project.description,
-  }
+    image: imageUrl,
+    url,
+    tags: project.tags,
+  })
 }
 
 export default async function ProjectPage({
@@ -66,8 +78,22 @@ export default async function ProjectPage({
     backText = 'Back to home'
   }
 
+  const projectSchema = generateProjectSchema({
+    title: project.title,
+    description: project.description,
+    image: project.image,
+    url: `/projects/${slug}`,
+    datePublished: project.date,
+    tags: project.tags,
+  })
+
   return (
-    <div className="min-h-screen bg-black relative">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
+      <div className="min-h-screen bg-black relative">
       {/* Background Effects - Full Width, Top Only */}
       <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
         <LightRays color="#07152E" length="50vh" speed={4} count={5} />
@@ -182,6 +208,7 @@ export default async function ProjectPage({
         </div>
       </AnimatedPageContent>
     </div>
+    </>
   )
 }
 

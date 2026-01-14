@@ -5,11 +5,14 @@ import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
 import { AnimatedContentItem } from '@/components/animated-content-item'
 import type { Metadata } from 'next'
+import { getMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Organizational Work | Edward Diesta",
-  description: "Activities inside Ateneo",
-}
+export const metadata: Metadata = getMetadata({
+  title: "Organizational Work",
+  description: "Organizational work and activities by Edward Diesta. Contributions to student organizations, leadership roles, and community involvement.",
+  url: "/orgwork",
+  tags: ["organizations", "leadership", "student organizations", "community", "activities"],
+})
 
 function formatDate(dateString: string): string {
   if (dateString.includes(' to ')) {

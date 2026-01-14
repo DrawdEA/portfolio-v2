@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { ScrollAwareDock } from "@/components/scroll-aware-dock";
+import { getMetadata, generateWebsiteSchema, generatePersonSchema } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,8 +17,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Edward Diesta",
-  description: "Portfolio of Edward Diesta",
+  ...getMetadata({
+    title: undefined, // Use default title
+    description: undefined, // Use default description
+  }),
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -31,24 +34,6 @@ export const metadata: Metadata = {
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
-  openGraph: {
-    title: "Edward Diesta",
-    description: "Portfolio of Edward Diesta",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Edward Diesta Portfolio",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Edward Diesta",
-    description: "Portfolio of Edward Diesta",
-    images: ["/og-image.png"],
-  },
 };
 
 export default function RootLayout({
@@ -57,12 +42,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const websiteSchema = generateWebsiteSchema();
+  const personSchema = generatePersonSchema();
 
   return (
     <html lang="en" className="dark">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         {children}
         <Footer />
         <ScrollAwareDock />
