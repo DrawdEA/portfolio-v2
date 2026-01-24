@@ -51,23 +51,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Dynamic blog post routes
-  const blogPosts = getBlogPosts()
-  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  // Dynamic blog post routes (try/catch so sitemap never 500s if markdown/fs fails in prod)
+  let blogRoutes: MetadataRoute.Sitemap = []
+  try {
+    const blogPosts = getBlogPosts()
+    blogRoutes = blogPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  } catch {
+    // fallback: static routes only
+  }
 
   // Dynamic project routes
-  const projects = getProjects()
-  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(project.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  let projectRoutes: MetadataRoute.Sitemap = []
+  try {
+    const projects = getProjects()
+    projectRoutes = projects.map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: new Date(project.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  } catch {
+    // fallback: static routes only
+  }
 
   return [...staticRoutes, ...blogRoutes, ...projectRoutes]
 }
