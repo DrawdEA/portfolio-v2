@@ -41,8 +41,8 @@ export function TechStackIconCloudBentoCard({
         "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
         // light styles
         "bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-        // dark styles
-        "dark:bg-background transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#0f192d1f_inset] dark:[border:1px_solid_rgba(15,25,45,.3)]",
+        // dark styles - dark gray instead of blue
+        "dark:bg-neutral-900 transform-gpu dark:[box-shadow:0_-20px_80px_-20px_rgba(26,26,26,0.2)_inset] dark:[border:1px_solid_rgba(64,64,64,.4)]",
         "cursor-pointer lg:cursor-default",
         className
       )}

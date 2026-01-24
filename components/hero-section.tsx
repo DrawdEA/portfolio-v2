@@ -3,7 +3,7 @@
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { 
+import {
   Github,
   Linkedin,
   Instagram,
@@ -42,7 +42,7 @@ const itemVariants = {
 
 export function HeroSection() {
   return (
-    <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-start justify-center pt-8 pb-16 sm:py-32 px-4 sm:px-16 bg-transparent relative z-10">
+    <main className="flex min-h-screen w-full max-w-6xl mx-auto flex-col items-start justify-center py-12 sm:py-16 px-4 sm:px-16 bg-transparent relative z-10">
       <motion.section
         className="text-left w-full"
         variants={containerVariants}

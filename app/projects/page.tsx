@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, Github, ExternalLink } from 'lucide-react'
 import { getProjects } from '@/lib/markdown'
 import { Badge } from '@/components/ui/badge'
-import { LightRays } from '@/components/ui/light-rays'
+import Aurora from '@/components/Aurora'
 import { ImageWithFallback } from '@/components/image-with-fallback'
 import { AnimatedPageContent } from '@/components/animated-page-content'
 import { AnimatedPageHeader } from '@/components/animated-page-header'
@@ -32,8 +32,13 @@ export default async function ProjectsPage({
   return (
     <div className="min-h-screen bg-black relative">
       {/* Background Effects - Full Width, Top Only */}
-      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
-        <LightRays color="#07152E" length="50vh" speed={4} count={5} />
+      <div className="absolute top-0 left-0 right-0 h-[50vh] md:h-screen pointer-events-none z-0">
+        <Aurora
+          colorStops={["#0a1833", "#1a2647", "#4a5a8c"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.4}
+        />
       </div>
       <AnimatedPageContent>
         <div className="max-w-6xl mx-auto px-4 sm:px-16 py-24 relative z-10">

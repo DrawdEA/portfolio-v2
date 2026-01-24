@@ -1,5 +1,5 @@
 import { getBlogPosts, getProjects, getWorkExperience, getTechStack } from "@/lib/markdown";
-import { LightRays } from "@/components/ui/light-rays";
+import Aurora from "@/components/Aurora";
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { WorkExperienceSection } from "@/components/sections/work-experience-section";
@@ -32,8 +32,13 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-black font-sans relative">
       {/* Background Effects - Full Width, Top Only */}
-      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-0">
-      <LightRays color="#07152E" length="90vh" speed={4} count={5} />
+      <div className="absolute top-0 left-0 right-0 h-[50vh] md:h-screen pointer-events-none z-0">
+      <Aurora
+          colorStops={["#0a1833", "#1a2647", "#4a5a8c"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.4}
+        />
       </div>
       {/* Hero Section */}
       <HeroSection />
