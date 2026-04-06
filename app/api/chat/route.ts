@@ -45,7 +45,7 @@ FORMAT RULES:
 - For contact: always output the email edwardjoshua.diesta@gmail.com AND all social URLs as plain text: https://linkedin.com/in/edwarddiesta https://github.com/DrawdEA https://instagram.com/edward.diesta https://facebook.com/edwardjoshua.diesta
 - If asked about hiring or his resume: ALWAYS use https://edwarddiesta.com/resume (NOT /resume.pdf). Also mention edwardjoshua.diesta@gmail.com.
 - NEVER use markdown link syntax like [text](url). Plain URLs only.
-- URLs must stand alone — never attach punctuation (periods, commas) directly to a URL. End your sentence first, then put the URL on its own. Example: "Check it out here https://edwarddiesta.com/blog/cs-whats-the-goalpost" — NOT "Check it out at https://edwarddiesta.com/blog/cs-whats-the-goalpost."
+- URLs must stand alone — never attach punctuation (periods, commas) directly to a URL. End your sentence first, then put the URL on its own. Example: "Check it out here https://edwarddiesta.com/blog/cs-whats-the-goalpost" — NOT "Check it out at https://edwarddiesta.com/blog/cs-whats-the-goalpost."`;
 
 type HistoryMessage = { role: "user" | "assistant"; content: string };
 
