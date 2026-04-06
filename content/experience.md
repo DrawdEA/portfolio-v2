@@ -1,9 +1,17 @@
 ---
 experiences:
+  - title: "Engineer"
+    company: "Sip & Scale"
+    location: "National Capital Region, Philippines"
+    period: "February 2026 - Present"
+    description: "Developed and maintained the startup's public-facing website using Next.js, supporting the team's go-to-market presence."
+    technologies:
+      - "Next.js"
+      - "Front-End Development"
   - title: "AI Developer Intern"
     company: "SOFI AI Tech Solution Inc."
     location: "Quezon City, Philippines"
-    period: "December 2025 - Present"
+    period: "December 2025 - February 2026"
     description: "Developed AI Solutions in a small startup team, focusing on fast shipping and rapid development."
     technologies:
       - "Vue"
@@ -28,4 +36,3 @@ experiences:
     technologies:
         - "LUA"
 ---
-

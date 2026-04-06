@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/footer";
 import { ScrollAwareDock } from "@/components/scroll-aware-dock";
 import { getMetadata, generateWebsiteSchema, generatePersonSchema } from "@/lib/seo";
+import { ConvexClientProvider } from "@/components/convex-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -58,9 +59,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        {children}
-        <Footer />
-        <ScrollAwareDock />
+        <ConvexClientProvider>
+          {children}
+          <Footer />
+          <ScrollAwareDock />
+        </ConvexClientProvider>
         {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm ls:*)",
+      "Bash(rm lib/supabase.ts)",
+      "Bash(rm app/api/reactions/route.ts)",
+      "Bash(rm supabase/migrations/002_create_documents_table.sql)",
+      "Bash(rm -r docs/)",
+      "Bash(npm uninstall:*)",
+      "Bash(claude mcp:*)",
+      "Bash(npx convex:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npx dotenv:*)",
+      "Bash(npm run:*)",
+      "Bash(node --env-file=.env.local -e ':*)"
+    ]
+  }
+}

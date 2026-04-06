@@ -2,60 +2,36 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { useQuery, useMutation } from "convex/react"
+import { api } from "@/convex/_generated/api"
 import { cn } from "@/lib/utils"
 
 export function InteractiveReactionCounter({ className }: { className?: string }) {
-  const [count, setCount] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  // Convex queries are reactive — the count updates in real-time across all visitors
+  const reactions = useQuery(api.reactions.list)
+  const incrementReaction = useMutation(api.reactions.increment)
   const [showMessage, setShowMessage] = useState(false)
 
-  useEffect(() => {
-    async function fetchCount() {
-      try {
-        const response = await fetch('/api/reactions')
-        const data = await response.json()
-        if (data.reactions) {
-          const heart = data.reactions.find((r: { emoji: string }) => r.emoji === "❤️")
-          if (heart) {
-            setCount(heart.count)
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching reactions:', error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchCount()
-  }, [])
+  const heartReaction = reactions?.find((r) => r.emoji === "❤️")
+  const count = heartReaction?.count ?? 0
+  const isLoading = reactions === undefined
 
   const handleClick = async () => {
-    // Check if already reacted today
     const lastReactionDate = localStorage.getItem('lastReactionDate')
     const today = new Date().toDateString()
-    
+
     if (lastReactionDate === today) {
-      // Show message and don't update
       setShowMessage(true)
       setTimeout(() => setShowMessage(false), 3000)
       return
     }
 
-    // Optimistic update
-    setCount((prev) => prev + 1)
     localStorage.setItem('lastReactionDate', today)
 
-    // Update API
     try {
-      await fetch('/api/reactions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reaction: "❤️" }),
-      })
+      await incrementReaction({ emoji: "❤️" })
     } catch (error) {
       console.error('Error updating reaction:', error)
-      // Revert on error
-      setCount((prev) => prev - 1)
       localStorage.removeItem('lastReactionDate')
     }
   }
@@ -71,7 +47,7 @@ export function InteractiveReactionCounter({ className }: { className?: string }
         <span className="text-2xl">❤️</span>
         <span className="text-xs text-neutral-400">{isLoading ? "..." : count}</span>
       </motion.button>
-      
+
       {/* Message - to the left */}
       <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 pointer-events-none z-30">
         <AnimatePresence>

@@ -5,20 +5,22 @@ import { PortfolioDock } from "@/components/portfolio-dock"
 import { cn } from "@/lib/utils"
 
 export function ScrollAwareDock() {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
 
-      // Show dock when scrolling up, hide when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
+      if (currentScrollY < 50) {
+        // At the very top — always hidden
         setIsVisible(false)
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down — show
         setIsVisible(true)
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up — hide
+        setIsVisible(false)
       }
 
       setLastScrollY(currentScrollY)
