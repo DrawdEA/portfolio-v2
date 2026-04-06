@@ -66,11 +66,10 @@ export async function POST(req: NextRequest) {
       parts: [{ text: m.content }],
     }));
 
-    // 5. Generate with full history in contents + Google Search grounding
+    // 5. Generate with full history in contents
     const chatModel = genAI.getGenerativeModel({
       model: "gemini-2.5-flash-lite",
       systemInstruction: `${SYSTEM_PROMPT}\n\nContext about Edward:\n\n${context}`,
-      tools: [{ googleSearchRetrieval: {} }],
     });
 
     const result = await chatModel.generateContent({
@@ -87,9 +86,10 @@ export async function POST(req: NextRequest) {
 
     return Response.json({ reply });
   } catch (error) {
-    console.error("Chat API error:", error);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Chat API error:", message);
     return Response.json(
-      { error: "Something went wrong. Try again later." },
+      { error: "Something went wrong. Try again later.", detail: message },
       { status: 500 },
     );
   }
