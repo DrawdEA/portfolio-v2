@@ -12,7 +12,8 @@
       "Bash(npx tsx:*)",
       "Bash(npx dotenv:*)",
       "Bash(npm run:*)",
-      "Bash(node --env-file=.env.local -e ':*)"
+      "Bash(node --env-file=.env.local -e ':*)",
+      "Bash(npx next:*)"
     ]
   }
 }

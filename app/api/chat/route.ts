@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     const chatModel = genAI.getGenerativeModel({
       model: "gemini-2.5-flash-lite",
       systemInstruction: `${SYSTEM_PROMPT}\n\nContext about Edward:\n\n${context}`,
-      tools: [{ googleSearch: {} }],
+      tools: [{ googleSearchRetrieval: {} }],
     });
 
     const result = await chatModel.generateContent({
