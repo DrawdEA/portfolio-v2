@@ -51,22 +51,25 @@ function useTypewriter(text: string, speed = 22) {
 
 
 const URL_LABELS: Record<string, string> = {
-  "edwarddiesta.com/resume":        "View Resume",
-  "edwarddiesta.com":               "edwarddiesta.com",
-  "edwarddiesta.com#about":         "About",
-  "edwarddiesta.com#experience":    "Experience",
-  "edwarddiesta.com#projects":      "Projects",
-  "edwarddiesta.com#blog":          "Blog",
-  "edwarddiesta.com/blog":          "Blog",
-  "edwarddiesta.com/projects":      "Projects",
-  "edwarddiesta.com/hackathons":    "Hackathons",
-  "edwarddiesta.com/orgwork":       "Organizations",
-  "edwarddiesta.com/tech-stack":    "Tech Stack",
-  "edwarddiesta.com/certifications":"Certifications",
-  "github.com/DrawdEA":             "DrawdEA",
-  "linkedin.com/in/edwarddiesta":   "edwarddiesta",
-  "instagram.com/edward.diesta":    "edward.diesta",
-  "facebook.com/edwardjoshua.diesta":"edwardjoshua.diesta",
+  "edwarddiesta.com/resume":                          "View Resume",
+  "edwarddiesta.com":                                 "edwarddiesta.com",
+  "edwarddiesta.com#about":                           "About",
+  "edwarddiesta.com#experience":                      "Experience",
+  "edwarddiesta.com#projects":                        "Projects",
+  "edwarddiesta.com#blog":                            "Blog",
+  "edwarddiesta.com/blog":                            "Blog",
+  "edwarddiesta.com/blog/cs-whats-the-goalpost":      "CS: What's the Goalpost?",
+  "edwarddiesta.com/projects":                        "Projects",
+  "edwarddiesta.com/projects/misa-member-tracking":   "MISA Event Reg System",
+  "edwarddiesta.com/projects/portfolio":              "Portfolio Website",
+  "edwarddiesta.com/hackathons":                      "Hackathons",
+  "edwarddiesta.com/orgwork":                         "Organizations",
+  "edwarddiesta.com/tech-stack":                      "Tech Stack",
+  "edwarddiesta.com/certifications":                  "Certifications",
+  "github.com/DrawdEA":                               "DrawdEA",
+  "linkedin.com/in/edwarddiesta":                     "edwarddiesta",
+  "instagram.com/edward.diesta":                      "edward.diesta",
+  "facebook.com/edwardjoshua.diesta":                 "edwardjoshua.diesta",
 }
 
 function iconForUrl(url: string) {
@@ -112,7 +115,7 @@ function CopyEmailButton({ email }: { email: string }) {
 
 type Segment =
   | { type: "text"; content: string }
-  | { type: "link"; url: string }
+  | { type: "link"; url: string; label?: string }
   | { type: "email"; address: string }
 
 function parseSegments(text: string): Segment[] {
@@ -127,8 +130,8 @@ function parseSegments(text: string): Segment[] {
       segments.push({ type: "text", content: text.slice(lastIndex, match.index) })
     }
     if (match[2]) {
-      // markdown [label](url) — no trailing punct issue since url is inside parens
-      segments.push({ type: "link", url: match[2].replace(/[.,;:!?]+$/, "") })
+      // markdown [label](url) — preserve the label from the markdown
+      segments.push({ type: "link", url: match[2].replace(/[.,;:!?]+$/, ""), label: match[1] })
     } else if (match[0].includes("@")) {
       segments.push({ type: "email", address: match[0] })
     } else {
@@ -190,7 +193,7 @@ function MessageBubble({ msg, isNew }: { msg: Message; isNew?: boolean }) {
     if (charsTyped < textStart) return null
 
     if (seg.type === "link") {
-      const label = labelFromUrl(seg.url)
+      const label = seg.label ?? labelFromUrl(seg.url)
       if (seenLabels.has(label)) return null
       seenLabels.add(label)
       return (
