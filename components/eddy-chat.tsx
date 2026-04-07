@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import { Send, X, ExternalLink, Mail, Check, FileText, Github, Linkedin, Instagram, Facebook } from "lucide-react"
 import EddyBotFace from "@/components/eddy-bot-face"
 
-const GREETING = "Hi, I'm Eddy! I answer questions on behalf of my very smart and handsome boss."
+const GREETING = "I'm Eddy Bot. Ask me about Eddy's projects or experience, or how to reach out!"
 
 const BUBBLE_PROMPTS = [
   GREETING,
