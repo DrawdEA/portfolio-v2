@@ -1,4 +1,4 @@
-import { Download, ArrowLeft } from "lucide-react"
+import { Download, ArrowLeft, FileText } from "lucide-react"
 import Link from "next/link"
 import Aurora from "@/components/Aurora"
 import type { Metadata } from "next"
@@ -41,8 +41,8 @@ export default function ResumePage() {
             </a>
           </div>
 
-          {/* Outer: clips rounded corners. Inner: scrollable with custom scrollbar */}
-          <div className="w-full rounded-2xl overflow-hidden border border-white/10" style={{ height: "85vh" }}>
+          {/* Desktop: iframe viewer */}
+          <div className="hidden md:block w-full rounded-2xl overflow-hidden border border-white/10" style={{ height: "85vh" }}>
             <div className="w-full h-full overflow-y-auto custom-scrollbar">
               <iframe
                 src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
@@ -50,6 +50,34 @@ export default function ResumePage() {
                 style={{ height: "150vh" }}
                 title="Edward Diesta Resume"
               />
+            </div>
+          </div>
+
+          {/* Mobile: open natively */}
+          <div className="md:hidden flex flex-col items-center justify-center gap-6 py-16 rounded-2xl border border-white/10 bg-white/5">
+            <FileText className="h-16 w-16 text-white/30" />
+            <div className="text-center">
+              <p className="text-white font-medium mb-1">Edward Diesta — Resume</p>
+              <p className="text-white/40 text-sm">Open in your device's PDF viewer</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs px-6">
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white/15 hover:bg-white/25 transition-colors text-sm text-white font-medium"
+              >
+                <FileText className="h-4 w-4" />
+                Open PDF
+              </a>
+              <a
+                href="/resume.pdf"
+                download="Edward-Diesta_Resume.pdf"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm text-white/70"
+              >
+                <Download className="h-4 w-4" />
+                Download
+              </a>
             </div>
           </div>
         </div>
