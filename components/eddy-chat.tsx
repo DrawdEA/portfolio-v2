@@ -672,7 +672,7 @@ export function EddyChatOverlay({ onClose, messages, input, setInput, isLoading,
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={placeholder}
-              className="flex-1 bg-transparent text-sm text-white placeholder:text-white/40 outline-none"
+              className="flex-1 bg-transparent text-base text-white placeholder:text-white/40 outline-none"
               disabled={isLoading}
             />
             <button type="submit" disabled={!input.trim() || isLoading} className="text-white/50 hover:text-white disabled:opacity-30 transition-colors cursor-pointer">

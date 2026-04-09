@@ -15,7 +15,8 @@
       "Bash(node --env-file=.env.local -e ':*)",
       "Bash(npx next:*)",
       "Bash(node -e ':*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/Edward/.convex/**)"
     ]
   }
 }
