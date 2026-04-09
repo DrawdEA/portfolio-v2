@@ -196,14 +196,29 @@ function MessageBubble({ msg, isNew }: { msg: Message; isNew?: boolean }) {
       const label = seg.label ?? labelFromUrl(seg.url)
       if (seenLabels.has(label)) return null
       seenLabels.add(label)
+      const isPdf = seg.url.endsWith(".pdf")
+      const sharedClass = "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/25 text-xs text-white/80 hover:text-white transition-all duration-200 cursor-pointer mx-0.5 align-middle"
+      if (isPdf) {
+        return (
+          <>
+            {/* Mobile: open PDF directly */}
+            <a key={`${i}-m`} href={seg.url} target="_blank" rel="noopener noreferrer" className={`md:hidden ${sharedClass}`}>
+              {iconForUrl(seg.url)}<span>{label}</span>
+            </a>
+            {/* Desktop: go to resume page */}
+            <a key={`${i}-d`} href="/resume" className={`hidden md:inline-flex ${sharedClass}`}>
+              {iconForUrl(seg.url)}<span>{label}</span>
+            </a>
+          </>
+        )
+      }
       return (
         <a
           key={i}
           href={seg.url}
           target="_blank"
           rel="noopener noreferrer"
-          download={seg.url.endsWith(".pdf") ? "Edward-Diesta_Resume.pdf" : undefined}
-          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/25 text-xs text-white/80 hover:text-white transition-all duration-200 cursor-pointer mx-0.5 align-middle"
+          className={sharedClass}
         >
           {iconForUrl(seg.url)}
           <span>{label}</span>

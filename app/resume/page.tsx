@@ -60,25 +60,15 @@ export default function ResumePage() {
               <p className="text-white font-medium mb-1">Edward Diesta — Resume</p>
               <p className="text-white/40 text-sm">Open in your device's PDF viewer</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs px-6">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white/15 hover:bg-white/25 transition-colors text-sm text-white font-medium"
-              >
-                <FileText className="h-4 w-4" />
-                Open PDF
-              </a>
-              <a
-                href="/resume.pdf"
-                download="Edward-Diesta_Resume.pdf"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm text-white/70"
-              >
-                <Download className="h-4 w-4" />
-                Download
-              </a>
-            </div>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white/15 hover:bg-white/25 transition-colors text-sm text-white font-medium"
+            >
+              <FileText className="h-4 w-4" />
+              Open PDF
+            </a>
           </div>
         </div>
       </main>
