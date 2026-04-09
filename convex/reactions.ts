@@ -38,6 +38,7 @@ export const increment = mutation({
   },
 });
 
+
 function getLabel(emoji: string): string {
   const labels: Record<string, string> = {
     "❤️": "Love",

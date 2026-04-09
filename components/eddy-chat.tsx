@@ -235,7 +235,6 @@ const SUGGESTIONS = [
   "What's his tech stack?",
   "Tell me about Edward",
   "Recent projects?",
-  "What hackathons has he done?",
   "What orgs is he in?",
 ]
 
@@ -257,11 +256,6 @@ interface EddyBotProps {
   setInput: (v: string) => void
 }
 
-const PLACEHOLDER_MAX = 20 // max chars for suggestion part before truncating
-
-function truncateSuggestion(s: string) {
-  return s.length > PLACEHOLDER_MAX ? s.slice(0, PLACEHOLDER_MAX - 3) + "..." : s
-}
 
 export function EddyBot({ onOpen, onSend, bubbleText, isLoading, isSpeaking, isOpen, input, setInput }: EddyBotProps) {
   const [suggestionIndex, setSuggestionIndex] = useState(0)
@@ -277,7 +271,7 @@ export function EddyBot({ onOpen, onSend, bubbleText, isLoading, isSpeaking, isO
 
   // Wait for typewriter to finish + 3s pause before cycling suggestion
   useEffect(() => {
-    const text = truncateSuggestion(SUGGESTIONS[suggestionIndex])
+    const text = SUGGESTIONS[suggestionIndex]
     const typewriterMs = `Try: ${text}`.length * 40
     const timer = setTimeout(() => {
       setSuggestionIndex((i) => (i + 1) % SUGGESTIONS.length)
@@ -302,8 +296,8 @@ export function EddyBot({ onOpen, onSend, bubbleText, isLoading, isSpeaking, isO
     isIdle ? (startTyping ? displayBubble : "") : displayBubble,
     30,
   )
-  const rawPlaceholder = `Try: ${truncateSuggestion(SUGGESTIONS[suggestionIndex])}`
-  const { displayed: placeholder } = useTypewriter(rawPlaceholder, 40)
+  const rawPlaceholder = `Ask Eddy: ${SUGGESTIONS[suggestionIndex]}`
+  const { displayed: placeholder } = useTypewriter(startTyping ? rawPlaceholder : "", 40)
 
   // Bubble prompts keep the bot idle — only actual AI replies trigger speaking
   const botState = isLoading ? "thinking" : (isSpeaking || (!isIdle && !bubbleDone)) ? "speaking" : "idle"
@@ -369,21 +363,30 @@ export function EddyBot({ onOpen, onSend, bubbleText, isLoading, isSpeaking, isO
         className={`w-full mt-2 ${isOpen ? "pointer-events-none" : ""}`}
       >
         <div className="flex items-center gap-2 bg-white/10 hover:bg-white/15 rounded-lg px-4 py-2.5 focus-within:shadow-lg focus-within:shadow-white/20 transition-all duration-300">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={placeholder}
-            className="flex-1 bg-transparent text-sm text-white placeholder:text-white/40 outline-none"
-            disabled={isLoading}
-          />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="text-white/50 hover:text-white disabled:opacity-30 transition-colors cursor-pointer"
-          >
-            <Send className="h-4 w-4" />
-          </button>
+          <div className="relative flex-1 min-w-0">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder=""
+              className="w-full bg-transparent text-sm text-white outline-none"
+              disabled={isLoading}
+            />
+            {!input && (
+              <span className="absolute inset-0 flex items-center pointer-events-none text-sm text-white/40 truncate">
+                {placeholder}
+              </span>
+            )}
+          </div>
+          {input && (
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="text-white/50 hover:text-white disabled:opacity-30 transition-colors cursor-pointer shrink-0"
+            >
+              <Send className="h-4 w-4" />
+            </button>
+          )}
         </div>
       </motion.form>
     </div>
@@ -499,8 +502,9 @@ export function EddyChatPanel({ onClose, messages, input, setInput, isLoading, o
 
 // ─── MOBILE: Inline input under hero buttons ───────────────────────────────
 
-export function EddyInput({ onSend, input, setInput, isLoading }: {
+export function EddyInput({ onSend, onOpen, input, setInput, isLoading }: {
   onSend: (text: string) => void
+  onOpen?: () => void
   input: string
   setInput: (v: string) => void
   isLoading: boolean
@@ -508,7 +512,7 @@ export function EddyInput({ onSend, input, setInput, isLoading }: {
   const [suggestionIndex, setSuggestionIndex] = useState(0)
 
   useEffect(() => {
-    const text = truncateSuggestion(SUGGESTIONS[suggestionIndex])
+    const text = SUGGESTIONS[suggestionIndex]
     const typewriterMs = `Ask Eddy: ${text}`.length * 40
     const timer = setTimeout(() => {
       setSuggestionIndex((i) => (i + 1) % SUGGESTIONS.length)
@@ -516,7 +520,7 @@ export function EddyInput({ onSend, input, setInput, isLoading }: {
     return () => clearTimeout(timer)
   }, [suggestionIndex])
 
-  const rawPlaceholder = `Ask Eddy: ${truncateSuggestion(SUGGESTIONS[suggestionIndex])}`
+  const rawPlaceholder = `Ask Eddy: ${SUGGESTIONS[suggestionIndex]}`
   const { displayed: placeholder } = useTypewriter(rawPlaceholder, 40)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -533,13 +537,17 @@ export function EddyInput({ onSend, input, setInput, isLoading }: {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onFocus={() => onOpen?.()}
           placeholder={placeholder}
-          className="flex-1 bg-transparent text-sm text-white placeholder:text-white/40 outline-none"
+          className="flex-1 min-w-0 bg-transparent text-sm text-white placeholder:text-white/40 placeholder:text-ellipsis outline-none"
           disabled={isLoading}
+          readOnly={!!onOpen}
         />
-        <button type="submit" disabled={isLoading} className="text-white/50 hover:text-white disabled:opacity-30 transition-colors cursor-pointer">
-          <Send className="h-4 w-4" />
-        </button>
+        {input && (
+          <button type="submit" disabled={isLoading} className="text-white/50 hover:text-white disabled:opacity-30 transition-colors cursor-pointer shrink-0">
+            <Send className="h-4 w-4" />
+          </button>
+        )}
       </div>
     </form>
   )
@@ -576,7 +584,11 @@ export function EddyChatOverlay({ onClose, messages, input, setInput, isLoading,
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
-    return () => { document.body.style.overflow = "" }
+    window.dispatchEvent(new Event("eddy-chat-open"))
+    return () => {
+      document.body.style.overflow = ""
+      window.dispatchEvent(new Event("eddy-chat-close"))
+    }
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -627,7 +639,7 @@ export function EddyChatOverlay({ onClose, messages, input, setInput, isLoading,
           ))}
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-white/10 px-4 py-2.5 rounded-2xl rounded-bl-sm flex gap-1 items-center">
+              <div className="bg-white/10 px-4 py-2.5 rounded-2xl rounded-bl-sm flex gap-1.5 items-center h-[38px]">
                 <span className="w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce [animation-delay:0ms]" />
                 <span className="w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce [animation-delay:150ms]" />
                 <span className="w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce [animation-delay:300ms]" />

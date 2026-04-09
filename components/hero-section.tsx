@@ -113,6 +113,7 @@ function HeroContent({ withInput, chat }: {
         <motion.div className="mt-6" variants={itemVariants}>
           <EddyInput
             onSend={chat.sendMessage}
+            onOpen={chat.open}
             input={chat.input}
             setInput={chat.setInput}
             isLoading={chat.isLoading}
