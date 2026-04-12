@@ -68,7 +68,7 @@ function HeroContent({ withInput, chat }: {
         className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 sm:mb-4 leading-none"
         variants={itemVariants}
       >
-        Hello, I&apos;m Edward.<br className="block -mt-1" />A software engineer.
+        Hello, I&apos;m Edward.<br className="block -mt-1" />An AI engineer.
       </motion.h1>
       <motion.p
         className="text-sm sm:text-md md:text-lg text-gray-400 mb-6 sm:mb-8"

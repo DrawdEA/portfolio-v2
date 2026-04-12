@@ -1,6 +1,6 @@
 ---
 experiences:
-  - title: "Engineer"
+  - title: "Software Engineer"
     company: "Sip & Scale"
     location: "National Capital Region, Philippines"
     period: "February 2026 - Present"
@@ -12,12 +12,12 @@ experiences:
     company: "SOFI AI Tech Solution Inc."
     location: "Quezon City, Philippines"
     period: "December 2025 - February 2026"
-    description: "Developed AI Solutions in a small startup team, focusing on fast shipping and rapid development."
+    description: "Built an internal RAG eval interface using Vue.js and LLM APIs, enabling the team to review and score AI chat outputs and accelerate model iteration cycles. Worked directly in production RAG pipelines, gaining exposure to retrieval, embedding, and prompt evaluation workflows."
     technologies:
-      - "Vue"
-      - "n8n"
+      - "Vue.js"
       - "Node.js"
-      - "TailwindCSS"
+      - "RAG Pipelines"
+      - "LLM APIs"
   - title: "Bachelor of Science in Computer Science"
     company: "Ateneo de Manila University"
     location: "Quezon City, Philippines"

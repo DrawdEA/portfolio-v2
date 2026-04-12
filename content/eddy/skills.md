@@ -1,23 +1,20 @@
 # Edward's Technical Skills
 
 ## Frontend
-Next.js is Edward's primary framework — it's what he reaches for first for any web project. He also uses React, Svelte, Vue, Tailwind CSS, ESLint, and Prettier.
+Next.js is Edward's primary framework — it's what he reaches for first for any web project. He also uses React, Vue.js, React Native/Expo, Tailwind CSS, Bootstrap, ESLint, and Prettier.
 
 ## Backend
-Node.js, Python, PostgreSQL, JWT, Supabase
+Node.js, Python, PostgreSQL, Supabase, Prisma, Strapi, Django, Flask, JWT, Convex
 
 ## AI & Machine Learning
-Edward is actively pursuing AI engineering as his career direction. He has completed the Machine Learning Specialization from DeepLearning.AI on Coursera, is currently an AI Developer Intern working with n8n and AI solutions, and is learning RAG, LLMs, and AI application development hands-on. He works with TensorFlow and PyTorch.
+Edward is actively pursuing AI engineering as his career direction. He has completed the Machine Learning Specialization from DeepLearning.AI on Coursera, has worked directly in production RAG pipelines, and builds AI-powered applications using OpenAI API, Claude, and vector search (pgvector). He is experienced with RAG pipelines, embeddings, LLM prompt engineering, and agentic workflows.
 
 ## Developer Tools
-Git, GitHub, GitLab, Cursor, Vercel
-
-## Task Management
-Jira, Trello, ClickUp
+Git, GitHub, Claude Code, Cursor, Vercel
 
 ## Programming Languages
 JavaScript/TypeScript, Python, Java, LUA
 
 ## Certifications
-- Machine Learning Specialization — DeepLearning.AI (November 2024)
-- CS50's Introduction to Computer Science — Harvard/CS50 (August 2024)
+- Machine Learning Specialization — DeepLearning.AI, Stanford (November 2024)
+- CS50's Introduction to Computer Science — Harvard/edX (August 2024)
