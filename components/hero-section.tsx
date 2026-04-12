@@ -74,7 +74,7 @@ function HeroContent({ withInput, chat }: {
         className="text-sm sm:text-md md:text-lg text-gray-400 mb-6 sm:mb-8"
         variants={itemVariants}
       >
-        Currently working on lots of things.
+        Building RAG systems, LLM agents, and AI-powered products.
       </motion.p>
       <motion.div
         className="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 items-center"

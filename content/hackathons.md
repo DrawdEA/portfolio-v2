@@ -18,3 +18,11 @@ items:
     description: "IT Business Case competition hosted by MISA at IM Summit. Proposed FORTRESS, a FIDO2-based risk observation, evaluation and security scoring system. Landed in the top 10. Team: Edward, Gabe, Imman, Geline, and Andrew."
     image: "/hackathons/imsummit.png"
 ---
+
+Edward has competed in multiple hackathons and case competitions, consistently placing in the top finishers.
+
+The First Naga Mayoral Hackathon (February 2025) was hosted by the Naga City Government and Mayor Leni Robredo. Edward's team, qtr.zip (Edward, Eduardo, Abby, and Alexi), placed top 5 out of 200+ teams and was incubated into the program. They built SALBAR — an offline-first emergency health protocol designed for scenarios where internet, power, and smart city infrastructure all fail simultaneously.
+
+Ship or Be Shipped (December 2024) was a 24-hour overnight hackathon by Build and Ship Philippines, hosted at Kaya Founders. The same qtr.zip team built Hakot, a platform that optimizes agricultural supply chains by routing empty trucks through AI-powered load matching. They also built a cashless driver app using QRPH and PayRex to remove cash handling risks. They placed 1st Runner Up.
+
+IM Summit IT Business Case Competition (March 2024) was hosted by MISA at Ateneo de Manila University. Edward's team proposed FORTRESS — a FIDO2-based risk observation, evaluation, and security scoring system. They placed in the top 10.

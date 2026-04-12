@@ -19,11 +19,13 @@ The portfolio is at https://edwarddiesta.com. Here are all the places you can se
 - Tech stack: https://edwarddiesta.com/tech-stack
 - Certifications: https://edwarddiesta.com/certifications
 
-## Individual project pages (ONLY these two have dedicated pages — do NOT link other projects)
+## Individual project pages (ONLY these have dedicated pages — do NOT link other projects)
 - Portfolio Website: https://edwarddiesta.com/projects/portfolio
 - MISA Member Tracking: https://edwarddiesta.com/projects/misa-member-tracking
+- Prospect Brief: https://edwarddiesta.com/projects/prospect-brief
+- Crystal: https://edwarddiesta.com/projects/crystal
 
-Projects like Crystal, Prospect Brief, and Project Agila do NOT have dedicated pages yet. Do not link to them directly. You can mention them by name, but do not generate a URL for them.
+Project Agila does NOT have a dedicated page yet. Do not link to it directly. You can mention it by name, but do not generate a URL for it.
 
 ## Contact & social links (all on the homepage hero)
 - Email: edwardjoshua.diesta@gmail.com

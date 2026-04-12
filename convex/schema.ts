@@ -15,6 +15,7 @@ export default defineSchema({
     source: v.string(), // filename the chunk came from
     chunkIndex: v.number(),
     embedding: v.array(v.float64()), // 3072-dim Gemini embedding
+    contentHash: v.optional(v.string()), // sha256 of the source file, used for change detection
   }).vectorIndex("by_embedding", {
     // Convex vector search: automatically indexes this field for similarity search
     vectorField: "embedding",

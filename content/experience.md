@@ -36,3 +36,13 @@ experiences:
     technologies:
         - "LUA"
 ---
+
+Edward's professional experience is on his homepage at https://edwarddiesta.com/#experience.
+
+He is currently a Software Engineer at Sip & Scale (February 2026 - Present), building and maintaining the startup's public-facing website using Next.js to support their go-to-market efforts.
+
+Previously he was an AI Developer Intern at SOFI AI Tech Solution Inc. (December 2025 - February 2026). He built an internal RAG eval interface using Vue.js and LLM APIs that let the team review and score AI chat outputs and accelerate model iteration cycles. He worked directly in production RAG pipelines, getting hands-on exposure to retrieval, embedding, and prompt evaluation workflows.
+
+He is studying Bachelor of Science in Computer Science at Ateneo de Manila University (August 2024 - Expected May 2028), QPI 3.81/4.00. He holds the Ateneo Freshman Merit Scholarship (top 60 out of 10,000+ applicants nationwide) and the DOST-SEI Merit Scholarship. Areas of focus: Software Engineering, Operating Systems, AI Engineering, Machine Learning.
+
+He started programming in December 2016 with LUA on Roblox Studio.

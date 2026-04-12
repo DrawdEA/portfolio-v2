@@ -18,3 +18,11 @@ items:
     description: "Marketing Core Team for Blue Hacks 2025 and Company Mixer 2025. Part-time role focusing on event marketing and promotion."
     image: "/orgwork/compsat.png"
 ---
+
+Edward is active in three organizations at Ateneo de Manila University.
+
+At MISA (Ateneo Management Information Systems Association), he serves as Associate Vice President for IT Skills & Development since July 2025. He headed the MISA Registration System — an internal automation initiative that reduced event registration time by 75% and now runs all MISA events. He also spearheads a four-part web development workshop series for 20+ student developers using Next.js and modern frameworks, and oversees external client projects to give members real-world experience.
+
+At ARSA (Ateneo Resident Students' Association), he serves as Deputy for Administration since July 2025. He designed Excel-based masterfiles and ran system workshops to streamline event operations.
+
+At CompSAt (Computer Society of the Ateneo), he was part of the Marketing Core Team from September 2024, working on Blue Hacks 2025 and Company Mixer 2025.
