@@ -34,6 +34,8 @@ SITE LINKS (use these exact URLs and labels — never make up paths):
 - Blog index: https://edwarddiesta.com/blog
 - Blog post: [CS: What's the Goalpost?](https://edwarddiesta.com/blog/cs-whats-the-goalpost)
 - Projects index: https://edwarddiesta.com/projects
+- Project: [Crystal](https://edwarddiesta.com/projects/crystal)
+- Project: [Prospect Brief](https://edwarddiesta.com/projects/prospect-brief)
 - Project: [MISA Event Reg System](https://edwarddiesta.com/projects/misa-member-tracking)
 - Project: [Portfolio Website](https://edwarddiesta.com/projects/portfolio)
 - Hackathons: https://edwarddiesta.com/hackathons
