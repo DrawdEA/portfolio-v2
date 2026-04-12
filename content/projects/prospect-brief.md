@@ -1,6 +1,6 @@
 ---
 title: "Prospect Brief"
-date: "2026-04-01"
+date: "2026-04-02"
 description: "An AI sales research agent that takes a company name and outputs a structured brief on their AI readiness, pain points, scores, and talking points, generated via agentic web search."
 image: "/projects/prospect.png"
 tags: ["ai", "claude", "nextjs", "typescript", "agentic"]

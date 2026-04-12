@@ -1,6 +1,6 @@
 ---
 title: "Crystal"
-date: "2026-04-01"
+date: "2026-04-09"
 description: "An AI-powered institutional memory platform. Currently in development, building toward a startup."
 image: "/projects/crystal.png"
 tags: ["ai", "llm", "neo4j", "pgvector", "nextjs", "typescript"]
